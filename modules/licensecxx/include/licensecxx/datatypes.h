@@ -25,29 +25,29 @@ extern "C" {
 #define DllExport __declspec(dllexport)
 #endif
 
-#include <licensecc_properties.h>
+// #include <licensecxx_properties.h>
 
 typedef enum {
-	LICENSE_OK = 0,  // OK
-	LICENSE_FILE_NOT_FOUND = 1,  // license file not found
+	LICENSE_OK = 0,	 // OK
+	LICENSE_FILE_NOT_FOUND = 1,	 // license file not found
 	LICENSE_SERVER_NOT_FOUND = 2,  // license server can't be contacted
 	ENVIRONMENT_VARIABLE_NOT_DEFINED = 3,  // environment variable not defined
-	FILE_FORMAT_NOT_RECOGNIZED = 4,  // license file has invalid format (not .ini file)
-	LICENSE_MALFORMED = 5,  // some mandatory field are missing, or data can't be fully read.
+	FILE_FORMAT_NOT_RECOGNIZED = 4,	 // license file has invalid format (not .ini file)
+	LICENSE_MALFORMED = 5,	// some mandatory field are missing, or data can't be fully read.
 	PRODUCT_NOT_LICENSED = 6,  // this product was not licensed
-	PRODUCT_EXPIRED = 7,    //!< PRODUCT_EXPIRED
-	LICENSE_CORRUPTED = 8,  // License signature didn't match with current license
+	PRODUCT_EXPIRED = 7,  //!< PRODUCT_EXPIRED
+	LICENSE_CORRUPTED = 8,	// License signature didn't match with current license
 	IDENTIFIERS_MISMATCH = 9,  // Calculated identifier and the one provided in license didn't match
 
 	LICENSE_SPECIFIED = 100,  // license location was specified
 	LICENSE_FOUND = 101,  // License file has been found or license data has been located
 	PRODUCT_FOUND = 102,  // License has been loaded and the declared product has been found
-	SIGNATURE_VERIFIED = 103//!< SIGNATURE_VERIFIED
+	SIGNATURE_VERIFIED = 103  //!< SIGNATURE_VERIFIED
 } LCC_EVENT_TYPE;
 
 typedef enum {
 	LCC_LOCAL,
-	LCC_REMOTE  // remote licenses are not supported now.
+	LCC_REMOTE	// remote licenses are not supported now.
 } LCC_LICENSE_TYPE;
 
 typedef enum { SVRT_INFO, SVRT_WARN, SVRT_ERROR } LCC_SEVERITY;
@@ -133,7 +133,7 @@ typedef struct {
 	unsigned int days_left;
 	bool has_expiry;
 	bool linked_to_pc;
-	LCC_LICENSE_TYPE license_type;  // Local or Remote
+	LCC_LICENSE_TYPE license_type;	// Local or Remote
 	/* A string of character inserted into the license understood
 	 * by the calling application.
 	 * '\0' if the application didn't specify one */

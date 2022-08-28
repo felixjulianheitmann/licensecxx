@@ -8,7 +8,7 @@
 #include <array>
 #include <vector>
 
-#include <licensecc/datatypes.h>
+#include <licensecxx/datatypes.h>
 #include <licensecc_properties.h>
 #include "../base/base.h"
 #include "../os/network.hpp"
@@ -36,7 +36,7 @@ static FUNCTION_RETURN generate_ethernet_pc_id(vector<array<uint8_t, HW_IDENTIFI
 		array<uint8_t, HW_IDENTIFIER_PROPRIETARY_DATA> identifier = {};
 		data_len = use_ip ? sizeof(os::OsAdapterInfo::ipv4_address) : sizeof(os::OsAdapterInfo::mac_address);
 		bool all_zero = true;
-		for (k = 0; k < data_len && all_zero;k++) {
+		for (k = 0; k < data_len && all_zero; k++) {
 			all_zero = all_zero && ((use_ip ? it.ipv4_address[k] : it.mac_address[k]) == 0);
 		}
 		if (all_zero) {
@@ -44,13 +44,12 @@ static FUNCTION_RETURN generate_ethernet_pc_id(vector<array<uint8_t, HW_IDENTIFI
 		}
 		for (k = 1; k < HW_IDENTIFIER_PROPRIETARY_DATA; k++) {
 			if ((k - 1) < data_len) {
-				identifier[k] =
-						use_ip ? it.ipv4_address[k - 1] : it.mac_address[k - 1];
+				identifier[k] = use_ip ? it.ipv4_address[k - 1] : it.mac_address[k - 1];
 			} else {
 				identifier[k] = 42;
 			}
 		}
-		//identifier[0] = identifier[0] & 0x1F;
+		// identifier[0] = identifier[0] & 0x1F;
 		identifier[0] = 0;
 		data.push_back(identifier);
 	}

@@ -55,7 +55,6 @@ public:
 	};
 };
 
-
 }  // namespace hw_identifier
 } /* namespace license */
 

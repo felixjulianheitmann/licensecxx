@@ -13,9 +13,9 @@
 #include <cstring>
 #include <iostream>
 
-#include <licensecc/datatypes.h>
-#include <licensecc/licensecc.h>
-#include <licensecc_properties.h>
+#include <licensecxx/datatypes.h>
+#include <licensecxx/licensecc.h>
+#include <licensecxx_properties.h>
 
 #include "base/logger.h"
 #include "base/string_utils.h"

@@ -8,8 +8,8 @@
 #ifndef SRC_LIBRARY_PC_IDENTIFIER_IDENTIFICATION_STRATEGY_HPP_
 #define SRC_LIBRARY_PC_IDENTIFIER_IDENTIFICATION_STRATEGY_HPP_
 
-#include <licensecc/datatypes.h>
-#include <licensecc_properties.h>
+#include <licensecxx/datatypes.h>
+#include <licensecxx_properties.h>
 #include <vector>
 #include <memory>
 #include "../base/base.h"

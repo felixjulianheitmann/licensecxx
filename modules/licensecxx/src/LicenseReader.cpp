@@ -22,7 +22,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include <licensecc/licensecc.h>
+#include <licensecxx/licensecxx.h>
 
 #include "base/base.h"
 #include "LicenseReader.hpp"

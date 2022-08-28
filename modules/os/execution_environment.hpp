@@ -9,7 +9,7 @@
 #define SRC_LIBRARY_OS_VIRTUALIZATION_HPP_
 
 #include <string>
-#include <licensecc/datatypes.h>
+#include <licensecxx/datatypes.h>
 #include "dmi_info.hpp"
 #include "cpu_info.hpp"
 

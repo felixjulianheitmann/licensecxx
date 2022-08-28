@@ -7,6 +7,10 @@ add_library(hw_identifier OBJECT
 	hw_identifier.cpp
 )
 
+target_link_libraries(hw_identifier PUBLIC
+    licensecxx::licensecxx
+)
+
 if(CODE_COVERAGE AND UNIX)
 	  target_compile_options(hw_identifier PUBLIC -O0 -g --coverage)
 endif(CODE_COVERAGE AND UNIX)

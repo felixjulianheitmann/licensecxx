@@ -33,7 +33,7 @@ ELSE(UNIX OR OPENSSL_FOUND)
 ENDIF(UNIX OR OPENSSL_FOUND)
 
 #dependency of signature_verifier.cpp
-add_dependencies( os project_initialize )
+add_dependencies( os generate_private_key )
 
 if(CODE_COVERAGE AND UNIX)
 	  target_compile_options(os PUBLIC -O0 -g --coverage)

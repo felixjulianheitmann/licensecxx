@@ -11,7 +11,7 @@
 #include <ctime>
 
 #define SI_SUPPORT_IOSTREAMS
-#include <licensecc/datatypes.h>
+#include <licensecxx/datatypes.h>
 
 #include "base/EventRegistry.h"
 #include "os/os.h"
