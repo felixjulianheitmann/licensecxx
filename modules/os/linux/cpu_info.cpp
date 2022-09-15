@@ -9,7 +9,7 @@
 #include <string>
 #include <unordered_set>
 #include <memory.h>
-#include "../cpu_info.hpp"
+#include "os/cpu_info.hpp"
 
 namespace license {
 namespace os {
@@ -59,7 +59,7 @@ bool CpuInfo::is_hypervisor_set() const {
 	uint32_t level = 1, eax = 0, ebx = 0, ecx = 0, edx = 0;
 	__get_cpuid(level, &eax, &ebx, &ecx, &edx);
 
-	bool is_virtual = (((ecx >> 31) & 1) == 1);  // hypervisor flag
+	bool is_virtual = (((ecx >> 31) & 1) == 1);	 // hypervisor flag
 	return is_virtual;
 }
 

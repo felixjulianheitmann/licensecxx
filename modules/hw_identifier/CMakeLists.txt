@@ -1,4 +1,4 @@
-add_library(hw_identifier OBJECT
+add_library(hw_identifier
 	hw_identifier_facade.cpp
 	default_strategy.cpp
 	ethernet.cpp
@@ -8,7 +8,13 @@ add_library(hw_identifier OBJECT
 )
 
 target_link_libraries(hw_identifier PUBLIC
-    licensecxx::licensecxx
+    lcxx::lcxx
+    os
+    base
+)
+
+target_include_directories(hw_identifier PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 if(CODE_COVERAGE AND UNIX)

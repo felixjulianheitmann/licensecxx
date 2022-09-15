@@ -25,9 +25,18 @@ target_include_directories(licensecxx
         $<BUILD_INTERFACE:${LCXX_INCLUDE_DIR}>
 )
 
-add_library(licensecxx::licensecxx ALIAS licensecxx)
-install(TARGETS licensecxx EXPORT licensecxx
-	ARCHIVE DESTINATION ${main_lib_dest}/${LCXX_RESOURCE_DIR})
+add_library(lcxx::lcxx ALIAS licensecxx)
+
+target_link_libraries(licensecxx
+PRIVATE
+    base
+    os
+    hw_identifier
+    locate
+)
+
+# install(TARGETS licensecxx EXPORT licensecxx
+# 	ARCHIVE DESTINATION ${main_lib_dest}/${LCXX_RESOURCE_DIR})
 	
-install(EXPORT licensecxx NAMESPACE licensecxx:: DESTINATION  ${main_lib_dest}/${LCXX_RESOURCE_DIR}/cmake)
-export(EXPORT licensecxx NAMESPACE licensecxx:: FILE ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.cmake)
+# install(EXPORT licensecxx NAMESPACE licensecxx:: DESTINATION  ${main_lib_dest}/${LCXX_RESOURCE_DIR}/cmake)
+# export(EXPORT licensecxx NAMESPACE licensecxx:: FILE ${CMAKE_BINARY_DIR}/${PROJECT_NAME}.cmake)

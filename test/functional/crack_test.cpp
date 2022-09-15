@@ -4,7 +4,7 @@
 #include <boost/test/unit_test.hpp>
 #include <boost/filesystem.hpp>
 
-#include <licensecc/licensecc.h>
+#include <lcxx/lcxx.h>
 #include <licensecc_properties_test.h>
 #include <licensecc_properties.h>
 #include <iostream>

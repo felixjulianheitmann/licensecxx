@@ -9,15 +9,15 @@
 #include <string>
 #include <iostream>
 
-#include <licensecc/datatypes.h>
-#include <licensecc_properties.h>
+#include <lcxx/datatypes.h>
+#include <lcxx/properties.h>
 
-#include "../base/logger.h"
-#include "../base/base.h"
-#include "../base/EventRegistry.h"
-#include "../os/os.h"
+#include "base/logger.h"
+#include "base/base.h"
+#include "base/EventRegistry.h"
+#include "os/os.h"
 #include "ApplicationFolder.hpp"
-#include "../base/file_utils.hpp"
+#include "base/file_utils.hpp"
 
 namespace license {
 namespace locate {

@@ -11,7 +11,7 @@
 
 #include <string>
 #include <unordered_map>
-#include <licensecc/datatypes.h>
+#include <lcxx/datatypes.h>
 #include "identification_strategy.hpp"
 
 namespace license {
@@ -21,6 +21,7 @@ class HwIdentifierFacade {
 private:
 	HwIdentifierFacade(){};
 	virtual ~HwIdentifierFacade(){};
+
 public:
 	static LCC_EVENT_TYPE validate_pc_signature(const std::string& str_code);
 	/**

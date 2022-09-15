@@ -10,18 +10,18 @@
 #include <string>
 #include <vector>
 #include <stdexcept>
-#include <licensecc/datatypes.h>
+#include <lcxx/datatypes.h>
 
-#include "../base/base64.h"
-#include "../base/EventRegistry.h"
-#include "../base/string_utils.h"
+#include "base/base64.h"
+#include "base/EventRegistry.h"
+#include "base/string_utils.h"
 
 #include "ExternalDefinition.hpp"
-#include "../base/file_utils.hpp"
+#include "base/file_utils.hpp"
 
 namespace license {
 namespace locate {
-	using namespace std;
+using namespace std;
 
 ExternalDefinition::ExternalDefinition(const LicenseLocation *location)
 	: LocatorStrategy("ExternalDefinition"), m_location(location) {}
@@ -34,7 +34,8 @@ const std::vector<std::string> ExternalDefinition::license_locations(EventRegist
 		eventRegistry.addEvent(LICENSE_SPECIFIED, get_strategy_name());
 		switch (m_location->license_data_type) {
 			case LICENSE_PATH: {
-				string licData(m_location->licenseData, mstrnlen_s(m_location->licenseData, LCC_API_MAX_LICENSE_DATA_LENGTH));
+				string licData(m_location->licenseData,
+							   mstrnlen_s(m_location->licenseData, LCC_API_MAX_LICENSE_DATA_LENGTH));
 				const vector<string> declared_positions = license::split_string(licData, ';');
 				existing_pos =
 					license::filter_existing_files(declared_positions, eventRegistry, get_strategy_name().c_str());

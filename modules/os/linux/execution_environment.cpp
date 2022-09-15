@@ -15,11 +15,11 @@
 #include <dirent.h>
 #include <sys/utsname.h>
 
-#include "../../base/base.h"
-#include "../cpu_info.hpp"
-#include "../execution_environment.hpp"
-#include "../../base/file_utils.hpp"
-#include "../../base/string_utils.h"
+#include "base/base.h"
+#include "os/cpu_info.hpp"
+#include "os/execution_environment.hpp"
+#include "base/file_utils.hpp"
+#include "base/string_utils.h"
 
 namespace license {
 namespace os {
@@ -41,8 +41,7 @@ static CONTAINER_TYPE checkContainerProc() {
 		return CONTAINER_TYPE::NONE;
 	}
 
-	while ((read = getline(&line, &len, fp)) != -1
-			&& result == CONTAINER_TYPE::NONE) {
+	while ((read = getline(&line, &len, fp)) != -1 && result == CONTAINER_TYPE::NONE) {
 		if (strstr(line, "docker") != NULL) {
 			result = CONTAINER_TYPE::DOCKER;
 		}

@@ -1,8 +1,8 @@
 
-#include "../../base/file_utils.hpp"
-#include "../../base/string_utils.h"
-#include "../../base/logger.h"
-#include "../dmi_info.hpp"
+#include "base/file_utils.hpp"
+#include "base/string_utils.h"
+#include "base/logger.h"
+#include "os/dmi_info.hpp"
 
 namespace license {
 namespace os {

@@ -10,9 +10,9 @@
 #include <stdio.h>
 #include <string.h>
 #include <sstream>
-#include "../os.h"
-#include "../../base/logger.h"
-#include "../../base/string_utils.h"
+#include "os/os.h"
+#include "base/logger.h"
+#include "base/string_utils.h"
 
 #include <mntent.h>
 #include <dirent.h>

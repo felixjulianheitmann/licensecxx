@@ -8,11 +8,11 @@
 #ifndef SRC_LIBRARY_PC_IDENTIFIER_IDENTIFICATION_STRATEGY_HPP_
 #define SRC_LIBRARY_PC_IDENTIFIER_IDENTIFICATION_STRATEGY_HPP_
 
-#include <licensecxx/datatypes.h>
-#include <licensecxx_properties.h>
+#include <lcxx/datatypes.h>
+// #include <licensecxx_properties.h>
 #include <vector>
 #include <memory>
-#include "../base/base.h"
+#include "base/base.h"
 #include "hw_identifier.hpp"
 
 namespace license {

@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "../base/EventRegistry.h"
+#include "base/EventRegistry.h"
 
 namespace license {
 namespace locate {

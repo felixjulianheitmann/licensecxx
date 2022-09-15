@@ -5,7 +5,7 @@
  *      Author: devel
  */
 #include <string.h>
-#include "../os/os.h"
+#include "os/os.h"
 #include "disk_strategy.hpp"
 
 using namespace std;
@@ -14,8 +14,7 @@ namespace hw_identifier {
 
 static array<uint8_t, HW_IDENTIFIER_PROPRIETARY_DATA> generate_id_by_sn(const DiskInfo &disk_info) {
 	array<uint8_t, HW_IDENTIFIER_PROPRIETARY_DATA> a_disk_id = {};
-	size_t size = min((size_t) HW_IDENTIFIER_PROPRIETARY_DATA,
-			sizeof(disk_info.disk_sn));
+	size_t size = min((size_t)HW_IDENTIFIER_PROPRIETARY_DATA, sizeof(disk_info.disk_sn));
 	memcpy(&a_disk_id[0], disk_info.disk_sn, size);
 
 	return a_disk_id;

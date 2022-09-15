@@ -10,8 +10,8 @@
 #include <cstdlib>
 #include <stdexcept>
 
-#include "../base/base.h"
-#include "../base/logger.h"
+#include "base/base.h"
+#include "base/logger.h"
 #include "identification_strategy.hpp"
 #include "hw_identifier.hpp"
 
@@ -23,8 +23,8 @@ using namespace std;
 LCC_EVENT_TYPE HwIdentifierFacade::validate_pc_signature(const std::string& str_code) {
 	LCC_EVENT_TYPE result = IDENTIFIERS_MISMATCH;
 	try {
-        HwIdentifier pc_id(str_code);
-        LCC_API_HW_IDENTIFICATION_STRATEGY id_strategy = pc_id.get_identification_strategy();
+		HwIdentifier pc_id(str_code);
+		LCC_API_HW_IDENTIFICATION_STRATEGY id_strategy = pc_id.get_identification_strategy();
 		unique_ptr<IdentificationStrategy> strategy = IdentificationStrategy::get_strategy(id_strategy);
 		result = strategy->validate_identifier(pc_id);
 	} catch (logic_error& e) {

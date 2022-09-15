@@ -13,17 +13,18 @@
 #include <cstring>
 #include <iostream>
 
-#include <licensecxx/datatypes.h>
-#include <licensecxx/licensecc.h>
-#include <licensecxx_properties.h>
+#include <lcxx/datatypes.h>
+#include <lcxx/licensecxx.h>
+#include <lcxx/properties.h>
 
 #include "base/logger.h"
 #include "base/string_utils.h"
-#include "hw_identifier/hw_identifier_facade.hpp"
+#include "hw_identifier.hpp"
 #include "os/execution_environment.hpp"
-#include "limits/license_verifier.hpp"
+#include "lcxx/license_verifier.hpp"
 #include "base/string_utils.h"
-#include "LicenseReader.hpp"
+#include "lcxx/LicenseReader.hpp"
+#include "hw_identifier_facade.hpp"
 
 using namespace std;
 

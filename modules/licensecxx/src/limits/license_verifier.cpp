@@ -6,12 +6,12 @@
  */
 #include <cmath>
 #include <algorithm>
-#include <licensecc_properties.h>
+#include <lcxx/properties.h>
 
-#include "license_verifier.hpp"
-#include "../base/string_utils.h"
-#include "../os/signature_verifier.hpp"
-#include "../hw_identifier/hw_identifier_facade.hpp"
+#include "lcxx/license_verifier.hpp"
+#include "base/string_utils.h"
+#include "os/signature_verifier.hpp"
+#include "hw_identifier_facade.hpp"
 
 namespace license {
 using namespace std;

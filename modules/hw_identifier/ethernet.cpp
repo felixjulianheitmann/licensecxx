@@ -8,10 +8,10 @@
 #include <array>
 #include <vector>
 
-#include <licensecxx/datatypes.h>
-#include <licensecc_properties.h>
-#include "../base/base.h"
-#include "../os/network.hpp"
+#include <lcxx/datatypes.h>
+// #include <lcxx_properties.h>
+#include "base/base.h"
+#include "os/network.hpp"
 #include "hw_identifier.hpp"
 #include "ethernet.hpp"
 

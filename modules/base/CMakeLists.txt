@@ -1,4 +1,4 @@
-ADD_LIBRARY(base OBJECT
+ADD_LIBRARY(base
     EventRegistry.cpp
     file_utils.cpp
     string_utils.cpp
@@ -15,4 +15,10 @@ if(CODE_COVERAGE AND UNIX)
 	  )
 endif(CODE_COVERAGE AND UNIX)
 
+target_include_directories(base PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
+target_link_libraries(base PUBLIC
+    lcxx::lcxx
+)

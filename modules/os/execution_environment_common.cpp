@@ -8,29 +8,24 @@
 #include <string.h>
 #include <unordered_map>
 #include <array>
-#include <licensecc/datatypes.h>
+#include <lcxx/datatypes.h>
 
-#include "../base/base.h"
-#include "cpu_info.hpp"
-#include "execution_environment.hpp"
+#include "base/base.h"
+#include "os/cpu_info.hpp"
+#include "os/execution_environment.hpp"
 
 namespace license {
 namespace os {
 using namespace std;
 
 const unordered_map<string, LCC_API_VIRTUALIZATION_DETAIL> virtual_cpu_names{
-	{"bhyve bhyve ", V_OTHER}, {"KVM", KVM},	   {"MICROSOFT", HV},		{" lrpepyh vr", HV},
+	{"bhyve bhyve ", V_OTHER},	 {"KVM", KVM},		 {"MICROSOFT", HV},		  {" lrpepyh vr", HV},
 	{"prl hyperv  ", PARALLELS}, {"VMWARE", VMWARE}, {"XenVMMXenVMM", V_XEN}, {"ACRNACRNACRN", V_OTHER},
 	{"VBOX", VIRTUALBOX}};
 
-const unordered_map<string, LCC_API_VIRTUALIZATION_DETAIL> vm_vendors{{"VMWARE", VMWARE},
-																	  {"MICROSOFT", HV},
-																	  {"PARALLELS", PARALLELS},
-																	  {"VITRUAL MACHINE", V_OTHER},
-																	  {"INNOTEK GMBH", VIRTUALBOX},
-																	  {"POWERVM", V_OTHER},
-																	  {"BOCHS", V_OTHER},
-																	  {"KVM", KVM}};
+const unordered_map<string, LCC_API_VIRTUALIZATION_DETAIL> vm_vendors{
+	{"VMWARE", VMWARE},			  {"MICROSOFT", HV},	{"PARALLELS", PARALLELS}, {"VITRUAL MACHINE", V_OTHER},
+	{"INNOTEK GMBH", VIRTUALBOX}, {"POWERVM", V_OTHER}, {"BOCHS", V_OTHER},		  {"KVM", KVM}};
 
 static LCC_API_VIRTUALIZATION_DETAIL find_in_map(const unordered_map<string, LCC_API_VIRTUALIZATION_DETAIL>& map,
 												 const string& data) {

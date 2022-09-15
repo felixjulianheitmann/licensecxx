@@ -12,10 +12,10 @@
 #include <iostream>
 #include <string>
 
-#include <licensecc_properties.h>
-#include "../../../include/licensecc/datatypes.h"
-#include "../os/execution_environment.hpp"
-#include "../os/cpu_info.hpp"
+#include <lcxx/properties.h>
+#include "lcxx/datatypes.h"
+#include "os/execution_environment.hpp"
+#include "os/cpu_info.hpp"
 
 namespace license {
 namespace hw_identifier {

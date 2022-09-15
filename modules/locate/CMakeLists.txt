@@ -1,4 +1,4 @@
-add_library(locate OBJECT
+add_library(locate
     ApplicationFolder.cpp
     EnvironmentVarLocation.cpp
     EnvironmentVarData.cpp
@@ -7,13 +7,14 @@ add_library(locate OBJECT
     LocatorFactory.cpp
 )
 
-target_include_directories(locate PRIVATE
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/../../include>
-        $<BUILD_INTERFACE:${LCC_INCLUDE_DIR}>
+target_include_directories(locate PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_link_libraries(locate PUBLIC
-    licensecxx::licensecxx
+    lcxx::lcxx
+    base
+    os
 )
 
 if(CODE_COVERAGE AND UNIX)

@@ -28,14 +28,13 @@
 #include <string.h>
 #include <memory.h>
 
-#include "../../base/string_utils.h"
-#include "../../base/logger.h"
-#include "../network.hpp"
+#include "base/string_utils.h"
+#include "base/logger.h"
+#include "os/network.hpp"
 
 namespace license {
 namespace os {
 using namespace std;
-
 
 /**
  *
@@ -76,8 +75,10 @@ FUNCTION_RETURN getAdapterInfos(vector<OsAdapterInfo> &adapterInfos) {
 		/* Display interface name and family (including symbolic
 		 form of the latter for the common families) */
 		LOG_DEBUG("%-8s %s (%d)\n", ifa->ifa_name,
-				  (family == AF_PACKET) ? "AF_PACKET"
-										: (family == AF_INET) ? "AF_INET" : (family == AF_INET6) ? "AF_INET6" : "???",
+				  (family == AF_PACKET)	 ? "AF_PACKET"
+				  : (family == AF_INET)	 ? "AF_INET"
+				  : (family == AF_INET6) ? "AF_INET6"
+										 : "???",
 				  family);
 		/* For an AF_INET* interface address, display the address
 		 * || family == AF_INET6*/

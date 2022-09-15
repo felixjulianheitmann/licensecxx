@@ -5,10 +5,10 @@
  *      Author: Gabriele Contini
  */
 
-#include <licensecc_properties.h>
+#include <lcxx/properties.h>
 
 #include "LocatorStrategy.hpp"
-#include "../base/file_utils.hpp"
+#include "base/file_utils.hpp"
 
 namespace license {
 namespace locate {

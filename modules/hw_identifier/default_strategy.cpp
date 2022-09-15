@@ -6,7 +6,7 @@
  */
 
 #include <vector>
-#include "../os/execution_environment.hpp"
+#include "os/execution_environment.hpp"
 #include "default_strategy.hpp"
 
 using namespace std;
@@ -68,11 +68,11 @@ std::vector<HwIdentifier> DefaultStrategy::alternative_ids() const {
 	return identifiers;
 }
 /**
-* default strategy should never be used to validate an identifier. The strategy that was used in the first place to generate it
-* should handle it. DefaultStrategy is just a switch.
-*/
+ * default strategy should never be used to validate an identifier. The strategy that was used in the first place to
+ * generate it should handle it. DefaultStrategy is just a switch.
+ */
 LCC_EVENT_TYPE DefaultStrategy::validate_identifier(const HwIdentifier& identifier) const {
-	// 
+	//
 	return IDENTIFIERS_MISMATCH;
 }
 

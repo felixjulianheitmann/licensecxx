@@ -22,13 +22,13 @@
 #include <stdlib.h>
 #include <math.h>
 
-#include <licensecxx/licensecxx.h>
+#include <lcxx/licensecxx.h>
 
 #include "base/base.h"
-#include "LicenseReader.hpp"
+#include "lcxx/LicenseReader.hpp"
 #include "base/string_utils.h"
 #include "base/logger.h"
-#include "locate/LocatorFactory.hpp"
+#include "LocatorFactory.hpp"
 
 namespace license {
 using namespace std;

@@ -12,7 +12,7 @@
 #include <iostream>
 #include <sstream>
 
-#include "EventRegistry.h"
+#include "base/EventRegistry.h"
 #define LIC_ID_NOT_DEFINED "UNDEF"
 
 namespace license {

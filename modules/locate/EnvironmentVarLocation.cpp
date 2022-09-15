@@ -5,11 +5,11 @@
  *      Author: Gabriele Contini
  */
 
-#include <licensecc_properties.h>
+#include <lcxx/properties.h>
 
-#include "../base/string_utils.h"
+#include "base/string_utils.h"
 #include "EnvironmentVarLocation.hpp"
-#include "../base/file_utils.hpp"
+#include "base/file_utils.hpp"
 
 namespace license {
 namespace locate {

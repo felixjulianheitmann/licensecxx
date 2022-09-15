@@ -6,17 +6,17 @@
  */
 
 #include "EnvironmentVarData.hpp"
-#include <licensecc/datatypes.h>
+#include <lcxx/datatypes.h>
 
-#include <licensecc_properties.h>
+#include <lcxx/properties.h>
 #include <cstdlib>
 #include <regex>
 #include <string>
 #include <vector>
 
-#include "../base/base64.h"
-#include "../base/EventRegistry.h"
-#include "../base/string_utils.h"
+#include "base/base64.h"
+#include "base/EventRegistry.h"
+#include "base/string_utils.h"
 
 namespace license {
 namespace locate {

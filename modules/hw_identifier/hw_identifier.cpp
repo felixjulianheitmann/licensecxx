@@ -7,7 +7,7 @@
 
 #include <algorithm>
 #include "hw_identifier.hpp"
-#include "../base/base64.h"
+#include "base/base64.h"
 
 namespace license {
 namespace hw_identifier {
@@ -17,7 +17,7 @@ using namespace std;
 HwIdentifier::HwIdentifier() {}
 
 HwIdentifier::HwIdentifier(const std::string& param) {
-	string tmp_str(param);  // throw away const
+	string tmp_str(param);	// throw away const
 	std::replace(tmp_str.begin(), tmp_str.end(), '-', '\n');
 	vector<uint8_t> decoded = unbase64(tmp_str);
 	if (decoded.size() != HW_IDENTIFIER_PROPRIETARY_DATA + 1) {
