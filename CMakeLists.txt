@@ -12,16 +12,17 @@ ENDIF(NOT LCXX_RESOURCE_DIR)
 
 option(LCXX_GENERATE_KEYS "Whether RSA key files should be generated during build time." ON)
 
-project (licensecxx
-			VERSION 2.1.0
+project (lcxx
+			VERSION 0.1.0
 			LANGUAGES CXX)
 
 include(${PROJECT_SOURCE_DIR}/cmake/key_targets.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/get_nlohmann_json.cmake)
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/modules/base)
-add_subdirectory(${PROJECT_SOURCE_DIR}/modules/hw_identifier)
-add_subdirectory(${PROJECT_SOURCE_DIR}/modules/locate)
-add_subdirectory(${PROJECT_SOURCE_DIR}/modules/os)
+# add_subdirectory(${PROJECT_SOURCE_DIR}/modules/base)
+# add_subdirectory(${PROJECT_SOURCE_DIR}/modules/hw_identifier)
+# add_subdirectory(${PROJECT_SOURCE_DIR}/modules/locate)
+# add_subdirectory(${PROJECT_SOURCE_DIR}/modules/os)
 add_subdirectory(${PROJECT_SOURCE_DIR}/modules/lcxx)
 
 # #In case the build system doesn't support binfmt misc
@@ -66,4 +67,3 @@ else(UNIX)
 	endif(MSVC)
 endif(UNIX)
 
-include_directories( ${LCXX_INCLUDE_DIR} "${CMAKE_CURRENT_SOURCE_DIR}/include" )

@@ -1,8 +1,7 @@
 add_library( licensecxx
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/licensecxx.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/LicenseReader.cpp 
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/limits/license_verifier.cpp    
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/ini/ConvertUTF.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/writer.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/reader.cpp 
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/verifier.cpp    
 )
 
 #define_property( TARGET PROPERTY WITH_OPENSSL BRIEF_DOCS "need openssl to compile" FULL_DOCS "ff" )
@@ -21,6 +20,11 @@ target_include_directories(licensecxx PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
+target_compile_features(licensecxx PUBLIC cxx_std_20)
+
 add_library( lcxx::lcxx ALIAS licensecxx )
 
-target_link_libraries( licensecxx PRIVATE base os hw_identifier locate )
+target_link_libraries( licensecxx PRIVATE
+    hw_identifier
+    nlohmann_json::nlohmann_json
+)
