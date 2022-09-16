@@ -7,4 +7,5 @@
 
 #include "identification_strategy.hpp"
 
-namespace license {} /* namespace license */
+namespace license {
+} /* namespace license */

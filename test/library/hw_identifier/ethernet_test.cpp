@@ -7,4 +7,5 @@
 
 #include "ethernet.hpp"
 
-namespace license {} /* namespace license */
+namespace license {
+} /* namespace license */

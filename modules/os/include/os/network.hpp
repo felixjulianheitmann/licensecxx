@@ -24,21 +24,19 @@
 
 #include "base/base.h"
 
-namespace license {
-namespace os {
+namespace license { namespace os {
 
-typedef enum { IFACE_TYPE_ETHERNET, IFACE_TYPE_WIRELESS } IFACE_TYPE;
+    typedef enum { IFACE_TYPE_ETHERNET, IFACE_TYPE_WIRELESS } IFACE_TYPE;
 
-typedef struct {
-	int id;
-	char description[LCC_ADAPTER_DESCRIPTION_LEN + 1];
-	unsigned char mac_address[6];
-	unsigned char ipv4_address[4];
-	IFACE_TYPE type;
-} OsAdapterInfo;
+    typedef struct {
+        int           id;
+        char          description[LCC_ADAPTER_DESCRIPTION_LEN + 1];
+        unsigned char mac_address[6];
+        unsigned char ipv4_address[4];
+        IFACE_TYPE    type;
+    } OsAdapterInfo;
 
-FUNCTION_RETURN getAdapterInfos(std::vector<OsAdapterInfo>& adapterInfos);
+    FUNCTION_RETURN getAdapterInfos( std::vector< OsAdapterInfo > & adapterInfos );
 
-}  // namespace os
-}  // namespace license
+}}     // namespace license::os
 #endif /* SRC_LIBRARY_OS_NETWORK_HPP_ */

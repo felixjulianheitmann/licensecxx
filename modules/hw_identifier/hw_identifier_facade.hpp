@@ -9,31 +9,29 @@
 #define SRC_LIBRARY_PC_IDENTIFIER_HW_IDENTIFIER_FACADE_HPP_
 #include "hw_identifier_facade.hpp"
 
+#include "identification_strategy.hpp"
+#include <lcxx/datatypes.h>
 #include <string>
 #include <unordered_map>
-#include <lcxx/datatypes.h>
-#include "identification_strategy.hpp"
 
-namespace license {
-namespace hw_identifier {
+namespace license { namespace hw_identifier {
 
-class HwIdentifierFacade {
-private:
-	HwIdentifierFacade(){};
-	virtual ~HwIdentifierFacade(){};
+    class HwIdentifierFacade {
+    private:
+        HwIdentifierFacade(){};
+        virtual ~HwIdentifierFacade(){};
 
-public:
-	static LCC_EVENT_TYPE validate_pc_signature(const std::string& str_code);
-	/**
-	 *
-	 * @throws logic_error if pc_identifier can't be generated.
-	 * @param strategy
-	 * @return
-	 */
-	static std::string generate_user_pc_signature(LCC_API_HW_IDENTIFICATION_STRATEGY strategy);
-};
+    public:
+        static LCC_EVENT_TYPE validate_pc_signature( const std::string & str_code );
+        /**
+         *
+         * @throws logic_error if pc_identifier can't be generated.
+         * @param strategy
+         * @return
+         */
+        static std::string generate_user_pc_signature( LCC_API_HW_IDENTIFICATION_STRATEGY strategy );
+    };
 
-}  // namespace hw_identifier
-} /* namespace license */
+}}  // namespace license::hw_identifier
 
 #endif /* SRC_LIBRARY_PC_IDENTIFIER_HW_IDENTIFIER_FACADE_HPP_ */

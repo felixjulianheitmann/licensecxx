@@ -12,17 +12,15 @@
 
 #include "LocatorStrategy.hpp"
 
-namespace license {
-namespace locate {
+namespace license { namespace locate {
 
-class ApplicationFolder : public LocatorStrategy {
-public:
-	ApplicationFolder();
-	const virtual std::vector<std::string> license_locations(EventRegistry& eventRegistry);
-	virtual ~ApplicationFolder();
-};
+    class ApplicationFolder : public LocatorStrategy {
+    public:
+        ApplicationFolder();
+        const virtual std::vector< std::string > license_locations( EventRegistry & eventRegistry );
+        virtual ~ApplicationFolder();
+    };
 
-}  // namespace locate
-} /* namespace license */
+}}  // namespace license::locate
 
 #endif /* SRC_LIBRARY_RETRIEVERS_APPLICATIONFOLDER_H_ */

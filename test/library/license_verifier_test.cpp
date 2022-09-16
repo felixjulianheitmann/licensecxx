@@ -7,4 +7,5 @@
 
 #include "LicenseVerifier.hpp"
 
-namespace license {} /* namespace license */
+namespace license {
+} /* namespace license */

@@ -7,4 +7,5 @@
 
 #include "cpu_info.hpp"
 
-namespace license {} /* namespace license */
+namespace license {
+} /* namespace license */

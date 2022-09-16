@@ -8,35 +8,35 @@
 #ifndef OS_DEPENDENT_HPP_
 #define OS_DEPENDENT_HPP_
 
+#include <ctype.h>
 #include <stddef.h>
 #include <string.h>
-#include <ctype.h>
 #include <sys/types.h>
 // definition of size_t
 #include <stdlib.h>
 #include <vector>
 #ifdef __unix__
-#include <unistd.h>
 #include <stdbool.h>
+#include <unistd.h>
 #endif
 
-#include <lcxx/datatypes.h>
 #include "base/base.h"
+#include <lcxx/datatypes.h>
 
 typedef struct {
-	int id;
-	char device[MAX_PATH];
-	unsigned char disk_sn[8];
-	bool sn_initialized;
-	char label[255];
-	bool label_initialized;
-	bool preferred;
+    int           id;
+    char          device[MAX_PATH];
+    unsigned char disk_sn[8];
+    bool          sn_initialized;
+    char          label[255];
+    bool          label_initialized;
+    bool          preferred;
 } DiskInfo;
 
-FUNCTION_RETURN getDiskInfos(std::vector<DiskInfo>& diskInfos);
-FUNCTION_RETURN getUserHomePath(char[MAX_PATH]);
-FUNCTION_RETURN getModuleName(char buffer[MAX_PATH]);
-FUNCTION_RETURN getMachineName(unsigned char identifier[6]);
+FUNCTION_RETURN getDiskInfos( std::vector< DiskInfo > & diskInfos );
+FUNCTION_RETURN getUserHomePath( char[MAX_PATH] );
+FUNCTION_RETURN getModuleName( char buffer[MAX_PATH] );
+FUNCTION_RETURN getMachineName( unsigned char identifier[6] );
 /**
  * Get an identifier of the machine in an os specific way.
  * In Linux it uses:
@@ -55,14 +55,14 @@ FUNCTION_RETURN getMachineName(unsigned char identifier[6]);
  * @param identifier
  * @return
  */
-FUNCTION_RETURN getOsSpecificIdentifier(unsigned char identifier[6]);
+FUNCTION_RETURN getOsSpecificIdentifier( unsigned char identifier[6] );
 
 #ifdef _WIN32
-#define SETENV(VAR, VAL) _putenv_s(VAR, VAL);
-#define UNSETENV(P) _putenv_s(P, "");
+#define SETENV( VAR, VAL ) _putenv_s( VAR, VAL );
+#define UNSETENV( P )      _putenv_s( P, "" );
 #else
-#define SETENV(VAR, VAL) setenv(VAR, VAL, 1);
-#define UNSETENV(P) unsetenv(P);
+#define SETENV( VAR, VAL ) setenv( VAR, VAL, 1 );
+#define UNSETENV( P )      unsetenv( P );
 #endif
 
 #endif /* OS_DEPENDENT_HPP_ */

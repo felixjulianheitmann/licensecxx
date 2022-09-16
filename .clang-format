@@ -1,12 +1,27 @@
-BasedOnStyle: Google
-Language: Cpp
-Standard: Cpp11
-IndentWidth: 4
-TabWidth: 4
+BasedOnStyle: LLVM
+
 ColumnLimit: 120
-UseTab: Always
+
+BreakBeforeBraces: Stroustrup
+BreakBeforeBinaryOperators: None
+
+PointerAlignment: Middle
+SpacesBeforeTrailingComments: 2
+BreakStringLiterals: true
+BreakConstructorInitializers: AfterColon
+UseTab: Never
+IndentWidth: 4
 AccessModifierOffset: -4
-AlignTrailingComments: false
-FixNamespaceComments: true
-SortIncludes: false
-SortUsingDeclarations : true
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignConsecutiveMacros: true
+AlignEscapedNewlines: Right
+AlignTrailingComments: true
+NamespaceIndentation: All
+CompactNamespaces: true
+
+SpacesInConditionalStatement : true
+SpacesInAngles: true
+SpacesInParentheses: true
+
+ConstructorInitializerAllOnOneLineOrOnePerLine: true

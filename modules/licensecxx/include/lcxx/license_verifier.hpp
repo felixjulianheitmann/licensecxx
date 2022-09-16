@@ -12,17 +12,17 @@
 
 namespace license {
 
-class LicenseVerifier {
-private:
-	EventRegistry& m_event_registry;
+    class LicenseVerifier {
+    private:
+        EventRegistry & m_event_registry;
 
-public:
-	LicenseVerifier(EventRegistry& er);
-	FUNCTION_RETURN verify_signature(const FullLicenseInfo& licInfo);
-	FUNCTION_RETURN verify_limits(const FullLicenseInfo& licInfo);
-	LicenseInfo toLicenseInfo(const FullLicenseInfo& fullLicInfo) const;
-	virtual ~LicenseVerifier();
-};
+    public:
+        LicenseVerifier( EventRegistry & er );
+        FUNCTION_RETURN verify_signature( const FullLicenseInfo & licInfo );
+        FUNCTION_RETURN verify_limits( const FullLicenseInfo & licInfo );
+        LicenseInfo     toLicenseInfo( const FullLicenseInfo & fullLicInfo ) const;
+        virtual ~LicenseVerifier();
+    };
 
 } /* namespace license */
 

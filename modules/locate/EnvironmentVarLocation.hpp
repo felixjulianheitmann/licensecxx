@@ -10,17 +10,15 @@
 
 #include "LocatorStrategy.hpp"
 
-namespace license {
-namespace locate {
+namespace license { namespace locate {
 
-class EnvironmentVarLocation : public LocatorStrategy {
-public:
-	EnvironmentVarLocation();
-	const virtual std::vector<std::string> license_locations(EventRegistry& eventRegistry);
-	virtual ~EnvironmentVarLocation();
-};
+    class EnvironmentVarLocation : public LocatorStrategy {
+    public:
+        EnvironmentVarLocation();
+        const virtual std::vector< std::string > license_locations( EventRegistry & eventRegistry );
+        virtual ~EnvironmentVarLocation();
+    };
 
-}  // namespace locate
-}  // namespace license
+}}  // namespace license::locate
 
 #endif /* SRC_LIBRARY_LOCATE_ENVIRONMENTVARLOCATION_H_ */

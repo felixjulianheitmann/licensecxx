@@ -10,20 +10,19 @@
 
 #include "LocatorStrategy.hpp"
 
-namespace license {
-namespace locate {
+namespace license { namespace locate {
 
-class ExternalDefinition: public LocatorStrategy {
-private:
-	const LicenseLocation* m_location;
-public:
-	ExternalDefinition(const LicenseLocation* location);
-	const virtual std::vector<std::string> license_locations(EventRegistry& eventRegistry);
-	const virtual std::string retrieve_license_content(const std::string& licenseLocation) const;
-	virtual ~ExternalDefinition();
-};
+    class ExternalDefinition : public LocatorStrategy {
+    private:
+        const LicenseLocation * m_location;
 
-} /* namespace locate */
-} /* namespace license */
+    public:
+        ExternalDefinition( const LicenseLocation * location );
+        const virtual std::vector< std::string > license_locations( EventRegistry & eventRegistry );
+        const virtual std::string                retrieve_license_content( const std::string & licenseLocation ) const;
+        virtual ~ExternalDefinition();
+    };
+
+}}  // namespace license::locate
 
 #endif /* SRC_LIBRARY_LOCATE_EXTERNALDEFINITION_HPP_ */

@@ -2,32 +2,30 @@
 #define RETRIEVE_FACTORY_H_
 
 #include <cstddef>
-#include <string>
-#include <vector>
 #include <lcxx/datatypes.h>
 #include <lcxx/properties.h>
+#include <string>
+#include <vector>
 
-#include "base/base.h"
 #include "LocatorStrategy.hpp"
+#include "base/base.h"
 
-namespace license {
-namespace locate {
+namespace license { namespace locate {
 
-class LocatorFactory {
-private:
-	static bool find_license_near_moduleb;
-	static bool find_license_with_env_varb;
-	inline LocatorFactory() {}
-	inline ~LocatorFactory() {}
+    class LocatorFactory {
+    private:
+        static bool find_license_near_moduleb;
+        static bool find_license_with_env_varb;
+        inline LocatorFactory() {}
+        inline ~LocatorFactory() {}
 
-public:
-	static FUNCTION_RETURN get_active_strategies(std::vector<std::unique_ptr<LocatorStrategy>> &strategiesOut,
-												 const LicenseLocation *locationHint);
-	static void find_license_near_module(bool enable) { find_license_near_moduleb = enable; }
-	static void find_license_with_env_var(bool enable) { find_license_with_env_varb = enable; }
-};
+    public:
+        static FUNCTION_RETURN get_active_strategies( std::vector< std::unique_ptr< LocatorStrategy > > & strategiesOut,
+                                                      const LicenseLocation * locationHint );
+        static void            find_license_near_module( bool enable ) { find_license_near_moduleb = enable; }
+        static void            find_license_with_env_var( bool enable ) { find_license_with_env_varb = enable; }
+    };
 
-}  // namespace locate
-}  // namespace license
+}}  // namespace license::locate
 
 #endif
