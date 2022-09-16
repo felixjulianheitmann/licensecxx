@@ -7,8 +7,10 @@ IF(NOT LCXX_RESOURCE_DIR)
 	message(STATUS "You should define a variable LCXX_RESOURCE_DIR containing the directory where public/private key are located or where they should be generated to. "
 		"By default they will be generated to the global binary dir (CMAKE_BINARY_DIR/project_keys).
         If they are provided: place them as ")
-	set(LCXX_RESOURCE_DIR "${CMAKE_BINARY_DIR}/project_keys") 
+	set(LCXX_RESOURCE_DIR "${CMAKE_SOURCE_DIR}/resources/project_keys") 
 ENDIF(NOT LCXX_RESOURCE_DIR)
+
+option(LCXX_GENERATE_KEYS "Whether RSA key files should be generated during build time." ON)
 
 project (licensecxx
 			VERSION 2.1.0

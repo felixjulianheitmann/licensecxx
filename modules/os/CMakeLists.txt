@@ -38,10 +38,10 @@ target_include_directories(os PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 add_dependencies( os lcxx::key )
 
 target_link_libraries(os PUBLIC
-    lcxx::key
+    lcxx_key_headers
     base
 )
 
-if(CODE_COVERAGE AND UNIX)
-	  target_compile_options(os PUBLIC -O0 -g --coverage)
-endif(CODE_COVERAGE AND UNIX)
+target_include_directories(os PUBLIC
+${LCXX_KEY_HEADER_DIR}
+)

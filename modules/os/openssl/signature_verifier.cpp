@@ -9,12 +9,13 @@
 #include <openssl/err.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <cstring>
 
 //#ifdef _WIN32
 //#include <windows.h>
 //#endif
 
-#include <public_key.h>
+#include <keys/public_key.hpp>
 
 #include "os/signature_verifier.hpp"
 #include "base/logger.h"
@@ -43,11 +44,11 @@ static void initialize() {
 
 FUNCTION_RETURN verify_signature(const std::string& stringToVerify, const std::string& signatureB64) {
 	EVP_MD_CTX* mdctx = NULL;
-	const unsigned char pubKey[] = PUBLIC_KEY;
+	const char* pubKey = lcxx::keys::public_key;
 	int func_ret = 0;
 	initialize();
 
-	BIO* bio = BIO_new_mem_buf((void*)(pubKey), sizeof(pubKey));
+	BIO* bio = BIO_new_mem_buf((void*)(pubKey), std::strlen(pubKey));
 	RSA* rsa = d2i_RSAPublicKey_bio(bio, NULL);
 	BIO_free(bio);
 	if (rsa == NULL) {
