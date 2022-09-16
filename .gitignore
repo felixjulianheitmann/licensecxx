@@ -1,41 +1,5 @@
-# Compiled Object files
-*.slo
-*.lo
-*.o
+# Build directory
+build
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-
-#Visual studio files
-.vs
-/out
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-/Makefile
-/Testing
-
-# Cmake generated files
-build/*
-!build/.gitkeep 
-install/*
-
-#eclipse files
-.cproject
-.settings
-.project
-*.out
-/Default/
-
-projects/*
-!projects/.gitkeep
-
-**/CMakeCache.txt
-**/CMakeFiles
-/CMakeSettings.json
-/.venv/
-/Pipfile
-/.pydevproject
+# Resources
+resources
