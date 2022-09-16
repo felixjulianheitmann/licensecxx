@@ -22,7 +22,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/modules/base)
 add_subdirectory(${PROJECT_SOURCE_DIR}/modules/hw_identifier)
 add_subdirectory(${PROJECT_SOURCE_DIR}/modules/locate)
 add_subdirectory(${PROJECT_SOURCE_DIR}/modules/os)
-add_subdirectory(${PROJECT_SOURCE_DIR}/modules/licensecxx)
+add_subdirectory(${PROJECT_SOURCE_DIR}/modules/lcxx)
 
 # #In case the build system doesn't support binfmt misc
 # IF( ( CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux" ) AND CMAKE_CROSSCOMPILING AND NOT DEFINED CMAKE_CROSSCOMPILING_EMULATOR )

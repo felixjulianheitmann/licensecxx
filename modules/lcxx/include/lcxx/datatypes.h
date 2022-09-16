@@ -1,12 +1,5 @@
-#ifndef DATATYPES_H_
-#define DATATYPES_H_
-/** \addtogroup apistruct
- * @{
- */
-
-#ifdef __cplusplus
-extern "C" {
-#endif
+#ifndef LCXX__LICENCECXX_DATATYPES_H_
+#define LCXX__LICENCECXX_DATATYPES_H_
 
 // definition of size_t
 #include <stdint.h>
@@ -167,11 +160,4 @@ typedef struct {
     LCC_API_VIRTUALIZATION_DETAIL  virtualization_detail;
 } ExecutionEnvironmentInfo;
 
-#ifdef __cplusplus
-}
-#endif
-
-/**
- * @}
- */
 #endif
