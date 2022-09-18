@@ -27,4 +27,6 @@ add_library( lcxx::lcxx ALIAS licensecxx )
 target_link_libraries( licensecxx PRIVATE
     hw_identifier
     nlohmann_json::nlohmann_json
+    fmt::fmt
+    lcxx::crypto
 )

@@ -18,11 +18,13 @@ project (lcxx
 
 include(${PROJECT_SOURCE_DIR}/cmake/key_targets.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/get_nlohmann_json.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/get_fmt_lib.cmake)
 
 # add_subdirectory(${PROJECT_SOURCE_DIR}/modules/base)
 # add_subdirectory(${PROJECT_SOURCE_DIR}/modules/hw_identifier)
 # add_subdirectory(${PROJECT_SOURCE_DIR}/modules/locate)
 # add_subdirectory(${PROJECT_SOURCE_DIR}/modules/os)
+add_subdirectory(${PROJECT_SOURCE_DIR}/modules/crypto)
 add_subdirectory(${PROJECT_SOURCE_DIR}/modules/lcxx)
 
 # #In case the build system doesn't support binfmt misc
@@ -33,7 +35,7 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/modules/lcxx)
 SET (OPENSSL_USE_STATIC_LIBS TRUE)
 find_package(OpenSSL COMPONENTS Crypto QUIET)
 IF(OPENSSL_FOUND)
-	MESSAGE(STATUS "Found openssl version ${OPENSSL_VERSION} -licensecc")
+	MESSAGE(STATUS "Found openssl version ${OPENSSL_VERSION} -lcxx")
 ENDIF(OPENSSL_FOUND)
 
 if(UNIX) #this is true for all the linux systems but not for cross compiling "linux->windows"
