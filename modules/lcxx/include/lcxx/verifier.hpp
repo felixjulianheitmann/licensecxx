@@ -6,8 +6,11 @@
 
 namespace lcxx {
 
-    auto verify_license( license const & lic, crypto::rsa_key_t const public_key ) -> bool;
+    auto sign( license const & lic, crypto::rsa_key_t const private_key ) -> std::vector< std::byte >;
+
+    auto verify_license( license const & lic, std::vector< std::byte > const & signature,
+                         crypto::rsa_key_t const public_key ) -> bool;
 
 }  // namespace lcxx
 
-#endif /* LCXX__LCXX_VERIFIER_HPP__ */
+#endif  // LCXX__LCXX_VERIFIER_HPP__

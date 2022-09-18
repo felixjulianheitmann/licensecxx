@@ -1,3 +1,6 @@
+#ifndef LCXX__IDENTIFIERS_HARDWARE_HPP__
+#define LCXX__IDENTIFIERS_HARDWARE_HPP__
+
 #include <cstddef>
 #include <string>
 #include <utility>
@@ -20,6 +23,8 @@ namespace lcxx::identifiers {
      * @param strategy the analyzed hardware aspects. Different strategies can be combined through bitwise-or|
      * @return identifier the identifier containing a hash and the clear text result of the hardware analysis
      */
-    auto hardware( hw_ident_strat const strategy ) -> identifier;
+    auto hardware( hw_ident_strat const strategy = hw_ident_strat::all ) -> identifier;
 
 }  // namespace lcxx::identifiers
+
+#endif  // LCXX__IDENTIFIERS_HARDWARE_HPP__

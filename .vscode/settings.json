@@ -79,5 +79,6 @@
         "ranges": "cpp",
         "span": "cpp",
         "valarray": "cpp"
-    }
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
 }

@@ -4,15 +4,17 @@
 
 #include <fmt/core.h>
 
-#include <lcxx/crypto.hpp>
+#include <lcxx/encoding.hpp>
+#include <lcxx/verifier.hpp>
 
 namespace lcxx {
 
     nlohmann::json to_json( license const & license, crypto::rsa_key_t const private_key )
     {
-        nlohmann::json lic_json = {
-            { signature_key, crypto::sign( license.stringify(), private_key ) },
-            { content_key, {} },
+        auto const     signature = lcxx::sign( license, private_key );
+        nlohmann::json lic_json  = {
+             { signature_key, encode::base64( signature ) },
+             { content_key, {} },
         };
 
         auto & content = lic_json[content_key];

@@ -1,0 +1,5 @@
+add_subdirectory(os_utils)
+add_subdirectory(license_generator)
+add_subdirectory(license_verifier)
+
+add_custom_target(SAMPLES DEPENDS license_generator license_verifier os_utils_samples)

@@ -1,6 +1,7 @@
 #ifndef LCXX__LCXX_LICENSE_HPP__
 #define LCXX__LCXX_LICENSE_HPP__
 
+#include <algorithm>
 #include <concepts>
 #include <cstddef>
 #include <span>
@@ -20,7 +21,7 @@ namespace lcxx {
     concept string_convertable = std::is_same_v< T, std::string > || std::is_integral_v< T >() ||
         std::is_floating_point_v< T >() || std::is_enum_v< T >() || std::is_convertible_v< T, std::string >;
 
-    using signature     = std::string;
+    using signature     = std::vector< std::byte >;
     using content_map_t = std::unordered_map< std::string, std::string >;
 
     /**
@@ -78,8 +79,11 @@ namespace lcxx {
 
         auto stringify() const -> std::string
         {
+            std::vector< std::pair< std::string, std::string > > sorted_content{ content_.begin(), content_.end() };
+            std::ranges::sort( sorted_content );
+
             std::string tmp;
-            for ( auto const & [k, v] : content_ ) {
+            for ( auto const & [k, v] : sorted_content ) {
                 tmp += k + ":" + v;
             }
             return tmp;

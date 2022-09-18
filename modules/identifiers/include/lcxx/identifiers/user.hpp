@@ -1,3 +1,6 @@
+#ifndef LCXX__IDENTIFIERS_USER_HPP__
+#define LCXX__IDENTIFIERS_USER_HPP__
+
 #include <cstddef>
 #include <string>
 #include <utility>
@@ -19,6 +22,8 @@ namespace lcxx::identifiers {
      * @param strategy the analyzed user features. Different strategies can be combined through bitwise-or|
      * @return identifier the identifier containing a hash and the clear text result of the user analysis
      */
-    auto user( user_ident_strat const strategy ) -> identifier;
+    auto user( user_ident_strat const strategy = user_ident_strat::all ) -> identifier;
 
 }  // namespace lcxx::identifiers
+
+#endif  // LCXX__IDENTIFIERS_USER_HPP__

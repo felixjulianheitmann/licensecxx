@@ -1,11 +1,12 @@
+#include <lcxx/encoding.hpp>
 #include <lcxx/reader.hpp>
 
-#include <fmt/core.h>
+#include <algorithm>
 #include <fstream>
 
 namespace lcxx {
 
-    auto parse_json( nlohmann::json const & license_json ) -> std::pair< license, signature >
+    auto from_json( nlohmann::json const & license_json ) -> std::pair< license, signature >
     {
         license l;
 
@@ -14,25 +15,26 @@ namespace lcxx {
                                          " and " + content_key );
         }
 
-        for ( auto const & item : license_json.items() ) {
+        auto const & content = license_json[content_key];
+        for ( auto const & item : content.items() ) {
             l.push_content( item.key(), item.value().get< std::string >() );
         }
-        return {};
+        return { l, lcxx::decode::base64( license_json[signature_key].get< std::string >() ) };
     }
 
-    auto parse_json( std::string const & license_str ) -> std::pair< license, signature >
+    auto from_json( std::string const & license_str ) -> std::pair< license, signature >
     {
-        return parse_json( nlohmann::json::parse( license_str.begin(), license_str.end() ) );
+        return from_json( nlohmann::json::parse( license_str.begin(), license_str.end() ) );
     }
 
-    auto parse_json( std::span< char > const license_str ) -> std::pair< license, signature >
+    auto from_json( std::span< char > const license_str ) -> std::pair< license, signature >
     {
-        return parse_json( nlohmann::json::parse( license_str.begin(), license_str.end() ) );
+        return from_json( nlohmann::json::parse( license_str.begin(), license_str.end() ) );
     }
 
-    auto parse_json( std::filesystem::path const & license_path ) -> std::pair< license, signature >
+    auto from_json( std::filesystem::path const & license_path ) -> std::pair< license, signature >
     {
-        return parse_json(
+        return from_json(
             nlohmann::json::parse( std::ifstream( std::filesystem::absolute( license_path ).string() ) ) );
     }
 

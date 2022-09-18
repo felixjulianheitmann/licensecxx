@@ -18,3 +18,4 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/modules/identifiers)
 add_subdirectory(${PROJECT_SOURCE_DIR}/modules/os_utils)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
+add_subdirectory(${PROJECT_SOURCE_DIR}/samples)

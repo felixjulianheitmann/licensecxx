@@ -9,7 +9,11 @@
 #include <openssl/pem.h>
 #include <openssl/rsa.h>
 
+#include <lcxx/hash.hpp>
+
 namespace lcxx::crypto {
+
+    constexpr auto encryption_algorithm = NID_sha512WithRSAEncryption;
 
     void bio_deleter( BIO * bio )
     {
@@ -23,19 +27,19 @@ namespace lcxx::crypto {
             RSA_free( rsa );
     };
 
-    rsa_key_t load_key( std::filesystem::path const & key_path, key_type const type )
+    auto load_key( std::filesystem::path const & key_path, key_type const type ) -> rsa_key_t
     {
         std::ifstream ifs{ key_path.string() };
         if ( ifs ) {
             std::string key{ std::istreambuf_iterator< char >{ ifs }, std::istreambuf_iterator< char >{} };
-            return load_key( key, type, true, true );
+            return load_key( key, type );
         }
         else {
             throw std::runtime_error( std::string{ "Could not open key file at: " } + key_path.string() );
         }
     }
 
-    rsa_key_t load_key( std::string const & key, key_type const type, bool with_header, bool b64 )
+    auto load_key( std::string const & key, key_type const type ) -> rsa_key_t
     {
         // TODO USE SCOPED UNIQUE PTR
         std::unique_ptr< BIO, decltype( &bio_deleter ) > bio(
@@ -47,7 +51,7 @@ namespace lcxx::crypto {
             rsa_key = { PEM_read_bio_RSAPrivateKey( bio.get(), nullptr, nullptr, nullptr ), rsa_deleter };
         }
         else {
-            rsa_key = { PEM_read_bio_RSAPublicKey( bio.get(), nullptr, nullptr, nullptr ), rsa_deleter };
+            rsa_key = { PEM_read_bio_RSA_PUBKEY( bio.get(), nullptr, nullptr, nullptr ), rsa_deleter };
         }
 
         if ( !rsa_key )
@@ -55,29 +59,30 @@ namespace lcxx::crypto {
         return rsa_key;
     }
 
-    std::string sign( std::string const & input_string, rsa_key_t const private_key )
+    auto sign( std::string const & input_string, rsa_key_t const private_key ) -> std::vector< std::byte >
     {
 
-        std::vector< unsigned char > input_bytes{ input_string.begin(), input_string.end() };
-        std::vector< unsigned char > signed_bytes( RSA_size( private_key.get() ) );
-        unsigned int                 n_signed_bytes = 0;
-        if ( !RSA_sign( NID_sha256, input_bytes.data(), input_bytes.size(), signed_bytes.data(), &n_signed_bytes,
+        auto hashed = hash::sha512( input_string );
+
+        std::vector< std::byte > signature( RSA_size( private_key.get() ) );
+        unsigned int             n_signed_bytes = 0;
+        if ( !RSA_sign( encryption_algorithm, reinterpret_cast< unsigned char const * >( hashed.data() ), hashed.size(),
+                        reinterpret_cast< unsigned char * >( signature.data() ), &n_signed_bytes,
                         private_key.get() ) ) {
             throw std::runtime_error( "Could not sign input data." );
         }
 
-        return std::string{ signed_bytes.begin(), signed_bytes.end() };
+        return signature;
     }
 
-    bool verify_signature( std::string_view const reference, std::string_view const signature,
-                           rsa_key_t const public_key )
+    auto verify_signature( std::string_view const reference, std::vector< std::byte > const & signature,
+                           rsa_key_t const public_key ) -> bool
     {
+        auto hashed = hash::sha512( std::string{ reference } );
 
-        std::vector< unsigned char > input_bytes{ reference.begin(), reference.end() };
-        std::vector< unsigned char > signature_bytes( signature.begin(), signature.end() );
-        unsigned int                 n_signed_bytes = 0;
-        return RSA_verify( NID_sha256, input_bytes.data(), input_bytes.size(), signature_bytes.data(),
-                           signature_bytes.size(), public_key.get() );
+        return RSA_verify( encryption_algorithm, reinterpret_cast< unsigned char const * >( hashed.data() ),
+                           hashed.size(), reinterpret_cast< unsigned char const * >( signature.data() ),
+                           signature.size(), public_key.get() );
     }
 
 }  // namespace lcxx::crypto

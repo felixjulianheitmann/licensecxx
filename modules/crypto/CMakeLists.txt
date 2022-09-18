@@ -1,5 +1,7 @@
 add_library(lcxx_crypto
     ${CMAKE_CURRENT_SOURCE_DIR}/src/crypto.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/encoding.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/hash.cpp
 )
 
 find_package(OpenSSL COMPONENTS Crypto REQUIRED)
