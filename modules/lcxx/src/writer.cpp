@@ -28,8 +28,8 @@ namespace lcxx {
     {
         namespace fs = std::filesystem;
         if ( !output_file.has_filename() ) {
-            throw std::invalid_argument( fmt::format( "the given output file must point to a file location: {}",
-                                                      fs::absolute( output_file ).string() ) );
+            throw std::invalid_argument( std::string{ "the given output file must point to a file location: " } +
+                                         fs::absolute( output_file ).string() );
         }
 
         auto lic_json = to_json( license, private_key );

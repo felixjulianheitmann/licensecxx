@@ -31,7 +31,7 @@ namespace lcxx::crypto {
             return load_key( key, type, true, true );
         }
         else {
-            throw std::runtime_error( fmt::format( "Could not open key file at: {}", key_path.string() ) );
+            throw std::runtime_error( std::string{ "Could not open key file at: " } + key_path.string() );
         }
     }
 

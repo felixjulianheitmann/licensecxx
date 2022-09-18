@@ -80,7 +80,7 @@ namespace lcxx {
         {
             std::string tmp;
             for ( auto const & [k, v] : content_ ) {
-                tmp += fmt::format( "{}:{}", k, v );
+                tmp += k + ":" + v;
             }
             return tmp;
         }

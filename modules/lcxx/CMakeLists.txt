@@ -25,8 +25,6 @@ target_compile_features(licensecxx PUBLIC cxx_std_20)
 add_library( lcxx::lcxx ALIAS licensecxx )
 
 target_link_libraries( licensecxx PRIVATE
-    hw_identifier
     nlohmann_json::nlohmann_json
-    fmt::fmt
     lcxx::crypto
 )

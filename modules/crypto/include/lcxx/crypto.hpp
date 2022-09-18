@@ -1,8 +1,8 @@
 #ifndef LCXX__CRYPTO_CRYPTO_HPP__
 #define LCXX__CRYPTO_CRYPTO_HPP__
 
+#include <cstddef>
 #include <filesystem>
-#include <memory.h>
 #include <string>
 
 #include <openssl/rsa.h>
@@ -23,7 +23,7 @@ namespace lcxx::crypto {
      * @param type whether this is a public or private key
      * @param b64 if the string is base64 encoded or binary
      */
-    rsa_key_t load_key( std::string const & key, key_type type, bool with_header = true, bool b64 = true );
+    auto load_key( std::string const & key, key_type type, bool with_header = true, bool b64 = true ) -> rsa_key_t;
 
     /**
      * @brief loads a key (public/private) from file into memory. File must be PEM type
@@ -31,7 +31,7 @@ namespace lcxx::crypto {
      * @param key_path file path to the corresponding key file
      * @param type whether this is a public or private key
      */
-    rsa_key_t load_key( std::filesystem::path const & key_path, key_type type );
+    auto load_key( std::filesystem::path const & key_path, key_type type ) -> rsa_key_t;
 
     /**
      * @brief if a private key has been loaded, this method will sign an input string and return the encrypted data
@@ -40,7 +40,7 @@ namespace lcxx::crypto {
      * @param base64 whether to encode the enrypted string as base64
      * @return std::string the encrypted string
      */
-    std::string sign( std::string const & input_string, rsa_key_t const private_key );
+    auto sign( std::string const & input_string, rsa_key_t const private_key ) -> std::string;
 
     /**
      * @brief if a public key has been loaded, takes a reference string and checks if the signature matches that
@@ -52,8 +52,8 @@ namespace lcxx::crypto {
      * @return true if the signature matches the reference string, given the loaded public key
      * @return false if signature and reference string do not match, given the loaded public key
      */
-    bool verify_signature( std::string_view const reference, std::string_view const signature,
-                           rsa_key_t const public_key );
+    auto verify_signature( std::string_view const reference, std::string_view const signature,
+                           rsa_key_t const public_key ) -> bool;
 
 }  // namespace lcxx::crypto
 

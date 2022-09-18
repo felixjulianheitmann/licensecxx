@@ -10,8 +10,8 @@ namespace lcxx {
         license l;
 
         if ( !license_json.contains( signature_key ) || !license_json.contains( content_key ) ) {
-            throw std::invalid_argument(
-                fmt::format( "The input json does not contain they keys {} and {}", signature_key, content_key ) );
+            throw std::invalid_argument( std::string{ "The input json does not contain they keys " } + signature_key +
+                                         " and " + content_key );
         }
 
         for ( auto const & item : license_json.items() ) {

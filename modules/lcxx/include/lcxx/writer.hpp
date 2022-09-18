@@ -6,6 +6,7 @@
 
 #include <nlohmann/json.hpp>
 
+#include <lcxx/crypto.hpp>
 #include <lcxx/license.hpp>
 
 namespace lcxx {

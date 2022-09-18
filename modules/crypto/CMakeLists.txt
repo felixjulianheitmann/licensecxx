@@ -2,7 +2,9 @@ add_library(lcxx_crypto
     ${CMAKE_CURRENT_SOURCE_DIR}/src/crypto.cpp
 )
 
-find_package(OpenSSL COMPONENTS Crypto)
+find_package(OpenSSL COMPONENTS Crypto REQUIRED)
+
+target_compile_features(lcxx_crypto PUBLIC cxx_std_20)
 
 target_link_libraries( lcxx_crypto PUBLIC
     OpenSSL::Crypto
