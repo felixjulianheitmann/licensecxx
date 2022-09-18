@@ -47,7 +47,7 @@ if(LCXX_GENERATE_KEYS)
         file(MAKE_DIRECTORY ${LCXX_PRIVATE_KEY_DIR})
 
         add_custom_target(generate_private_key
-        COMMAND "/usr/bin/openssl" "genrsa" "-out" "${LCXX_PRIVATE_KEY}" "${LCXX_KEY_SIZE}"
+        COMMAND "openssl" "genrsa" "-out" "${LCXX_PRIVATE_KEY}" "${LCXX_KEY_SIZE}"
         )
         add_dependencies(generate_headers generate_private_key)
     endif()
@@ -57,7 +57,7 @@ if(LCXX_GENERATE_KEYS)
         file(MAKE_DIRECTORY ${LCXX_PUBLIC_KEY_DIR})
 
         add_custom_target(generate_public_key
-        COMMAND "/usr/bin/openssl" "rsa" "-in" "${LCXX_PRIVATE_KEY}" "-outform" "PEM" "-pubout" "-out" "${LCXX_PUBLIC_KEY}"
+        COMMAND "openssl" "rsa" "-in" "${LCXX_PRIVATE_KEY}" "-outform" "PEM" "-pubout" "-out" "${LCXX_PUBLIC_KEY}"
         )
         add_dependencies(generate_headers generate_public_key)
     endif()
