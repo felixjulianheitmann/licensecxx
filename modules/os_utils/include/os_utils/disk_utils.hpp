@@ -2,15 +2,19 @@
 #define LCXX__OS_UTILS_DISK_UTILS_HPP__
 
 #include <string>
+#include <vector>
 
 namespace lcxx::os::disk {
 
     struct disk_info {
         std::size_t size;
-        std::string volume_id;
+        std::string volume_name;
+        std::string uuid;
     };
 
-    auto get_info() -> disk_info;
+    using disks_info = std::vector< disk_info >;
+
+    auto get_info() -> disks_info;
 
 }  // namespace lcxx::os::disk
 
