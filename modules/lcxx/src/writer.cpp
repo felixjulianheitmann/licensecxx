@@ -2,8 +2,6 @@
 
 #include <fstream>
 
-#include <fmt/core.h>
-
 #include <lcxx/encoding.hpp>
 #include <lcxx/verifier.hpp>
 

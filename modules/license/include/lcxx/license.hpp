@@ -11,8 +11,6 @@
 #include <unordered_map>
 #include <vector>
 
-#include <fmt/core.h>
-
 namespace lcxx {
 
     constexpr auto signature_key = "signature";
