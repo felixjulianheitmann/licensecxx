@@ -7,27 +7,16 @@ if(LCXX_GENERATE_KEYS)
     ENDIF()
 
     if(NOT LCXX_PRIVATE_KEY)
-        set(LCXX_PRIVATE_KEY "${LCXX_RESOURCE_DIR}/private_key.rsa" )
+        set(LCXX_PRIVATE_KEY "${CMAKE_SOURCE_DIR}/resources/project_keys/private_key.rsa" )
     endif(NOT LCXX_PRIVATE_KEY)
 
     if(NOT LCXX_PUBLIC_KEY)
-        set(LCXX_PUBLIC_KEY "${LCXX_RESOURCE_DIR}/public_key" )
+        set(LCXX_PUBLIC_KEY "${CMAKE_SOURCE_DIR}/resources/project_keys/public_key" )
     endif(NOT LCXX_PUBLIC_KEY)
 
     if(NOT LCXX_KEY_HEADER_DIR)
         set(LCXX_KEY_HEADER_DIR "${PROJECT_BINARY_DIR}/keys/include" )
     endif(NOT LCXX_KEY_HEADER_DIR)
-
-    IF (NOT LCXX_PROJECT_MAGIC_NUM) 
-        set(LCXX_PROJECT_MAGIC_NUM 0)  
-    ENDIF (NOT LCXX_PROJECT_MAGIC_NUM)
-
-    IF(NOT LCXX_RESOURCE_DIR)
-        message(STATUS "You should define a variable LCXX_RESOURCE_DIR containing the directory where public/private key are located or where they should be generated to. "
-            "By default they will be generated to the global binary dir (CMAKE_BINARY_DIR/project_keys).
-            If they are provided: place them as ")
-        set(LCXX_RESOURCE_DIR "${CMAKE_SOURCE_DIR}/resources/project_keys") 
-    ENDIF(NOT LCXX_RESOURCE_DIR)
 
     find_package(Python REQUIRED)
 
