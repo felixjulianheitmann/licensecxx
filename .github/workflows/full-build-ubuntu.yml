@@ -28,5 +28,5 @@ jobs:
       with:
         name: lcxx-tests-${{ matrix.os }}
         path: |
-          ${{ github.workspace }}/build/tests/**/Release/
+          ${{ github.workspace }}/build/tests/**/Release/*
         retention-days: 3
