@@ -7,7 +7,7 @@
     - [Generate a license](#generate-a-license)
     - [Verify a license](#verify-a-license)
     - [Generating a key pair](#generating-a-key-pair)
-  - [License Features](#license-features)
+  - [License Features (and roadmap)](#license-features-and-roadmap)
   - [License](#license)
 
 *Copy protection library targeting Linux, Windows and Mac* (currently only Linux supported)
@@ -121,7 +121,7 @@ Finally, `LCXX_KEY_HEADER_DIR` defines the path where the generated header files
 
 Enabling `LCXX_GENERATE_KEYS` will require Python as a dependency for the header generation.
 
-## License Features
+## License Features (and roadmap)
 
 Currently, all features are only provided for Linux based systems unless marked otherwise.
 
@@ -134,6 +134,7 @@ Currently, all features are only provided for Linux based systems unless marked 
 - [ ] Provide a conan binary
 - [ ] Provide a vcpkg binary
 - [ ] Provide CMake fetchcontent option
+- [ ] Provide proper online documentation
 
 
 ## License
