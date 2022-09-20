@@ -1,4 +1,4 @@
-name: LCXX Full build - Ubuntu
+name: LCXX Full build - Mac
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-linux:
-    runs-on: ubuntu-latest
+    runs-on: mac-latest
 
     steps:
     - uses: actions/checkout@v3

@@ -1,4 +1,4 @@
-name: LCXX Full build - Ubuntu
+name: LCXX Full build - Windows
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build-linux:
-    runs-on: windwos-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v3
