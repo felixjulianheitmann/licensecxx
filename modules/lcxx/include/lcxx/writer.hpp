@@ -15,6 +15,7 @@ namespace lcxx {
      * @brief Calculates the signature and generates the output json
      *
      * @param license the license object, which will be serialized
+     * @param private_key the private key used to create the signature
      * @return nlohmann::json a json object containing the serialized license and the signature
      */
     auto to_json( license const & license, crypto::rsa_key_t const private_key ) -> nlohmann::json;
@@ -24,9 +25,11 @@ namespace lcxx {
      *
      * @param license the license object, which will be serialized
      * @param output_file a system path pointing to the target file - will be overwritten, if it points to an existing
+     * @param private_key the private key used to create the signature
      * file
      */
-    void to_json( license const & license, std::filesystem::path const & output_file );
+    void to_json( license const & license, std::filesystem::path const & output_file,
+                  crypto::rsa_key_t const private_key );
 
 }  // namespace lcxx
 
