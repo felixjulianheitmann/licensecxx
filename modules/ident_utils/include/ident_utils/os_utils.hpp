@@ -16,6 +16,11 @@ namespace lcxx::ident_utils::os {
         std::vector< std::size_t > user_gids;
     };
 
+    /**
+     * @brief retrieves information about the CPU built into this machine
+     *
+     * @return os_info an information object about the OS
+     */
     auto get_info() -> os_info;
 
 }  // namespace lcxx::ident_utils::os

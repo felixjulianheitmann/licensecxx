@@ -13,6 +13,11 @@ namespace lcxx::ident_utils::cpu {
         std::string model_name;
     };
 
+    /**
+     * @brief retrieves information about the CPU built into this machine
+     *
+     * @return cpu_info an information object about the CPU
+     */
     auto get_info() -> cpu_info;
 
 }  // namespace lcxx::ident_utils::cpu

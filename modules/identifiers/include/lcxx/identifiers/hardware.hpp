@@ -24,7 +24,7 @@ namespace lcxx::identifiers {
     auto operator|( hw_ident_strat const lhs, hw_ident_strat const rhs ) -> hw_ident_strat;
 
     /**
-     * @brief analysis the host machine and creates an identification string from the gathered information. The analyzed
+     * @brief analyzes the host machine and creates an identification string from the gathered information. The analyzed
      * aspects depend on the strategy chosen
      *
      * @param strategy the analyzed hardware aspects. Different strategies can be combined through bitwise-or|
@@ -32,6 +32,15 @@ namespace lcxx::identifiers {
      */
     auto hardware( hw_ident_strat const strategy = hw_ident_strat::all ) -> identifier;
 
+    /**
+     * @brief verifies a hardware identification hash against the hardware this software is run on with respect to the
+     * identification strategy chosen
+     *
+     * @param strategy the strategy chosen to identify the hardware. Must match the strategy used to generate the hash
+     * @param hash the hash produced by a call to `hardware()`
+     * @return true if the current hardware matches the one used to generate the hash
+     * @return false otherwise
+     */
     auto verify( hw_ident_strat const strategy, std::string_view const hash ) -> bool;
 
 }  // namespace lcxx::identifiers

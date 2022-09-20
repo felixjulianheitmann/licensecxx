@@ -34,6 +34,15 @@ namespace lcxx::identifiers {
      */
     auto os( os_ident_strat const strategy = os_ident_strat::all ) -> identifier;
 
+    /**
+     * @brief verifies a os identification hash against the os this software is run on with respect to the
+     * identification strategy chosen
+     *
+     * @param strategy the strategy chosen to identify os info. Must match the strategy used to generate the hash
+     * @param hash the hash produced by a call to `os()`
+     * @return true if the current os environment matches the one used to generate the hash
+     * @return false otherwise
+     */
     auto verify( os_ident_strat const strategy, std::string_view const hash ) -> bool;
 
 }  // namespace lcxx::identifiers

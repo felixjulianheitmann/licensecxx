@@ -7,6 +7,13 @@
 #include <vector>
 
 namespace lcxx::encode {
+
+    /**
+     * @brief encodes a byte span to a base64 string
+     *
+     * @param bytes the byte span that will be encoded
+     * @return std::string the input bytes as base64 encoded string
+     */
     auto base64( std::span< const std::byte > const bytes ) -> std::string;
 
     template < typename T >
@@ -19,6 +26,12 @@ namespace lcxx::encode {
 
 namespace lcxx::decode {
 
+    /**
+     * @brief takes a base64 encoded string and returns the contained bytes as a vector
+     *
+     * @param input a string representing base64 encoded data
+     * @return std::vector< std::byte > the input data in byte form
+     */
     auto base64( std::string const & input ) -> std::vector< std::byte >;
 
 }  // namespace lcxx::decode

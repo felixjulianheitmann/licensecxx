@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <concepts>
 #include <cstddef>
+#include <optional>
 #include <span>
 #include <stdexcept>
 #include <string>
@@ -26,7 +27,8 @@ namespace lcxx {
 
     /**
      * @brief A general license data class
-     * This class describes a data objects that holds arbitrary key-value string parameters and a signature
+     * This class describes a data object that holds arbitrary key-value string parameters.
+     * Fundamentally, it's a restricted std::unordered_map<std::string, std::string>
      */
     class license {
 
@@ -35,23 +37,13 @@ namespace lcxx {
         license() : content_() {}
 
         /**
-         * @brief Adds content to the license. This collection of key-value pairs will be incorporated into the
-         * signature
+         * @brief Adds content to the license. This collection of key-value pairs will be used to generate a signature
          *
-         * @tparam S any value that is either
-         * @param key
-         * @param value
+         * @tparam S any value that is either a number, string or convertible to a string
+         * @param key a key tag
+         * @param value the corresponding value
          * @return true if the key has not existed before and was inserted with a new value
          * @return false if the key has existed already and been overwritten with a new value
-         */
-
-        /**
-         * @brief
-         *
-         * @param key
-         * @param value
-         * @return true
-         * @return false
          */
         template < string_convertable S > auto push_content( std::string const & key, S const & value ) -> bool
         {
@@ -75,10 +67,33 @@ namespace lcxx {
             return push_content( kv.first, kv.second );
         }
 
+        /**
+         * @brief get a const access to the underlying map object
+         *
+         * @return content_map_t const& the underlying map object
+         */
         auto get_content() const -> content_map_t const & { return content_; }
 
-        auto get( std::string const & key ) -> content_map_t::mapped_type const & { return content_[key]; }
+        /**
+         * @brief read a single parameter from the map
+         *
+         * @param key the key to search for
+         * @return std::optional<content_map_t::mapped_type> either the value corresponding to `key` or std::nullopt if
+         * that key does not exist
+         */
+        auto get( std::string const & key ) -> std::optional< content_map_t::mapped_type >
+        {
+            if ( content_.contains( key ) )
+                return content_[key];
+            else
+                return {};
+        }
 
+        /**
+         * @brief serialize the license to a single string that is reproducable if the contents of the license are equal
+         *
+         * @return std::string a single string version of the full license content
+         */
         auto stringify() const -> std::string
         {
             std::vector< std::pair< std::string, std::string > > sorted_content{ content_.begin(), content_.end() };
