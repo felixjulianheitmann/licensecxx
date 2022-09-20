@@ -1,0 +1,28 @@
+name: LCXX Full build
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+  build-matrix:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, mac-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: configure
+      run: mkdir build && cd build && cmake -DRelease ..
+    - name: build
+      run: cmake --build . 
+
+    - uses: actions/upload-artifact@master
+      with:
+        name: lcxx-tests-${{ matrix.os }}
+        path: |
+          ${{ github.workspace }}/build/tests/Release/
+        retention-days: 3
