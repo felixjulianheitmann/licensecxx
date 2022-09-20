@@ -24,12 +24,6 @@ jobs:
       working-directory: build
       run: cmake --build . 
 
-    - name: List Paths
-      uses: Rishabh510/Path-lister-action@master
-      with:
-        path: "./"
-        type: ""
-
     - uses: actions/upload-artifact@master
       with:
         name: lcxx-tests-${{ matrix.os }}
