@@ -1,6 +1,6 @@
-# Licensecc
+# Licensecxx
 
-- [Licensecc](#licensecc)
+- [Licensecxx](#licensecxx)
   - [How to use licensecxx](#how-to-use-licensecxx)
     - [Prerequisites](#prerequisites)
     - [Building](#building)
