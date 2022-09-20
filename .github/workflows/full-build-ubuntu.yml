@@ -34,7 +34,7 @@ jobs:
       with:
         name: lcxx-tests-${{ matrix.os }}
         path: |
-          build/tests/lcxx/Release/
+          ${{ github.workspace }}/build/tests/*/
         retention-days: 3
         if-no-files-found: error
 
