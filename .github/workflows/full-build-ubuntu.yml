@@ -1,4 +1,4 @@
-name: LCXX Full build
+name: LCXX Full build - Ubuntu
 
 on:
   push:
@@ -7,14 +7,17 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build-matrix:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, mac-latest]
-    runs-on: ${{ matrix.os }}
+  build-linux:
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
+    - name: Get latest GCC
+      uses: egor-tensin/setup-gcc@v1
+      with:
+        version: latest
+        platform: x64
+
     - name: configure
       run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
     - name: build
