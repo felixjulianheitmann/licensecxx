@@ -26,7 +26,7 @@ jobs:
 
     - uses: actions/upload-artifact@master
       with:
-        name: lcxx-tests-${{ matrix.os }}
+        name: lcxx-tests-ubuntu
         path: |
           ${{ github.workspace }}/build/tests/*/
         retention-days: 3
