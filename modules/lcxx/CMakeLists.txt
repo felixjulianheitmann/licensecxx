@@ -12,10 +12,6 @@ add_library( licensecxx
 #ELSE( UNIX OR OPENSSL_FOUND )
 #set_target_properties( licensecc_static PROPERTIES WITH_OPENSSL 0 )
 #target_link_libraries( licensecc_static PUBLIC ${ EXTERNAL_LIBS } )
-#ENDIF( UNIX OR OPENSSL_FOUND )
-
-#set_property( TARGET licensecc_static PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>" )
-
 target_include_directories(licensecxx PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
@@ -27,4 +23,5 @@ add_library( lcxx::lcxx ALIAS licensecxx )
 target_link_libraries( licensecxx PUBLIC
     nlohmann_json::nlohmann_json
     lcxx::crypto
+    lcxx::license
 )

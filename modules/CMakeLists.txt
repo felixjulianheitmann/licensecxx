@@ -1,0 +1,5 @@
+add_subdirectory(crypto)
+add_subdirectory(identifiers)
+add_subdirectory(ident_utils)
+add_subdirectory(lcxx)
+add_subdirectory(license)

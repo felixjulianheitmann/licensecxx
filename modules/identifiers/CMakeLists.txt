@@ -1,14 +1,19 @@
 add_library(lcxx_identifiers
     ${CMAKE_CURRENT_SOURCE_DIR}/src/hardware.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/user.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/os.cpp
 )
 
 target_link_libraries( lcxx_identifiers PUBLIC
-    lcxx::os_utils
+    lcxx::ident_utils
+    lcxx::license
+    lcxx::crypto
+    nlohmann_json::nlohmann_json
 )
 
 target_include_directories( lcxx_identifiers PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
+
+target_compile_features(lcxx_identifiers PUBLIC cxx_std_20)
 
 add_library(lcxx::identifiers ALIAS lcxx_identifiers)

@@ -1,4 +1,4 @@
-add_subdirectory(os_utils)
+add_subdirectory(ident_utils)
 add_subdirectory(license_generator)
 add_subdirectory(license_verifier)
 

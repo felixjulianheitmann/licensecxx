@@ -1,7 +1,7 @@
 #include <iostream>
 
 #include <lcxx/identifiers/hardware.hpp>
-#include <lcxx/identifiers/user.hpp>
+#include <lcxx/identifiers/os.hpp>
 #include <lcxx/lcxx.hpp>
 
 // Can also be loaded from file
@@ -42,7 +42,7 @@ auto main() -> int
     // Push optional data into the license file
     license.push_content( "some key", "some value" );
     license.push_content( "hardware", lcxx::identifiers::hardware().hash );
-    license.push_content( "user", lcxx::identifiers::user().hash );
+    license.push_content( "os", lcxx::identifiers::os().hash );
 
     auto key = lcxx::crypto::load_key( std::string{ private_key }, lcxx::crypto::key_type::private_key );
     std::cout << lcxx::to_json( license, key ).dump( 4 ) << std::endl;

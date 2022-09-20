@@ -2,20 +2,17 @@
 
 #include <nlohmann/json.hpp>
 
-#include <os_utils/cpu_utils.hpp>
-#include <os_utils/disk_utils.hpp>
-#include <os_utils/os_utils.hpp>
+#include <ident_utils/cpu_utils.hpp>
+#include <ident_utils/os_utils.hpp>
 
-using namespace lcxx::os;
+using namespace lcxx::ident_utils;
 
-namespace lcxx::os::cpu {
+namespace lcxx::ident_utils::cpu {
     NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE( cpu_info, vendor, model_name, n_cores, n_threads, max_frequency );
 }
-namespace lcxx::os::disk {
-    NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE( disk_info, size, volume_name, uuid );
-}
-namespace lcxx::os::os {
-    NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE( os_info, os_name, architecture, pc_name, user, groups, uid, gids );
+namespace lcxx::ident_utils::os {
+    NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE( os_info, os_name, os_architecture, os_pc_name, user_name, user_groups, user_uid,
+                                        user_gids );
 }
 
 auto main() -> int

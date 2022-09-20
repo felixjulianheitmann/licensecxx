@@ -3,7 +3,7 @@
 
 #include <string>
 
-namespace lcxx::os::cpu {
+namespace lcxx::ident_utils::cpu {
 
     struct cpu_info {
         std::size_t n_cores;
@@ -15,6 +15,6 @@ namespace lcxx::os::cpu {
 
     auto get_info() -> cpu_info;
 
-}  // namespace lcxx::os::cpu
+}  // namespace lcxx::ident_utils::cpu
 
 #endif  // LCXX__OS_UTILS_CPU_UTILS_HPP__

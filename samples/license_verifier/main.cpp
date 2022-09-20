@@ -7,11 +7,11 @@
 constexpr auto lic_str = R"(
 {
     "content": {
-        "hardware": "",
-        "some key": "some value",
-        "user": ""
+        "another key": "another value",
+        "email": "john.doe@happymail.com",
+        "some key": "some value"
     },
-    "signature": "VeWLaYWQpmODFvPLIZIf6AFH5Cu2au2UBpMVOhE6vT2YdKpbjDGI1mq/9I98BsMcu6EQg0zAYTlIg+7/dffx90WiI8JDk518YKqoraWdlyGVvm8Q8N9H+yDtGF/7zvPhzu7s17x4RWKYWYJ5r4e6iPAZLBmns9EcznhSfQfSDcgUJvx8yYMjNiFzPt/AXHeUG7D5/3g8WVR3Ky7yrDy0+0cokMVDJuD9hnyoYVXcXEro10zIamjgq4tVkVVwcrYJw98kOEZfxjF2y94gfGzj70CkuMd9aJpiFY5EtgiPDOePzHqf9kDvYwOxauDCt9U8N1qMrjxE0HZ5FBwtZpw/Rg=="
+    "signature": "f4puZx7UnIHPM+LskRDBLzLHbgKaTuMHYRGl/F5xCInrh1hs36bPh8ONtvBvZS1HmCww8jX+NPGdzfVInmJn/C+1ptdirJ/FBPEx0HGbpNSmEMzVguL0DO8Kvb4zhO1SiiZVKBfE1rTGlcf06hfwDcw0krx+dXaWWYeXqhDeGD+m/2ihNs+r0YgLkRwFRAbDUxz2xRsrobdfB3D178a8i0W8ElwY0tfy38OF4woSsZUNpyiFreIHzGbqLs/P5L262/N6zs98H65ZWOF7KDLiMc7tMOIXptlMxk/SNTncrlCZ71Kzgq2/4hVRzNbWeu+thJA21YTSdOTYk8d5QoarRQ=="
 }
 )";
 

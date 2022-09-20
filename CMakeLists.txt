@@ -12,10 +12,7 @@ project (lcxx
 include(${PROJECT_SOURCE_DIR}/cmake/key_targets.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/get_nlohmann_json.cmake)
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/modules/lcxx)
-add_subdirectory(${PROJECT_SOURCE_DIR}/modules/crypto)
-add_subdirectory(${PROJECT_SOURCE_DIR}/modules/identifiers)
-add_subdirectory(${PROJECT_SOURCE_DIR}/modules/os_utils)
+add_subdirectory(${PROJECT_SOURCE_DIR}/modules)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
 add_subdirectory(${PROJECT_SOURCE_DIR}/samples)

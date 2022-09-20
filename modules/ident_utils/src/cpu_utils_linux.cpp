@@ -1,11 +1,11 @@
-#include <os_utils/cpu_utils.hpp>
+#include <ident_utils/cpu_utils.hpp>
 
 #include <sys/sysinfo.h>
 #include <thread>
 
-#include <os_utils/common.hpp>
+#include <ident_utils/common.hpp>
 
-namespace lcxx::os::cpu {
+namespace lcxx::ident_utils::cpu {
 
     auto get_info() -> cpu_info
     {
@@ -34,4 +34,4 @@ namespace lcxx::os::cpu {
         return ci;
     }
 
-}  // namespace lcxx::os::cpu
+}  // namespace lcxx::ident_utils::cpu
