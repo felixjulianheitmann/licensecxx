@@ -1,6 +1,5 @@
 #include <iostream>
 
-#include <lcxx/crypto.hpp>
 #include <lcxx/lcxx.hpp>
 
 // Can both be loaded from file or elsewhere
