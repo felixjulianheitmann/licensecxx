@@ -1,5 +1,15 @@
 # Licensecc
 
+- [Licensecc](#licensecc)
+  - [How to use licensecxx](#how-to-use-licensecxx)
+    - [Prerequisites](#prerequisites)
+    - [Building](#building)
+    - [Generate a license](#generate-a-license)
+    - [Verify a license](#verify-a-license)
+    - [Generating a key pair](#generating-a-key-pair)
+  - [License Features](#license-features)
+  - [License](#license)
+
 *Copy protection library targeting Linux, Windows and Mac* (currently only Linux supported)
 
 This project is inspired by the [**licensecc**](https://github.com/open-license-manager/licensecc) project.
@@ -16,7 +26,7 @@ A list of the available features and the roadmap can be seen at [License Feature
 
 This repository is still under development. If you have experience errors or bugs, please file an issue on the GitHub issues page. If you want to contribute, pull requests are very welcome.
 
-## How to use
+## How to use licensecxx
 
 ### Prerequisites
 
@@ -91,6 +101,25 @@ int main()
 A similar sample is given in [license_verifier](samples/license_verifier/main.cpp)
 
 Further samples are given in the [samples](samples) folder.
+
+### Generating a key pair
+
+To generate an RSA key pair that can be processed by licensecxx the following openssl commands can be used:
+```
+openssl genrsa -out /path/to/private_key.rsa 1024
+openssl rsa -in /path/to/private_key.rsa -outform PEM -pubout -out /path/to/public_key
+```
+
+These command generate a private-public key pair. Enabling the CMake option `LCXX_GENERATE_KEYS` will an additional CMake interface library called `lcxx::key`.
+Linking it will have CMake generate a key-pair from that through a simple python script two header files:
+- `public_key.hpp`
+- `private_key.hpp`
+
+For that location of the generated private/public keys can be specified with the variables `LCXX_PRIVATE_KEY`/`LCXX_PUBLIC_KEY`. The key size defaults to 1024 but can be configured through `LCXX_KEY_SIZE`.
+
+Finally, `LCXX_KEY_HEADER_DIR` defines the path where the generated header files should be located. It will automatically be part of the `lcxx::key` include directories.
+
+Enabling `LCXX_GENERATE_KEYS` will require Python as a dependency for the header generation.
 
 ## License Features
 
