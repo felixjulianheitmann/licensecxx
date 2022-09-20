@@ -77,6 +77,8 @@ namespace lcxx {
 
         auto get_content() const -> content_map_t const & { return content_; }
 
+        auto get( std::string const & key ) -> content_map_t::mapped_type const & { return content_[key]; }
+
         auto stringify() const -> std::string
         {
             std::vector< std::pair< std::string, std::string > > sorted_content{ content_.begin(), content_.end() };
