@@ -41,7 +41,6 @@ namespace lcxx::crypto {
 
     auto load_key( std::string const & key, key_type const type ) -> rsa_key_t
     {
-        // TODO USE SCOPED UNIQUE PTR
         std::unique_ptr< BIO, decltype( &bio_deleter ) > bio(
             BIO_new_mem_buf( static_cast< const void * >( key.c_str() ), key.size() ), bio_deleter );
 
