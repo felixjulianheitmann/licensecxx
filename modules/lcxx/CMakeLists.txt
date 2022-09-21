@@ -17,6 +17,7 @@ target_include_directories(licensecxx PUBLIC
 )
 
 target_compile_features(licensecxx PUBLIC cxx_std_20)
+set_target_properties(licensecxx PROPERTIES CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library( lcxx::lcxx ALIAS licensecxx )
 

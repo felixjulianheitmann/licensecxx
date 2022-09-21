@@ -5,6 +5,7 @@ target_include_directories(lcxx_ident_utils PUBLIC
 )
 
 target_compile_features(lcxx_ident_utils PUBLIC cxx_std_20)
+set_target_properties(lcxx_ident_utils PROPERTIES CMAKE_CXX_STANDARD_REQUIRED ON)
 
 if(WIN32)
     message("Configuring OS utilities for Windows")

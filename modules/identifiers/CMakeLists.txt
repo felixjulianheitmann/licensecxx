@@ -15,5 +15,7 @@ target_include_directories( lcxx_identifiers PUBLIC
 )
 
 target_compile_features(lcxx_identifiers PUBLIC cxx_std_20)
+set_target_properties(lcxx_identifiers PROPERTIES CMAKE_CXX_STANDARD_REQUIRED ON)
+
 
 add_library(lcxx::identifiers ALIAS lcxx_identifiers)

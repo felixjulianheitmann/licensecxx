@@ -5,6 +5,7 @@ target_include_directories(lcxx_license INTERFACE
 )
 
 target_compile_features(lcxx_license INTERFACE cxx_std_20)
+set_target_properties(lcxx_license PROPERTIES CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_library( lcxx::license ALIAS lcxx_license )
 
