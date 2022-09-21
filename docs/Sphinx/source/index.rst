@@ -36,11 +36,10 @@ Licensecxx provides a modern C++ interface with the main focus on ease of use an
 
 Due to the early development stage, licensecxx currently only supports linux hosts. Most of the software should be os-agnostic, but hardware/os identifiers rely on the operatings system they run on. One of the primary goals will be to enable cross-platform support, as soon as I can get my hands on a Windows/Mac to test things on.
 
-A list of the available features and the roadmap can be seen at [License Features](#license-features).
+A list of the collectable environment information is given at :ref:`identifiers_doc`
 
 This repository is still under development. If you have experience errors or bugs, please file an issue on the GitHub issues page. If you want to contribute, pull requests are very welcome.
 
-.. _licensecc: https://github.com/open-license-manager/licensecc
 
 Why use it
 ----------
@@ -59,7 +58,6 @@ which is easy to use and has minimal impact on the including user project.
 Similarly, to it's spiritual predecessor, it provides the option to collect system information such as CPU-Name, OS-Name, Hostname, etc, hash them,
 and incorporate them into the license. A full list of collectable info can be found at :ref:`identifiers_doc`.
 
-.. _licensecc: https://github.com/open-license-manager/licensecc
 
 
 Indices and tables
@@ -68,3 +66,5 @@ Indices and tables
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+.. _licensecc: https://github.com/open-license-manager/licensecc

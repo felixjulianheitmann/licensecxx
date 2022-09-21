@@ -55,7 +55,8 @@ Verify a license
 
 A generated license file or string can be loaded and verified provided a public key. Additional hardware identifiers can be checked against the currently running hardware.
 
-.. code-blocks::c++
+.. code-block:: c++
+
     int main()
     {
         auto key                  = lcxx::crypto::load_key( some_pem_pem_key_rsa_string, lcxx::crypto::key_type::public_key );
