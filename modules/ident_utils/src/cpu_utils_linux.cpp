@@ -17,6 +17,7 @@ namespace lcxx::ident_utils::cpu {
             }
             catch ( std::invalid_argument & e ) {
                 // Should maybe throw again? Or just leave these entries empty
+                // Having them empty does not break systems that do not have permissions to access these files
             }
         };
 
