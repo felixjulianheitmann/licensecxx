@@ -21,7 +21,7 @@ jobs:
       run: doxygen Doxyfile-prj.cfg
 
     - name: get sphinx + deps
-      run: pip install sphinx breathe exhale
+      run: pip install sphinx breathe exhale git+https://github.com/bashtage/sphinx-material.git
 
     - name: build sphinx docs
       working-directory: docs/Sphinx
