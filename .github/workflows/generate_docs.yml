@@ -1,0 +1,43 @@
+name: LCXX build & test - Ubuntu
+
+on:
+  push:
+    tags:
+      - v**
+
+jobs:
+
+  build-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: get doxygen
+      run: apt-get update && apt-get install -y doxygen
+    
+    - name: build doxygen
+      working-directory: docs/Doxygen
+      run: doxygen Doxyfile-prj.cfg
+
+    - name: get sphinx + deps
+      run: pip install sphinx breathe exhale
+
+    - name: build sphinx docs
+      working-dir: docs/Sphinx
+      run: make
+
+
+    - uses: actions/upload-artifact@master
+      with:
+        name: lcxx-tests-ubuntu
+        path: |
+          ${{ github.workspace }}/build/tests/*/
+        retention-days: 3
+        if-no-files-found: error
+
+
+    - name: Deploy 🚀
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: docs/Sphinx/build/html
+        target-folder: .
