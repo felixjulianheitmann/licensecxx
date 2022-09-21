@@ -32,3 +32,25 @@ jobs:
         retention-days: 3
         if-no-files-found: error
 
+
+  tests-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+    # - uses: actions/checkout@v3
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: lcxx-tests-ubuntu
+
+    - name: display artifacts
+      run: ls -R
+
+    - name: crypto-tests
+      run: ./crypto/crypto_test
+
+    - name: crypto-tests
+      run: ./identifiers/identifiers_test
+
+    - name: crypto-tests
+      run: ./lcxx/lcxx_test
