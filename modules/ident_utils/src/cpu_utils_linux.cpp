@@ -11,13 +11,14 @@ namespace lcxx::ident_utils::cpu {
     {
         cpu_info ci;
 
-        auto try_stoull = []( std::string const & str ) {
+        auto try_stoull = []( std::string const & str ) -> unsigned long long {
             try {
                 return std::stoull( str );
             }
             catch ( std::invalid_argument & e ) {
                 // Should maybe throw again? Or just leave these entries empty
                 // Having them empty does not break systems that do not have permissions to access these files
+                return {};
             }
         };
 
