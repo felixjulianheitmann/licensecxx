@@ -11,7 +11,16 @@ namespace lcxx::ident_utils::cpu {
     {
         cpu_info ci;
 
-        ci.max_frequency = std::stoull( cat_file( "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq" ) );
+        auto try_stoull = []( std::string const & str ) {
+            try {
+                return std::stoull( str );
+            }
+            catch ( std::exception & e ) {
+                throw std::runtime_error( std::string{ "Could not parse to integer: " } + str );
+            }
+        };
+
+        ci.max_frequency = try_stoull( cat_file( "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq" ) );
         ci.n_threads     = std::thread::hardware_concurrency();
         auto cpu_info    = cat_file( "/proc/cpuinfo" );
 
@@ -29,7 +38,7 @@ namespace lcxx::ident_utils::cpu {
 
         ci.vendor     = parse_cpu_info_attr( cpu_info, "vendor_id" );
         ci.model_name = parse_cpu_info_attr( cpu_info, "model name" );
-        ci.n_cores    = std::stoull( parse_cpu_info_attr( cpu_info, "cpu cores" ) );
+        ci.n_cores    = try_stoull( parse_cpu_info_attr( cpu_info, "cpu cores" ) );
 
         return ci;
     }
