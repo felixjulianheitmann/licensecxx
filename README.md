@@ -145,6 +145,7 @@ Currently, all features are only provided for Linux based systems unless marked 
 - [ ] Provide a vcpkg binary
 - [ ] Provide CMake fetchcontent option
 - [ ] Provide proper online documentation
+- [ ] Find a way to test hardware identifiers in CD/CI
 
 
 ## License
