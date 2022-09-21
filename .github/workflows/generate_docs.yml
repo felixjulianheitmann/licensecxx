@@ -24,7 +24,7 @@ jobs:
       run: pip install sphinx breathe exhale
 
     - name: build sphinx docs
-      working-dir: docs/Sphinx
+      working-directory: docs/Sphinx
       run: make
 
 
