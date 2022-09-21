@@ -49,10 +49,10 @@ jobs:
       run: ls -R
 
     - name: crypto-tests
-      run: ./crypto/crypto_test
+      run: chmod +x crypto/crypto_test && ./crypto/crypto_test
 
     - name: crypto-tests
-      run: ./identifiers/identifiers_test
+      run: chmod +x identifiers/identifiers_test && ./identifiers/identifiers_test
 
     - name: crypto-tests
-      run: ./lcxx/lcxx_test
+      run: chmod +x lcxx/lcxx_test && ./lcxx/lcxx_test
