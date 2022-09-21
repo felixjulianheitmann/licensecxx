@@ -1,13 +1,10 @@
 # Licensecxx
 
-![Build Status Ubuntu](https://github.com/felixjulianheitmann/licensecxx/actions/workflows/full-build-ubuntu.yml/badge.svg)
-![Tests Status Ubuntu](https://github.com/felixjulianheitmann/licensecxx/actions/workflows/full-test-ubuntu.yml/badge.svg)
+![Build & Test Status Ubuntu](https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-ubuntu.yml/badge.svg)
 
-![Build Status Windows](https://github.com/felixjulianheitmann/licensecxx/actions/workflows/full-build-windows.yml/badge.svg)
-![Tests Status Windows](https://github.com/felixjulianheitmann/licensecxx/actions/workflows/full-test-windows.yml/badge.svg)
+![Build & Test Status Windows](https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-windows.yml/badge.svg)
 
-![Build Status Mac](https://github.com/felixjulianheitmann/licensecxx/actions/workflows/full-build-mac.yml/badge.svg)
-![Tests Status Mac](https://github.com/felixjulianheitmann/licensecxx/actions/workflows/full-test-mac.yml/badge.svg)
+![Build & Test Status Mac](https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-mac.yml/badge.svg)
 
 
 - [Licensecxx](#licensecxx)
