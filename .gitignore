@@ -3,3 +3,7 @@ build
 
 # Resources
 resources
+
+# Docs dirs
+docs/Doxygen/gen_docs
+docs/Sphinx/source/api
