@@ -2,8 +2,7 @@ name: LCXX generate docs
 
 on:
   push:
-    push:
-      branches: [ "develop" ]
+    branches: [ "develop" ]
     tags:
       - v**
 
