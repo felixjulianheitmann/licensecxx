@@ -25,17 +25,7 @@ jobs:
 
     - name: build sphinx docs
       working-directory: docs/Sphinx
-      run: make
-
-
-    - uses: actions/upload-artifact@master
-      with:
-        name: lcxx-tests-ubuntu
-        path: |
-          ${{ github.workspace }}/build/tests/*/
-        retention-days: 3
-        if-no-files-found: error
-
+      run: make html
 
     - name: Deploy 🚀
       uses: JamesIves/github-pages-deploy-action@v4
