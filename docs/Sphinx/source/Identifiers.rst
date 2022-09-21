@@ -47,8 +47,61 @@ The following code snipped would take a license object and push in the hardware 
         // ... rest of the software
     }
 
+
 Hardware
 --------
 
-The hardware header allows to collect information about the systems hardware, if the current user has the privileges to access that information.
+The hardware header (``lcxx/identifier/hardware.hpp``) allows to collect information about the systems hardware, if the current user has the privileges to access that information.
 
+The available strategies are listed by the ``hw_ident_strat`` enum and have the following meaning
+
+================= ==================================================================================================================
+Enumerator        Meaning
+================= ==================================================================================================================
+all               All available information is gathered. Any other additionally set strategy is ignored.
+================= ==================================================================================================================
+cpu               All information regarding the builtin CPU is gathered. Any other additionally, set CPU strategy is ignored.
+================= ==================================================================================================================
+cpu_n_cores       Try to collect the number physical CPU cores.
+================= ==================================================================================================================
+cpu_n_threads     Try to detect the number of available hardware threads.
+================= ==================================================================================================================
+cpu_max_frequency Try to discover the maximum frequency in Hz of the builtin CPU.
+================= ==================================================================================================================
+cpu_vendor        Try to discover the vendor name of the CPU.
+================= ==================================================================================================================
+cpu_model_name    Try to discover the CPU's model name.
+================= ==================================================================================================================
+
+Note, that multi-CPU setups are not supported. Such a setup may yield unexpected values for CPU related info.
+
+Operating System
+----------------
+
+The OS header (``lcxx/identifier/os.hpp``) allows to collect information about the operating system and the current user, if the current user has the privileges to access that information.
+
+The available strategies are listed by the ``os_ident_strat`` enum and have the following meaning
+
+================= ==================================================================================================================
+Enumerator        Meaning
+================= ==================================================================================================================
+all               All available information is gathered. Any other additionally set strategy is ignored.
+================= ==================================================================================================================
+os                All available information regarding the OS is gathered. Any other additionally set OS strategies are ignored.
+================= ==================================================================================================================
+user              All available information regarding the user is gathered. Any other additionally set user strategies are ignored.
+================= ==================================================================================================================
+os_name           Try to discover the OS name (e.g. ``Linux``)
+================= ==================================================================================================================
+os_architecture   Try to discover the OS architecture
+================= ==================================================================================================================
+os_pc_name        Try to discover the OS PC name (or hostname)
+================= ==================================================================================================================
+user_name         Try to discover the currently logged in user's name
+================= ==================================================================================================================
+user_uid          Try to discover the currently logged in user's id 
+================= ==================================================================================================================
+user_groups       Try to discover the groups the currently logged in user belongs to 
+================= ==================================================================================================================
+user_gids         Try to discover the group ids the currently logged in user belongs to 
+================= ==================================================================================================================
