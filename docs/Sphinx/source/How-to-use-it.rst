@@ -5,7 +5,7 @@ How to use licensecxx
 Prerequisites
 -------------
 
-Licensecxx relies on `nlohmann/json<https://github.com/nlohmann/json>`_ and `OpenSSL<https://www.openssl.org>`_.
+Licensecxx relies on nlohmann-json_ and OpenSSL_.
 nlohmann/json is fetched through CMake-Fetchcontent during configure time and made available the library. Whether this is the preferrable way is still up to debate.
 
 OpenSSL needs to be made available by the parent project/user. Licensecxx only calls ``FindPackage(OpenSSL)``. If that cannot find the OpenSSL 1.1 library, the licensecxx cannot be built.
@@ -76,9 +76,9 @@ A generated license file or string can be loaded and verified provided a public 
         return 0;
     }
 
-A similar sample is given in `license_verifier<samples/license_verifier/main.cpp>`_
+A similar sample is given in license_verifier_
 
-Further samples are given in the `samples<samples>`_ folder.
+Further samples are given in the samples_ folder.
 
 Generating a key pair
 ---------------------
@@ -100,3 +100,8 @@ For that location of the generated private/public keys can be specified with the
 Finally, ``LCXX_KEY_HEADER_DIR`` defines the path where the generated header files should be located. It will automatically be part of the ``lcxx::key`` include directories.
 
 Enabling ``LCXX_GENERATE_KEYS`` will require Python as a dependency for the header generation.
+
+.. _license_verifier : samples/license_verifier/main.cpp
+.. _samples: samples
+.. _nlohmann-json: https://github.com/nlohmann/json
+.. _OpenSSL: https://www.openssl.org
