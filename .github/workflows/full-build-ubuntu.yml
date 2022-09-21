@@ -1,4 +1,4 @@
-name: LCXX Full build - Ubuntu
+name: LCXX build - Ubuntu
 
 on:
   push:
