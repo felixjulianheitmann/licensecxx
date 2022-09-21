@@ -1,5 +1,5 @@
-#ifndef LCXX__OS_UTILS_COMMON_HPP__
-#define LCXX__OS_UTILS_COMMON_HPP__
+#ifndef LCXX__IDENT_UTILS_COMMON_HPP__
+#define LCXX__IDENT_UTILS_COMMON_HPP__
 
 #include <concepts>
 #include <cstring>
@@ -23,4 +23,4 @@ inline auto c2s_wrapper( std::invocable< char *, std::size_t > auto f ) -> std::
     return tmp;
 }
 
-#endif  // LCXX__OS_UTILS_COMMON_HPP__
+#endif  // LCXX__IDENT_UTILS_COMMON_HPP__

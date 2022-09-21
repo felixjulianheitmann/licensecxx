@@ -1,5 +1,5 @@
-#ifndef LCXX__OS_UTILS_CPU_UTILS_HPP__
-#define LCXX__OS_UTILS_CPU_UTILS_HPP__
+#ifndef LCXX__IDENT_UTILS_CPU_UTILS_HPP__
+#define LCXX__IDENT_UTILS_CPU_UTILS_HPP__
 
 #include <string>
 
@@ -22,4 +22,4 @@ namespace lcxx::ident_utils::cpu {
 
 }  // namespace lcxx::ident_utils::cpu
 
-#endif  // LCXX__OS_UTILS_CPU_UTILS_HPP__
+#endif  // LCXX__IDENT_UTILS_CPU_UTILS_HPP__

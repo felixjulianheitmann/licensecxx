@@ -1,5 +1,5 @@
-#ifndef LCXX__OS_UTILS_OS_UTILS_HPP__
-#define LCXX__OS_UTILS_OS_UTILS_HPP__
+#ifndef LCXX__IDENT_UTILS_OS_UTILS_HPP__
+#define LCXX__IDENT_UTILS_OS_UTILS_HPP__
 
 #include <string>
 #include <vector>
@@ -25,4 +25,4 @@ namespace lcxx::ident_utils::os {
 
 }  // namespace lcxx::ident_utils::os
 
-#endif  // LCXX__OS_UTILS_OS_UTILS_HPP__
+#endif  // LCXX__IDENT_UTILS_OS_UTILS_HPP__
