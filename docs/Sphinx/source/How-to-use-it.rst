@@ -29,7 +29,8 @@ Generate a license
 ------------------
 
 A simple license generator looks like this:
-.. code-blocks::c++
+
+.. code-block::c++
     #include <lcxx/lcxx.hpp>
 
     int main()
