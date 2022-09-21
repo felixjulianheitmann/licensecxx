@@ -13,11 +13,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: get openssl
-      run: brew install openssl@1.1
-
     - name: configure
-      run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
+      run: mkdir build && cd build && cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1 -DCMAKE_BUILD_TYPE=Release ..
     - name: build
       working-directory: build
       run: cmake --build . 
