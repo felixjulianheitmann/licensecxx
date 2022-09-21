@@ -1,4 +1,4 @@
-name: LCXX build - Ubuntu
+name: LCXX build & test - Ubuntu
 
 on:
   push:
@@ -23,7 +23,7 @@ jobs:
       run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
     - name: build
       working-directory: build
-      run: cmake --build . 
+      run: cmake --build .
 
     - uses: actions/upload-artifact@master
       with:

@@ -1,0 +1,56 @@
+name: LCXX build & test - Mac
+
+on:
+  push:
+    branches: [ "develop" ]
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+  build-mac:
+    runs-on: mac-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: configure
+      run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
+    - name: build
+      working-directory: build
+      run: cmake --build . 
+
+    - uses: actions/upload-artifact@master
+      with:
+        name: lcxx-tests-mac
+        path: |
+          ${{ github.workspace }}/build/tests/*/
+        retention-days: 3
+        if-no-files-found: error
+
+  tests-mac:
+    needs: build-mac
+    runs-on: mac-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Get latest GCC
+      uses: egor-tensin/setup-gcc@v1
+      with:
+        version: 11
+        platform: x64
+
+    - uses: actions/download-artifact@v3
+      with:
+        name: lcxx-tests-mac
+
+    - name: display artifacts
+      run: ls -R
+
+    - name: crypto-tests
+      run: chmod +x crypto/crypto_test && ./crypto/crypto_test
+
+    - name: identifiers-tests
+      run: chmod +x identifiers/identifiers_test && ./identifiers/identifiers_test
+
+    - name: lcxx-tests
+      run: chmod +x lcxx/lcxx_test && ./lcxx/lcxx_test
