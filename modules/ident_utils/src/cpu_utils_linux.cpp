@@ -15,8 +15,8 @@ namespace lcxx::ident_utils::cpu {
             try {
                 return std::stoull( str );
             }
-            catch ( std::exception & e ) {
-                throw std::runtime_error( std::string{ "Could not parse to integer: " } + str );
+            catch ( std::invalid_argument & e ) {
+                // Should maybe throw again? Or just leave these entries empty
             }
         };
 

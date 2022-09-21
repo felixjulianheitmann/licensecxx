@@ -56,5 +56,8 @@ jobs:
     - name: crypto-tests
       run: chmod +x crypto/crypto_test && ./crypto/crypto_test
 
+    - name: identifiers-tests
+      run: chmod +x identifiers/identifiers_test && ./identifiers/identifiers_test
+
     - name: lcxx-tests
       run: chmod +x lcxx/lcxx_test && ./lcxx/lcxx_test
