@@ -1,0 +1,14 @@
+.. _exhale_function_os__utils__mac_8cpp_1ac364dbae3c97df81f43a916bb9f19383:
+
+Function lcxx::os::os::get_info
+===============================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_src_os_utils_mac.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::os::os::get_info()
+   :project: Licensecxx

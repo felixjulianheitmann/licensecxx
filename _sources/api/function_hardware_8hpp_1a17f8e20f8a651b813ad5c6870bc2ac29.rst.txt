@@ -1,0 +1,14 @@
+.. _exhale_function_hardware_8hpp_1a17f8e20f8a651b813ad5c6870bc2ac29:
+
+Function lcxx::identifiers::verify(hw_ident_strat const, std::string_view const)
+================================================================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_src_hardware.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::identifiers::verify(hw_ident_strat const, std::string_view const)
+   :project: Licensecxx

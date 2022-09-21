@@ -1,0 +1,14 @@
+.. _exhale_function_hardware_8hpp_1a8bbc56d68f5a6f17ff7eb60bff281c10:
+
+Function lcxx::identifiers::hardware
+====================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_src_hardware.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::identifiers::hardware(hw_ident_strat const)
+   :project: Licensecxx

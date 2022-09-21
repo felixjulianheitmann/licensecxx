@@ -1,0 +1,29 @@
+
+.. _namespace_lcxx__ident_utils__os:
+
+Namespace lcxx::ident_utils::os
+===============================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structlcxx_1_1ident__utils_1_1os_1_1os__info`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_os__utils_8hpp_1a738137b1ee6a24fd0f3c351b53b1adef`
+
+- :ref:`exhale_function_os_8cpp_1a737b81b93fe99632fb7f1306b26c5adf`

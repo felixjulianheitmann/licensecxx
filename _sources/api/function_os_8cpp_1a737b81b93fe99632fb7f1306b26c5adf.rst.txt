@@ -1,0 +1,14 @@
+.. _exhale_function_os_8cpp_1a737b81b93fe99632fb7f1306b26c5adf:
+
+Function lcxx::ident_utils::os::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE
+==================================================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_src_os.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::ident_utils::os::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(os_info, os_name, os_architecture, os_pc_name, user_name, user_groups, user_uid, user_gids)
+   :project: Licensecxx

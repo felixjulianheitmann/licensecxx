@@ -1,0 +1,14 @@
+.. _exhale_function_ident__utils_2include_2ident__utils_2common_8hpp_1a96c4470e9b4b9fff905f4f0ff2f74861:
+
+Template Function c2s_wrapper
+=============================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_include_ident_utils_common.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: c2s_wrapper(std::invocable<char *, std::size_t> auto)
+   :project: Licensecxx

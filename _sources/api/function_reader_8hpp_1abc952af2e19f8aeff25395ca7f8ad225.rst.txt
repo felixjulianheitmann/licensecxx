@@ -1,0 +1,14 @@
+.. _exhale_function_reader_8hpp_1abc952af2e19f8aeff25395ca7f8ad225:
+
+Function lcxx::from_json(std::string const&)
+============================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_src_reader.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::from_json(std::string const&)
+   :project: Licensecxx

@@ -1,0 +1,24 @@
+.. _dir__home_runner_work_licensecxx_licensecxx_modules_lcxx_include_lcxx:
+
+
+Directory lcxx
+==============
+
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_licensecxx_licensecxx_modules_lcxx_include>` (``/home/runner/work/licensecxx/licensecxx/modules/lcxx/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``/home/runner/work/licensecxx/licensecxx/modules/lcxx/include/lcxx``
+
+
+Files
+-----
+
+- :ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_include_lcxx_lcxx.hpp`
+- :ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_include_lcxx_reader.hpp`
+- :ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_include_lcxx_verifier.hpp`
+- :ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_include_lcxx_writer.hpp`
+
+

@@ -1,0 +1,988 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="../_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="../_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="../_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="../_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>Library API &#8212; Licensecxx latest documentation</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/collapsible-lists/css/tree_view.css" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Namespace lcxx" href="namespace_lcxx.html" />
+    <link rel="prev" title="How to use licensecxx" href="../How-to-use-it.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=blue data-md-color-accent=light-blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#api/library_root" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../index.html" title="Licensecxx latest documentation"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Licensecxx</span>
+          <span class="md-header-nav__topic"> Library API </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/felixjulianheitmann/licensecxx/" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Licensecxx
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="../_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = "../"versions.json"",
+        target_loc = "../../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="../index.html" class="md-tabs__link">Licensecxx latest documentation</a></li>
+            
+            <li class="md-tabs__item"><a href="../Intro.html" class="md-tabs__link">Intro</a></li>
+            
+            <li class="md-tabs__item"><a href="../Identifiers.html" class="md-tabs__link">Identifiers</a></li>
+            
+            <li class="md-tabs__item"><a href="../How-to-use-it.html" class="md-tabs__link">How to use licensecxx</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../index.html" title="Licensecxx latest documentation" class="md-nav__button md-logo">
+      
+        <img src="../_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="../index.html"
+       title="Licensecxx latest documentation">Licensecxx</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/felixjulianheitmann/licensecxx/" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Licensecxx
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+      <span class="md-nav__link caption"><span class="caption-text">Contents:</span></span>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../Identifiers.html" class="md-nav__link">Identifiers</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="../Identifiers.html#hardware" class="md-nav__link">Hardware</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../Identifiers.html#operating-system" class="md-nav__link">Operating System</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../How-to-use-it.html" class="md-nav__link">How to use licensecxx</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="../How-to-use-it.html#prerequisites" class="md-nav__link">Prerequisites</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../How-to-use-it.html#building" class="md-nav__link">Building</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../How-to-use-it.html#generate-a-license" class="md-nav__link">Generate a license</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../How-to-use-it.html#verify-a-license" class="md-nav__link">Verify a license</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="../How-to-use-it.html#generating-a-key-pair" class="md-nav__link">Generating a key pair</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> Library API </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">Library API</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/api/library_root.rst.txt">Show Source</a> </li>
+
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#class-hierarchy" class="md-nav__link">Class Hierarchy</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#full-api" class="md-nav__link">Full API</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#namespaces" class="md-nav__link">Namespaces</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#classes-and-structs" class="md-nav__link">Classes and Structs</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#enums" class="md-nav__link">Enums</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#functions" class="md-nav__link">Functions</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#variables" class="md-nav__link">Variables</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#typedefs" class="md-nav__link">Typedefs</a>
+      
+    
+    </li></ul>
+    
+    </li></ul>
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="../_sources/api/library_root.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="library-api">
+<h1 id="api-library-root--page-root">Library API<a class="headerlink" href="#api-library-root--page-root" title="Permalink to this heading">¶</a></h1>
+<section id="class-hierarchy">
+<h2 id="class-hierarchy">Class Hierarchy<a class="headerlink" href="#class-hierarchy" title="Permalink to this heading">¶</a></h2>
+<ul class="treeView" id="class-treeView">
+<li>
+<ul class="collapsibleList">
+<li class="lastChild">Namespace <a href="namespace_lcxx.html#namespace-lcxx">lcxx</a><ul><li>Namespace <a href="namespace_lcxx__crypto.html#namespace-lcxx-crypto">lcxx::crypto</a><ul><li class="lastChild">Enum <a href="enum_crypto_8hpp_1ae458f6c9e5c5b77e739e7bac2b4a6bb0.html#exhale-enum-crypto-8hpp-1ae458f6c9e5c5b77e739e7bac2b4a6bb0">key_type</a></li></ul></li><li>Namespace <a href="namespace_lcxx__ident_utils.html#namespace-lcxx-ident-utils">lcxx::ident_utils</a><ul><li>Namespace <a href="namespace_lcxx__ident_utils__cpu.html#namespace-lcxx-ident-utils-cpu">lcxx::ident_utils::cpu</a><ul><li class="lastChild">Struct <a href="structlcxx_1_1ident__utils_1_1cpu_1_1cpu__info.html#exhale-struct-structlcxx-1-1ident-utils-1-1cpu-1-1cpu-info">cpu_info</a></li></ul></li><li class="lastChild">Namespace <a href="namespace_lcxx__ident_utils__os.html#namespace-lcxx-ident-utils-os">lcxx::ident_utils::os</a><ul><li class="lastChild">Struct <a href="structlcxx_1_1ident__utils_1_1os_1_1os__info.html#exhale-struct-structlcxx-1-1ident-utils-1-1os-1-1os-info">os_info</a></li></ul></li></ul></li><li>Namespace <a href="namespace_lcxx__identifiers.html#namespace-lcxx-identifiers">lcxx::identifiers</a><ul><li>Enum <a href="enum_hardware_8hpp_1ad06979c02df2dcf44f8ea9c539ae8df2.html#exhale-enum-hardware-8hpp-1ad06979c02df2dcf44f8ea9c539ae8df2">hw_ident_strat</a></li><li>Enum <a href="enum_os_8hpp_1adb193e212708bc264d20e241e5f8c014.html#exhale-enum-os-8hpp-1adb193e212708bc264d20e241e5f8c014">os_ident_strat</a></li><li class="lastChild">Struct <a href="structlcxx_1_1identifiers_1_1identifier.html#exhale-struct-structlcxx-1-1identifiers-1-1identifier">identifier</a></li></ul></li><li class="lastChild">Class <a href="classlcxx_1_1license.html#exhale-class-classlcxx-1-1license">license</a></li></ul></li>
+</ul>
+</li><!-- only tree view element -->
+</ul><!-- /treeView class-treeView --></section>
+<section id="full-api">
+<h2 id="full-api">Full API<a class="headerlink" href="#full-api" title="Permalink to this heading">¶</a></h2>
+<section id="namespaces">
+<h3 id="namespaces">Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx.html">Namespace lcxx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx.html#typedefs">Typedefs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx.html#variables">Variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__crypto.html">Namespace lcxx::crypto</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__crypto.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__crypto.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__crypto.html#typedefs">Typedefs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__crypto.html#variables">Variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__decode.html">Namespace lcxx::decode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__decode.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__encode.html">Namespace lcxx::encode</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__encode.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__hash.html">Namespace lcxx::hash</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__hash.html#functions">Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__hash.html#typedefs">Typedefs</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__ident_utils.html">Namespace lcxx::ident_utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__ident_utils.html#namespaces">Namespaces</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__ident_utils__cpu.html">Namespace lcxx::ident_utils::cpu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__ident_utils__cpu.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__ident_utils__cpu.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__ident_utils__os.html">Namespace lcxx::ident_utils::os</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__ident_utils__os.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__ident_utils__os.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__identifiers.html">Namespace lcxx::identifiers</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__identifiers.html#classes">Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__identifiers.html#enums">Enums</a></li>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__identifiers.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__os.html">Namespace lcxx::os</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__os.html#namespaces">Namespaces</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__os__cpu.html">Namespace lcxx::os::cpu</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__os__cpu.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="namespace_lcxx__os__os.html">Namespace lcxx::os::os</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="namespace_lcxx__os__os.html#functions">Functions</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="classes-and-structs">
+<h3 id="classes-and-structs">Classes and Structs<a class="headerlink" href="#classes-and-structs" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structlcxx_1_1ident__utils_1_1cpu_1_1cpu__info.html">Struct cpu_info</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structlcxx_1_1ident__utils_1_1cpu_1_1cpu__info.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structlcxx_1_1ident__utils_1_1os_1_1os__info.html">Struct os_info</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structlcxx_1_1ident__utils_1_1os_1_1os__info.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structlcxx_1_1identifiers_1_1identifier.html">Struct identifier</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="structlcxx_1_1identifiers_1_1identifier.html#struct-documentation">Struct Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="classlcxx_1_1license.html">Class license</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="classlcxx_1_1license.html#class-documentation">Class Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="enums">
+<h3 id="enums">Enums<a class="headerlink" href="#enums" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_crypto_8hpp_1ae458f6c9e5c5b77e739e7bac2b4a6bb0.html">Enum key_type</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_crypto_8hpp_1ae458f6c9e5c5b77e739e7bac2b4a6bb0.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_hardware_8hpp_1ad06979c02df2dcf44f8ea9c539ae8df2.html">Enum hw_ident_strat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_hardware_8hpp_1ad06979c02df2dcf44f8ea9c539ae8df2.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="enum_os_8hpp_1adb193e212708bc264d20e241e5f8c014.html">Enum os_ident_strat</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_os_8hpp_1adb193e212708bc264d20e241e5f8c014.html#enum-documentation">Enum Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="functions">
+<h3 id="functions">Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_ident__utils_2include_2ident__utils_2common_8hpp_1a96c4470e9b4b9fff905f4f0ff2f74861.html">Template Function c2s_wrapper</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_ident__utils_2include_2ident__utils_2common_8hpp_1a96c4470e9b4b9fff905f4f0ff2f74861.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_ident__utils_2include_2ident__utils_2common_8hpp_1a2e8ea2e927eaf0b8ffb1bba95b79861a.html">Function cat_file</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_ident__utils_2include_2ident__utils_2common_8hpp_1a2e8ea2e927eaf0b8ffb1bba95b79861a.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_crypto_8cpp_1acc39cfc69d8ee37ec1f431259874f542.html">Function lcxx::crypto::bio_deleter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_crypto_8cpp_1acc39cfc69d8ee37ec1f431259874f542.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_crypto_8hpp_1a2aa87f894c4ceff5e6fae213c81c431f.html">Function lcxx::crypto::load_key(std::string const&amp;, key_type)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_crypto_8hpp_1a2aa87f894c4ceff5e6fae213c81c431f.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_crypto_8hpp_1a30b08d3f3f54addbdd58ceb3b8bbb72f.html">Function lcxx::crypto::load_key(std::filesystem::path const&amp;, key_type)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_crypto_8hpp_1a30b08d3f3f54addbdd58ceb3b8bbb72f.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_crypto_8cpp_1ae8cab469fece49714a24b923a6574365.html">Function lcxx::crypto::rsa_deleter</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_crypto_8cpp_1ae8cab469fece49714a24b923a6574365.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_crypto_8hpp_1aed0f318fd6e4e6a6b089a2f2e5e5a932.html">Function lcxx::crypto::sign</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_crypto_8hpp_1aed0f318fd6e4e6a6b089a2f2e5e5a932.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_crypto_8hpp_1a8ca75d4c1cc7e555875ff74ebb8424da.html">Function lcxx::crypto::verify_signature</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_crypto_8hpp_1a8ca75d4c1cc7e555875ff74ebb8424da.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_encoding_8hpp_1a4cb0ad35d12c48e7f0f4e77f3f30acbf.html">Function lcxx::decode::base64</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_encoding_8hpp_1a4cb0ad35d12c48e7f0f4e77f3f30acbf.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_encoding_8hpp_1abe50e5ec167e718639a131a48228ac21.html">Function lcxx::encode::base64</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_encoding_8hpp_1abe50e5ec167e718639a131a48228ac21.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_reader_8hpp_1a09b371cb01a894ecaf6f5cae2bffefa1.html">Function lcxx::from_json(nlohmann::json const&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_reader_8hpp_1a09b371cb01a894ecaf6f5cae2bffefa1.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_reader_8hpp_1abc952af2e19f8aeff25395ca7f8ad225.html">Function lcxx::from_json(std::string const&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_reader_8hpp_1abc952af2e19f8aeff25395ca7f8ad225.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_reader_8hpp_1ad230728cd12651a9f79474b2e3101093.html">Function lcxx::from_json(std::span&lt;char&gt; const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_reader_8hpp_1ad230728cd12651a9f79474b2e3101093.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_reader_8hpp_1a00ef2b23a5eef03b9a05bdc57654ebc9.html">Function lcxx::from_json(std::filesystem::path const&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_reader_8hpp_1a00ef2b23a5eef03b9a05bdc57654ebc9.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_hash_8hpp_1a456c2a413b0f9fec2fd727e1471115dc.html">Function lcxx::hash::md5(std::string const&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_hash_8hpp_1a456c2a413b0f9fec2fd727e1471115dc.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_hash_8hpp_1aa2f82fe6d32711e95939252150eccd8a.html">Function lcxx::hash::md5(std::span&lt;const std::byte&gt; const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_hash_8hpp_1aa2f82fe6d32711e95939252150eccd8a.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_hash_8hpp_1acaf2a424ad6a2a3da683cb27db34fde1.html">Template Function lcxx::hash::sha512(std::span&lt;const std::byte&gt; const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_hash_8hpp_1acaf2a424ad6a2a3da683cb27db34fde1.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_hash_8cpp_1a07f563e7b705d9c47a722a414acd91f0.html">Function lcxx::hash::sha512(std::string const&amp;)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_hash_8cpp_1a07f563e7b705d9c47a722a414acd91f0.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_cpu__utils_8hpp_1af499e67306506508377ea474f8938967.html">Function lcxx::ident_utils::cpu::get_info</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_cpu__utils_8hpp_1af499e67306506508377ea474f8938967.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_hardware_8cpp_1aa3b5d4720e1d88ec64d06e4ff7815077.html">Function lcxx::ident_utils::cpu::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_hardware_8cpp_1aa3b5d4720e1d88ec64d06e4ff7815077.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_os__utils_8hpp_1a738137b1ee6a24fd0f3c351b53b1adef.html">Function lcxx::ident_utils::os::get_info</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_os__utils_8hpp_1a738137b1ee6a24fd0f3c351b53b1adef.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_os_8cpp_1a737b81b93fe99632fb7f1306b26c5adf.html">Function lcxx::ident_utils::os::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_os_8cpp_1a737b81b93fe99632fb7f1306b26c5adf.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_hardware_8hpp_1a8bbc56d68f5a6f17ff7eb60bff281c10.html">Function lcxx::identifiers::hardware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_hardware_8hpp_1a8bbc56d68f5a6f17ff7eb60bff281c10.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_hardware_8hpp_1a8020337fd78efb4dd53dd9b18dc07a87.html">Function lcxx::identifiers::operator|(hw_ident_strat const, hw_ident_strat const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_hardware_8hpp_1a8020337fd78efb4dd53dd9b18dc07a87.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_os_8hpp_1a66ad4c710760b59bce1b26142c733ac2.html">Function lcxx::identifiers::operator|(os_ident_strat const, os_ident_strat const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_os_8hpp_1a66ad4c710760b59bce1b26142c733ac2.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_os_8hpp_1a6c880fd853d6ff667beb04e4afa9fd4e.html">Function lcxx::identifiers::os</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_os_8hpp_1a6c880fd853d6ff667beb04e4afa9fd4e.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_hardware_8hpp_1a17f8e20f8a651b813ad5c6870bc2ac29.html">Function lcxx::identifiers::verify(hw_ident_strat const, std::string_view const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_hardware_8hpp_1a17f8e20f8a651b813ad5c6870bc2ac29.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_os_8hpp_1ae6747a5e733f89100e7206181e174dc9.html">Function lcxx::identifiers::verify(os_ident_strat const, std::string_view const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_os_8hpp_1ae6747a5e733f89100e7206181e174dc9.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_cpu__utils__mac_8cpp_1a0a157b39ca5b71a6304cfe8e58ce0721.html">Function lcxx::os::cpu::get_info</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_cpu__utils__mac_8cpp_1a0a157b39ca5b71a6304cfe8e58ce0721.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_os__utils__mac_8cpp_1ac364dbae3c97df81f43a916bb9f19383.html">Function lcxx::os::os::get_info</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_os__utils__mac_8cpp_1ac364dbae3c97df81f43a916bb9f19383.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_verifier_8hpp_1ab7669c042eb4e4f0804b36577100d5f2.html">Function lcxx::sign</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_verifier_8hpp_1ab7669c042eb4e4f0804b36577100d5f2.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_writer_8hpp_1aa08f45de087c44f63ea359d5d76cee4f.html">Function lcxx::to_json(license const&amp;, crypto::rsa_key_t const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_writer_8hpp_1aa08f45de087c44f63ea359d5d76cee4f.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_writer_8hpp_1a0698efc9acbb03976063e32f5fa4558e.html">Function lcxx::to_json(license const&amp;, std::filesystem::path const&amp;, crypto::rsa_key_t const)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_writer_8hpp_1a0698efc9acbb03976063e32f5fa4558e.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_verifier_8hpp_1a386a0ed594b8644eb1b775ada8fcbea0.html">Function lcxx::verify_license</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_verifier_8hpp_1a386a0ed594b8644eb1b775ada8fcbea0.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_identifiers_2include_2lcxx_2identifiers_2common_8hpp_1a0eb2c5570294966aec539e69ff50953a.html">Template Function requires</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_identifiers_2include_2lcxx_2identifiers_2common_8hpp_1a0eb2c5570294966aec539e69ff50953a.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="function_identifiers_2include_2lcxx_2identifiers_2common_8hpp_1a618ce7ddd1382e880cb6a0a82a9073cd.html">Function static_cast&lt; base_t &gt;</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="function_identifiers_2include_2lcxx_2identifiers_2common_8hpp_1a618ce7ddd1382e880cb6a0a82a9073cd.html#function-documentation">Function Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="variables">
+<h3 id="variables">Variables<a class="headerlink" href="#variables" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_identifiers_2include_2lcxx_2identifiers_2common_8hpp_1a3f94a545ce4864c4c3f6713420ed24d0.html">Variable bool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_identifiers_2include_2lcxx_2identifiers_2common_8hpp_1a3f94a545ce4864c4c3f6713420ed24d0.html#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_license_8hpp_1a2493de4b47868595c1e620718b7ba78a.html">Variable lcxx::content_key</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_license_8hpp_1a2493de4b47868595c1e620718b7ba78a.html#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_crypto_8cpp_1ab597a24d4a2eed9fc1007ddbda95fd75.html">Variable lcxx::crypto::encryption_algorithm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_crypto_8cpp_1ab597a24d4a2eed9fc1007ddbda95fd75.html#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_license_8hpp_1ab802b26a916ec92ad2dc8bc4f3b99ce5.html">Variable lcxx::signature_key</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_license_8hpp_1ab802b26a916ec92ad2dc8bc4f3b99ce5.html#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="variable_license_8hpp_1a37cd1466d21d3653bbc513fade5780f2.html">Variable lcxx::string_convertable</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="variable_license_8hpp_1a37cd1466d21d3653bbc513fade5780f2.html#variable-documentation">Variable Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="typedefs">
+<h3 id="typedefs">Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_license_8hpp_1a8eb94a79a142cef73691ec2269a47b17.html">Typedef lcxx::content_map_t</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_license_8hpp_1a8eb94a79a142cef73691ec2269a47b17.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_crypto_8hpp_1ae383faaefb3b1a8952e2257b49eeb29a.html">Typedef lcxx::crypto::rsa_key_t</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_crypto_8hpp_1ae383faaefb3b1a8952e2257b49eeb29a.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_hash_8hpp_1ad9db1b91cab4bab5f813a3fb7b7cbd92.html">Typedef lcxx::hash::md5_hash_t</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_hash_8hpp_1ad9db1b91cab4bab5f813a3fb7b7cbd92.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_hash_8hpp_1a74b288b8de8eb4f3d7a332f1460f086f.html">Typedef lcxx::hash::sha512_hash_t</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_hash_8hpp_1a74b288b8de8eb4f3d7a332f1460f086f.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="typedef_license_8hpp_1a570ec096f49523a4d9a79843b8bde6a9.html">Typedef lcxx::signature</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="typedef_license_8hpp_1a570ec096f49523a4d9a79843b8bde6a9.html#typedef-documentation">Typedef Documentation</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="../How-to-use-it.html" title="How to use licensecxx"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> How to use licensecxx </span>
+              </div>
+            </a>
+          
+          
+            <a href="namespace_lcxx.html" title="Namespace lcxx"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Namespace lcxx </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2022, Felix Heitmann.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="../_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+.. _exhale_function_crypto_8hpp_1aed0f318fd6e4e6a6b089a2f2e5e5a932:
+
+Function lcxx::crypto::sign
+===========================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_crypto_src_crypto.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::crypto::sign(std::string const&, rsa_key_t const)
+   :project: Licensecxx

@@ -1,0 +1,21 @@
+.. _dir__home_runner_work_licensecxx_licensecxx_modules_identifiers_include_lcxx:
+
+
+Directory lcxx
+==============
+
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_licensecxx_licensecxx_modules_identifiers_include>` (``/home/runner/work/licensecxx/licensecxx/modules/identifiers/include``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+*Directory path:* ``/home/runner/work/licensecxx/licensecxx/modules/identifiers/include/lcxx``
+
+Subdirectories
+--------------
+
+- :ref:`dir__home_runner_work_licensecxx_licensecxx_modules_identifiers_include_lcxx_identifiers`
+
+
+

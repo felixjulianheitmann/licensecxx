@@ -1,0 +1,14 @@
+.. _exhale_function_ident__utils_2include_2ident__utils_2common_8hpp_1a2e8ea2e927eaf0b8ffb1bba95b79861a:
+
+Function cat_file
+=================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_include_ident_utils_common.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: cat_file(std::string const&)
+   :project: Licensecxx

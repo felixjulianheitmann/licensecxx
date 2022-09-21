@@ -1,0 +1,69 @@
+
+.. _file__home_runner_work_licensecxx_licensecxx_modules_identifiers_src_os.cpp:
+
+File os.cpp
+===========
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_licensecxx_licensecxx_modules_identifiers_src>` (``/home/runner/work/licensecxx/licensecxx/modules/identifiers/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/licensecxx/licensecxx/modules/identifiers/src/os.cpp``)
+---------------------------------------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``ident_utils/os_utils.hpp`` (:ref:`file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_include_ident_utils_os_utils.hpp`)
+
+- ``lcxx/encoding.hpp`` (:ref:`file__home_runner_work_licensecxx_licensecxx_modules_crypto_include_lcxx_encoding.hpp`)
+
+- ``lcxx/hash.hpp`` (:ref:`file__home_runner_work_licensecxx_licensecxx_modules_crypto_include_lcxx_hash.hpp`)
+
+- ``lcxx/identifiers/common.hpp`` (:ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_include_lcxx_identifiers_common.hpp`)
+
+- ``lcxx/identifiers/os.hpp`` (:ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_include_lcxx_identifiers_os.hpp`)
+
+- ``nlohmann/json.hpp``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_lcxx`
+
+- :ref:`namespace_lcxx__ident_utils`
+
+- :ref:`namespace_lcxx__ident_utils__os`
+
+- :ref:`namespace_lcxx__identifiers`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_os_8cpp_1a737b81b93fe99632fb7f1306b26c5adf`
+
+- :ref:`exhale_function_os_8hpp_1a66ad4c710760b59bce1b26142c733ac2`
+
+- :ref:`exhale_function_os_8hpp_1a6c880fd853d6ff667beb04e4afa9fd4e`
+
+- :ref:`exhale_function_os_8hpp_1ae6747a5e733f89100e7206181e174dc9`
+

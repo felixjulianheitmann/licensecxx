@@ -1,0 +1,14 @@
+.. _exhale_variable_license_8hpp_1a37cd1466d21d3653bbc513fade5780f2:
+
+Variable lcxx::string_convertable
+=================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_license_include_lcxx_license.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: lcxx::string_convertable
+   :project: Licensecxx

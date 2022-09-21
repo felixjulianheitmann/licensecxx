@@ -1,0 +1,14 @@
+.. _exhale_variable_license_8hpp_1ab802b26a916ec92ad2dc8bc4f3b99ce5:
+
+Variable lcxx::signature_key
+============================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_license_include_lcxx_license.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: lcxx::signature_key
+   :project: Licensecxx

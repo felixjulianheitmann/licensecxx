@@ -1,0 +1,61 @@
+
+.. _file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_include_ident_utils_os_utils.hpp:
+
+File os_utils.hpp
+=================
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_licensecxx_licensecxx_modules_ident_utils_include_ident_utils>` (``/home/runner/work/licensecxx/licensecxx/modules/ident_utils/include/ident_utils``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/licensecxx/licensecxx/modules/ident_utils/include/ident_utils/os_utils.hpp``)
+-------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``string``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_src_os_utils_linux.cpp`
+
+- :ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_src_os.cpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_lcxx`
+
+- :ref:`namespace_lcxx__ident_utils`
+
+- :ref:`namespace_lcxx__ident_utils__os`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_struct_structlcxx_1_1ident__utils_1_1os_1_1os__info`
+

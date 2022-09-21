@@ -1,0 +1,14 @@
+.. _exhale_variable_crypto_8cpp_1ab597a24d4a2eed9fc1007ddbda95fd75:
+
+Variable lcxx::crypto::encryption_algorithm
+===========================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_crypto_src_crypto.cpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: lcxx::crypto::encryption_algorithm
+   :project: Licensecxx

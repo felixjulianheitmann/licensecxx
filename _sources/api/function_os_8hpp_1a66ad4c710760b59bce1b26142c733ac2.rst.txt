@@ -1,0 +1,14 @@
+.. _exhale_function_os_8hpp_1a66ad4c710760b59bce1b26142c733ac2:
+
+Function lcxx::identifiers::operator|(os_ident_strat const, os_ident_strat const)
+=================================================================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_src_os.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::identifiers::operator|(os_ident_strat const, os_ident_strat const)
+   :project: Licensecxx

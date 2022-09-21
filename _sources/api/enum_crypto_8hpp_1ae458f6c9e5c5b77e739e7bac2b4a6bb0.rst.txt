@@ -1,0 +1,14 @@
+.. _exhale_enum_crypto_8hpp_1ae458f6c9e5c5b77e739e7bac2b4a6bb0:
+
+Enum key_type
+=============
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_crypto_include_lcxx_crypto.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: lcxx::crypto::key_type
+   :project: Licensecxx

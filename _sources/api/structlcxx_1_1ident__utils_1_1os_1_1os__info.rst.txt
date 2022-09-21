@@ -1,0 +1,17 @@
+.. _exhale_struct_structlcxx_1_1ident__utils_1_1os_1_1os__info:
+
+Struct os_info
+==============
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_include_ident_utils_os_utils.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: lcxx::ident_utils::os::os_info
+   :project: Licensecxx
+   :members:
+   :protected-members:
+   :undoc-members:

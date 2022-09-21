@@ -1,0 +1,20 @@
+
+.. _namespace_lcxx__encode:
+
+Namespace lcxx::encode
+======================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_encoding_8hpp_1abe50e5ec167e718639a131a48228ac21`

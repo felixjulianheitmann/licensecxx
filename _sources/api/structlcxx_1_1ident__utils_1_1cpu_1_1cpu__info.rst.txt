@@ -1,0 +1,17 @@
+.. _exhale_struct_structlcxx_1_1ident__utils_1_1cpu_1_1cpu__info:
+
+Struct cpu_info
+===============
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_include_ident_utils_cpu_utils.hpp`
+
+
+Struct Documentation
+--------------------
+
+
+.. doxygenstruct:: lcxx::ident_utils::cpu::cpu_info
+   :project: Licensecxx
+   :members:
+   :protected-members:
+   :undoc-members:

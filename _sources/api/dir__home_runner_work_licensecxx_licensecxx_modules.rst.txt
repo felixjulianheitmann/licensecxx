@@ -1,0 +1,20 @@
+.. _dir__home_runner_work_licensecxx_licensecxx_modules:
+
+
+Directory modules
+=================
+
+
+*Directory path:* ``/home/runner/work/licensecxx/licensecxx/modules``
+
+Subdirectories
+--------------
+
+- :ref:`dir__home_runner_work_licensecxx_licensecxx_modules_crypto`
+- :ref:`dir__home_runner_work_licensecxx_licensecxx_modules_ident_utils`
+- :ref:`dir__home_runner_work_licensecxx_licensecxx_modules_identifiers`
+- :ref:`dir__home_runner_work_licensecxx_licensecxx_modules_lcxx`
+- :ref:`dir__home_runner_work_licensecxx_licensecxx_modules_license`
+
+
+

@@ -1,0 +1,14 @@
+.. _exhale_enum_os_8hpp_1adb193e212708bc264d20e241e5f8c014:
+
+Enum os_ident_strat
+===================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_include_lcxx_identifiers_os.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: lcxx::identifiers::os_ident_strat
+   :project: Licensecxx

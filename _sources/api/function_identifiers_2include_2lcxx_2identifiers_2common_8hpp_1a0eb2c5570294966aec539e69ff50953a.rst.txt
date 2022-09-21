@@ -1,0 +1,14 @@
+.. _exhale_function_identifiers_2include_2lcxx_2identifiers_2common_8hpp_1a0eb2c5570294966aec539e69ff50953a:
+
+Template Function requires
+==========================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_include_lcxx_identifiers_common.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: requires(std::is_enum<Strat_Enum>::value)
+   :project: Licensecxx

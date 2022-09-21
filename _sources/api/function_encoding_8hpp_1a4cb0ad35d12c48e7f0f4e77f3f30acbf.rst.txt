@@ -1,0 +1,14 @@
+.. _exhale_function_encoding_8hpp_1a4cb0ad35d12c48e7f0f4e77f3f30acbf:
+
+Function lcxx::decode::base64
+=============================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_crypto_src_encoding.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::decode::base64(std::string const&)
+   :project: Licensecxx

@@ -1,0 +1,14 @@
+.. _exhale_variable_identifiers_2include_2lcxx_2identifiers_2common_8hpp_1a3f94a545ce4864c4c3f6713420ed24d0:
+
+Variable bool
+=============
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_include_lcxx_identifiers_common.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: bool
+   :project: Licensecxx

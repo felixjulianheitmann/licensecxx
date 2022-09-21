@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="lang:clipboard.copy" content="Copy to clipboard">
+  <meta name="lang:clipboard.copied" content="Copied to clipboard">
+  <meta name="lang:search.language" content="en">
+  <meta name="lang:search.pipeline.stopwords" content="True">
+  <meta name="lang:search.pipeline.trimmer" content="True">
+  <meta name="lang:search.result.none" content="No matching documents">
+  <meta name="lang:search.result.one" content="1 matching document">
+  <meta name="lang:search.result.other" content="# matching documents">
+  <meta name="lang:search.tokenizer" content="[\s\-]+">
+
+  
+    <link href="https://fonts.gstatic.com/" rel="preconnect" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,500,700|Roboto:300,400,400i,700&display=fallback" rel="stylesheet">
+
+    <style>
+      body,
+      input {
+        font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif
+      }
+
+      code,
+      kbd,
+      pre {
+        font-family: "Roboto Mono", "Courier New", Courier, monospace
+      }
+    </style>
+  
+
+  <link rel="stylesheet" href="_static/stylesheets/application.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-palette.css"/>
+  <link rel="stylesheet" href="_static/stylesheets/application-fixes.css"/>
+  
+  <link rel="stylesheet" href="_static/fonts/material-icons.css"/>
+  
+  <meta name="theme-color" content="#3f51b5">
+  <script src="_static/javascripts/modernizr.js"></script>
+  
+  
+  
+    <title>How to use licensecxx &#8212; Licensecxx latest documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/material.css" />
+    <link rel="stylesheet" type="text/css" href="_static/collapsible-lists/css/tree_view.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+    <script src="_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Library API" href="api/library_root.html" />
+    <link rel="prev" title="Identifiers" href="Identifiers.html" />
+  
+   
+
+  </head>
+  <body dir=ltr
+        data-md-color-primary=blue data-md-color-accent=light-blue>
+  
+  <svg class="md-svg">
+    <defs data-children-count="0">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+      
+    </defs>
+  </svg>
+  
+  <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer">
+  <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search">
+  <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+  <a href="#How-to-use-it" tabindex="1" class="md-skip"> Skip to content </a>
+  <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex navheader">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="index.html" title="Licensecxx latest documentation"
+           class="md-header-nav__button md-logo">
+          
+            &nbsp;
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          <span class="md-header-nav__topic">Licensecxx</span>
+          <span class="md-header-nav__topic"> How to use licensecxx </span>
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            <a href="https://github.com/felixjulianheitmann/licensecxx/" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Licensecxx
+  </div>
+</a>
+          </div>
+        </div>
+      
+      
+  
+  <script src="_static/javascripts/version_dropdown.js"></script>
+  <script>
+    var json_loc = ""versions.json"",
+        target_loc = "../",
+        text = "Versions";
+    $( document ).ready( add_version_dropdown(json_loc, target_loc, text));
+  </script>
+  
+
+    </div>
+  </nav>
+</header>
+
+  
+  <div class="md-container">
+    
+    
+    
+  <nav class="md-tabs" data-md-component="tabs">
+    <div class="md-tabs__inner md-grid">
+      <ul class="md-tabs__list">
+          <li class="md-tabs__item"><a href="index.html" class="md-tabs__link">Licensecxx latest documentation</a></li>
+            
+            <li class="md-tabs__item"><a href="Intro.html" class="md-tabs__link">Intro</a></li>
+            
+            <li class="md-tabs__item"><a href="Identifiers.html" class="md-tabs__link">Identifiers</a></li>
+            
+            <li class="md-tabs__item"><a href="#" class="md-tabs__link">How to use licensecxx</a></li>
+      </ul>
+    </div>
+  </nav>
+    <main class="md-main">
+      <div class="md-main__inner md-grid" data-md-component="container">
+        
+          <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="index.html" title="Licensecxx latest documentation" class="md-nav__button md-logo">
+      
+        <img src="_static/" alt=" logo" width="48" height="48">
+      
+    </a>
+    <a href="index.html"
+       title="Licensecxx latest documentation">Licensecxx</a>
+  </label>
+    <div class="md-nav__source">
+      <a href="https://github.com/felixjulianheitmann/licensecxx/" title="Go to repository" class="md-source" data-md-source="github">
+
+    <div class="md-source__icon">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" width="28" height="28">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Licensecxx
+  </div>
+</a>
+    </div>
+  
+  
+
+  
+  <ul class="md-nav__list">
+    <li class="md-nav__item">
+    
+      <span class="md-nav__link caption"><span class="caption-text">Contents:</span></span>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="Identifiers.html" class="md-nav__link">Identifiers</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="Identifiers.html#hardware" class="md-nav__link">Hardware</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="Identifiers.html#operating-system" class="md-nav__link">Operating System</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    <label class="md-nav__link md-nav__link--active" for="__toc"> How to use licensecxx </label>
+    
+      <a href="#" class="md-nav__link md-nav__link--active">How to use licensecxx</a>
+      
+        
+<nav class="md-nav md-nav--secondary">
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/How-to-use-it.rst.txt">Show Source</a> </li>
+
+  </ul>
+</nav>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="#prerequisites" class="md-nav__link">Prerequisites</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#building" class="md-nav__link">Building</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#generate-a-license" class="md-nav__link">Generate a license</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#verify-a-license" class="md-nav__link">Verify a license</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="#generating-a-key-pair" class="md-nav__link">Generating a key pair</a>
+      
+    
+    </li></ul>
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/library_root.html" class="md-nav__link">Library API</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="api/library_root.html#class-hierarchy" class="md-nav__link">Class Hierarchy</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/library_root.html#full-api" class="md-nav__link">Full API</a>
+      <ul class="md-nav__list"> 
+    <li class="md-nav__item">
+    
+    
+      <a href="api/library_root.html#namespaces" class="md-nav__link">Namespaces</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/library_root.html#classes-and-structs" class="md-nav__link">Classes and Structs</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/library_root.html#enums" class="md-nav__link">Enums</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/library_root.html#functions" class="md-nav__link">Functions</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/library_root.html#variables" class="md-nav__link">Variables</a>
+      
+    
+    </li>
+    <li class="md-nav__item">
+    
+    
+      <a href="api/library_root.html#typedefs" class="md-nav__link">Typedefs</a>
+      
+    
+    </li></ul>
+    
+    </li></ul>
+    
+    </li>
+  </ul>
+  
+
+</nav>
+              </div>
+            </div>
+          </div>
+          <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+            <div class="md-sidebar__scrollwrap">
+              <div class="md-sidebar__inner">
+                
+<nav class="md-nav md-nav--secondary">
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+<li class="md-nav__item"><a class="md-nav__extra_link" href="_sources/How-to-use-it.rst.txt">Show Source</a> </li>
+
+<li id="searchbox" class="md-nav__item"></li>
+
+  </ul>
+</nav>
+              </div>
+            </div>
+          </div>
+        
+        <div class="md-content">
+          <article class="md-content__inner md-typeset" role="main">
+            
+  <section id="how-to-use-licensecxx">
+<h1 id="how-to-use-it--page-root">How to use licensecxx<a class="headerlink" href="#how-to-use-it--page-root" title="Permalink to this heading">¶</a></h1>
+<section id="prerequisites">
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>Licensecxx relies on <a href="#id1"><span class="problematic" id="id2">`nlohmann/json&lt;https://github.com/nlohmann/json&gt;`_</span></a> and <a href="#id3"><span class="problematic" id="id4">`OpenSSL&lt;https://www.openssl.org&gt;`_</span></a>.
+nlohmann/json is fetched through CMake-Fetchcontent during configure time and made available the library. Whether this is the preferrable way is still up to debate.</p>
+<p>OpenSSL needs to be made available by the parent project/user. Licensecxx only calls <code class="docutils literal notranslate"><span class="pre">FindPackage(OpenSSL)</span></code>. If that cannot find the OpenSSL 1.1 library, the licensecxx cannot be built.</p>
+</section>
+<section id="building">
+<h2 id="building">Building<a class="headerlink" href="#building" title="Permalink to this heading">¶</a></h2>
+<p>This project is supposed to be used as a library addition to your software. Licensecxx is CMake based and can be included as a submodule in your project. Including it as a subdirectory makes the licensecxx targets available to your project</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">lcxx::identifiers</span></code> library is optional to produce/verify identifying hash codes of the target machine.</p>
+</section>
+<section id="generate-a-license">
+<h2 id="generate-a-license">Generate a license<a class="headerlink" href="#generate-a-license" title="Permalink to this heading">¶</a></h2>
+<p>A simple license generator looks like this:
+.. code-blocks::c++</p>
+<blockquote>
+<div><p>#include &lt;lcxx/lcxx.hpp&gt;</p>
+<p>int main()
+{</p>
+<blockquote>
+<div><p>lcxx::license license;</p>
+<p>// Push optional data into the license file
+license.push_content( “some key”, “some value” );
+license.push_content( “hardware”, lcxx::identifiers::hardware().hash );
+license.push_content( “os”, lcxx::identifiers::os().hash );</p>
+<p>auto key = lcxx::crypto::load_key( some_pem_private_key_rsa_string, lcxx::crypto::key_type::private_key );
+// alternatively, load key from file by providing the file PEM file path
+// auto key = lcxx::crypto::load_key( some_pem_private_key_rsa_path, lcxx::crypto::key_type::private_key );
+lcxx::to_json(license, “my-project-license.lic”, key);</p>
+</div></blockquote>
+<p>}</p>
+</div></blockquote>
+<p>It prints a signed license json file to the file <code class="docutils literal notranslate"><span class="pre">my-project-license.lic</span></code>. This is similar to the sample [license_generator](samples/license_generator/main.cpp).</p>
+</section>
+<section id="verify-a-license">
+<h2 id="verify-a-license">Verify a license<a class="headerlink" href="#verify-a-license" title="Permalink to this heading">¶</a></h2>
+<p>A generated license file or string can be loaded and verified provided a public key. Additional hardware identifiers can be checked against the currently running hardware.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="n">key</span>                  <span class="o">=</span> <span class="n">lcxx</span><span class="o">::</span><span class="n">crypto</span><span class="o">::</span><span class="n">load_key</span><span class="p">(</span> <span class="n">some_pem_pem_key_rsa_string</span><span class="p">,</span> <span class="n">lcxx</span><span class="o">::</span><span class="n">crypto</span><span class="o">::</span><span class="n">key_type</span><span class="o">::</span><span class="n">public_key</span> <span class="p">);</span>
+    <span class="k">auto</span> <span class="p">[</span><span class="n">license</span><span class="p">,</span> <span class="n">signature</span><span class="p">]</span> <span class="o">=</span> <span class="n">lcxx</span><span class="o">::</span><span class="n">from_json</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">filesystem</span><span class="o">::</span><span class="n">path</span><span class="p">(</span><span class="s">"my-project-license.lic"</span><span class="p">)</span> <span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span> <span class="o">!</span><span class="n">lcxx</span><span class="o">::</span><span class="n">verify_license</span><span class="p">(</span> <span class="n">license</span><span class="p">,</span> <span class="n">signature</span><span class="p">,</span> <span class="n">key</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"This program is not licensed!"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">if</span> <span class="p">(</span> <span class="n">lcxx</span><span class="o">::</span><span class="n">identifiers</span><span class="o">::</span><span class="n">verify</span><span class="p">(</span> <span class="n">license</span><span class="p">.</span><span class="n">get</span><span class="p">(</span> <span class="s">"hardware"</span> <span class="p">)</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"The hardware does not match the one licensed!"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A similar sample is given in <a href="#id5"><span class="problematic" id="id6">`license_verifier&lt;samples/license_verifier/main.cpp&gt;`_</span></a></p>
+<p>Further samples are given in the <a href="#id7"><span class="problematic" id="id8">`samples&lt;samples&gt;`_</span></a> folder.</p>
+</section>
+<section id="generating-a-key-pair">
+<h2 id="generating-a-key-pair">Generating a key pair<a class="headerlink" href="#generating-a-key-pair" title="Permalink to this heading">¶</a></h2>
+<p>To generate an RSA key pair that can be processed by licensecxx the following openssl commands can be used:</p>
+<p>These command generate a private-public key pair. Enabling the CMake option <code class="docutils literal notranslate"><span class="pre">LCXX_GENERATE_KEYS</span></code> will an additional CMake interface library called <code class="docutils literal notranslate"><span class="pre">lcxx::key</span></code>.
+Linking it will have CMake generate a key-pair from that through a simple python script two header files:
+- <code class="docutils literal notranslate"><span class="pre">public_key.hpp</span></code>
+- <code class="docutils literal notranslate"><span class="pre">private_key.hpp</span></code></p>
+<p>For that location of the generated private/public keys can be specified with the variables <code class="docutils literal notranslate"><span class="pre">LCXX_PRIVATE_KEY</span></code> / <code class="docutils literal notranslate"><span class="pre">LCXX_PUBLIC_KEY</span></code>. The key size defaults to 1024 but can be configured through <code class="docutils literal notranslate"><span class="pre">LCXX_KEY_SIZE</span></code>.</p>
+<p>Finally, <code class="docutils literal notranslate"><span class="pre">LCXX_KEY_HEADER_DIR</span></code> defines the path where the generated header files should be located. It will automatically be part of the <code class="docutils literal notranslate"><span class="pre">lcxx::key</span></code> include directories.</p>
+<p>Enabling <code class="docutils literal notranslate"><span class="pre">LCXX_GENERATE_KEYS</span></code> will require Python as a dependency for the header generation.</p>
+</section>
+</section>
+
+
+          </article>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="md-footer">
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+          
+            <a href="Identifiers.html" title="Identifiers"
+               class="md-flex md-footer-nav__link md-footer-nav__link--prev"
+               rel="prev">
+              <div class="md-flex__cell md-flex__cell--shrink">
+                <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+              </div>
+              <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+                <span class="md-flex__ellipsis">
+                  <span
+                      class="md-footer-nav__direction"> Previous </span> Identifiers </span>
+              </div>
+            </a>
+          
+          
+            <a href="api/library_root.html" title="Library API"
+               class="md-flex md-footer-nav__link md-footer-nav__link--next"
+               rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title"><span
+                class="md-flex__ellipsis"> <span
+                class="md-footer-nav__direction"> Next </span> Library API </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink"><i
+                class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          
+        </a>
+        
+      </nav>
+    </div>
+    <div class="md-footer-meta md-typeset">
+      <div class="md-footer-meta__inner md-grid">
+        <div class="md-footer-copyright">
+          <div class="md-footer-copyright__highlight">
+              &#169; Copyright 2022, Felix Heitmann.
+              
+          </div>
+            Created using
+            <a href="http://www.sphinx-doc.org/">Sphinx</a> 5.1.1.
+             and
+            <a href="https://github.com/bashtage/sphinx-material/">Material for
+              Sphinx</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="_static/javascripts/application.js"></script>
+  <script>app.initialize({version: "1.0.4", url: {base: ".."}})</script>
+  </body>
+</html>

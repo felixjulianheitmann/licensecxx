@@ -1,0 +1,14 @@
+.. _exhale_enum_hardware_8hpp_1ad06979c02df2dcf44f8ea9c539ae8df2:
+
+Enum hw_ident_strat
+===================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_include_lcxx_identifiers_hardware.hpp`
+
+
+Enum Documentation
+------------------
+
+
+.. doxygenenum:: lcxx::identifiers::hw_ident_strat
+   :project: Licensecxx

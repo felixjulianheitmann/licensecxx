@@ -1,0 +1,22 @@
+
+.. _namespace_lcxx__ident_utils:
+
+Namespace lcxx::ident_utils
+===========================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_lcxx__ident_utils__cpu`
+
+- :ref:`namespace_lcxx__ident_utils__os`

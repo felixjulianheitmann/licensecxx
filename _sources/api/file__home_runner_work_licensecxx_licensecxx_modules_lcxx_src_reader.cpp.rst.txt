@@ -1,0 +1,59 @@
+
+.. _file__home_runner_work_licensecxx_licensecxx_modules_lcxx_src_reader.cpp:
+
+File reader.cpp
+===============
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_licensecxx_licensecxx_modules_lcxx_src>` (``/home/runner/work/licensecxx/licensecxx/modules/lcxx/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/licensecxx/licensecxx/modules/lcxx/src/reader.cpp``)
+------------------------------------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm``
+
+- ``fstream``
+
+- ``lcxx/encoding.hpp`` (:ref:`file__home_runner_work_licensecxx_licensecxx_modules_crypto_include_lcxx_encoding.hpp`)
+
+- ``lcxx/reader.hpp`` (:ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_include_lcxx_reader.hpp`)
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_lcxx`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_reader_8hpp_1ad230728cd12651a9f79474b2e3101093`
+
+- :ref:`exhale_function_reader_8hpp_1a09b371cb01a894ecaf6f5cae2bffefa1`
+
+- :ref:`exhale_function_reader_8hpp_1a00ef2b23a5eef03b9a05bdc57654ebc9`
+
+- :ref:`exhale_function_reader_8hpp_1abc952af2e19f8aeff25395ca7f8ad225`
+

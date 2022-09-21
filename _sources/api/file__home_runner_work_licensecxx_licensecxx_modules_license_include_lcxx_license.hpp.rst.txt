@@ -1,0 +1,95 @@
+
+.. _file__home_runner_work_licensecxx_licensecxx_modules_license_include_lcxx_license.hpp:
+
+File license.hpp
+================
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_licensecxx_licensecxx_modules_license_include_lcxx>` (``/home/runner/work/licensecxx/licensecxx/modules/license/include/lcxx``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/licensecxx/licensecxx/modules/license/include/lcxx/license.hpp``)
+-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``algorithm``
+
+- ``concepts``
+
+- ``cstddef``
+
+- ``optional``
+
+- ``span``
+
+- ``stdexcept``
+
+- ``string``
+
+- ``unordered_map``
+
+- ``vector``
+
+
+
+Included By
+-----------
+
+
+- :ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_include_lcxx_lcxx.hpp`
+
+- :ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_include_lcxx_reader.hpp`
+
+- :ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_include_lcxx_verifier.hpp`
+
+- :ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_include_lcxx_writer.hpp`
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_lcxx`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classlcxx_1_1license`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_license_8hpp_1a8eb94a79a142cef73691ec2269a47b17`
+
+- :ref:`exhale_typedef_license_8hpp_1a570ec096f49523a4d9a79843b8bde6a9`
+
+
+Variables
+---------
+
+
+- :ref:`exhale_variable_license_8hpp_1a2493de4b47868595c1e620718b7ba78a`
+
+- :ref:`exhale_variable_license_8hpp_1ab802b26a916ec92ad2dc8bc4f3b99ce5`
+
+- :ref:`exhale_variable_license_8hpp_1a37cd1466d21d3653bbc513fade5780f2`
+

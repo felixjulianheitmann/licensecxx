@@ -1,0 +1,14 @@
+.. _exhale_function_os__utils_8hpp_1a738137b1ee6a24fd0f3c351b53b1adef:
+
+Function lcxx::ident_utils::os::get_info
+========================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_src_os_utils_linux.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::ident_utils::os::get_info()
+   :project: Licensecxx

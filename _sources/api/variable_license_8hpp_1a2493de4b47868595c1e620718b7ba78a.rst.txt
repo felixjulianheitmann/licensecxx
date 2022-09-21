@@ -1,0 +1,14 @@
+.. _exhale_variable_license_8hpp_1a2493de4b47868595c1e620718b7ba78a:
+
+Variable lcxx::content_key
+==========================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_license_include_lcxx_license.hpp`
+
+
+Variable Documentation
+----------------------
+
+
+.. doxygenvariable:: lcxx::content_key
+   :project: Licensecxx

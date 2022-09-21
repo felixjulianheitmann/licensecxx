@@ -1,0 +1,14 @@
+.. _exhale_function_hardware_8cpp_1aa3b5d4720e1d88ec64d06e4ff7815077:
+
+Function lcxx::ident_utils::cpu::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE
+===================================================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_identifiers_src_hardware.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::ident_utils::cpu::NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(cpu_info, vendor, model_name, n_cores, n_threads, max_frequency)
+   :project: Licensecxx

@@ -1,0 +1,44 @@
+
+.. _file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_src_os_utils_win.cpp:
+
+File os_utils_win.cpp
+=====================
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_licensecxx_licensecxx_modules_ident_utils_src>` (``/home/runner/work/licensecxx/licensecxx/modules/ident_utils/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/licensecxx/licensecxx/modules/ident_utils/src/os_utils_win.cpp``)
+-------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``os_utils/os_utils.hpp``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_lcxx`
+
+- :ref:`namespace_lcxx__os`
+
+- :ref:`namespace_lcxx__os__os`
+

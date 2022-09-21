@@ -1,0 +1,17 @@
+.. _exhale_class_classlcxx_1_1license:
+
+Class license
+=============
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_license_include_lcxx_license.hpp`
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: lcxx::license
+   :project: Licensecxx
+   :members:
+   :protected-members:
+   :undoc-members:

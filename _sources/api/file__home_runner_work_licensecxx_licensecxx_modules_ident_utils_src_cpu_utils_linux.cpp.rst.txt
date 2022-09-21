@@ -1,0 +1,57 @@
+
+.. _file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_src_cpu_utils_linux.cpp:
+
+File cpu_utils_linux.cpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir__home_runner_work_licensecxx_licensecxx_modules_ident_utils_src>` (``/home/runner/work/licensecxx/licensecxx/modules/ident_utils/src``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``/home/runner/work/licensecxx/licensecxx/modules/ident_utils/src/cpu_utils_linux.cpp``)
+----------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+Includes
+--------
+
+
+- ``ident_utils/common.hpp`` (:ref:`file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_include_ident_utils_common.hpp`)
+
+- ``ident_utils/cpu_utils.hpp`` (:ref:`file__home_runner_work_licensecxx_licensecxx_modules_ident_utils_include_ident_utils_cpu_utils.hpp`)
+
+- ``sys/sysinfo.h``
+
+- ``thread``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_lcxx`
+
+- :ref:`namespace_lcxx__ident_utils`
+
+- :ref:`namespace_lcxx__ident_utils__cpu`
+
+
+Functions
+---------
+
+
+- :ref:`exhale_function_cpu__utils_8hpp_1af499e67306506508377ea474f8938967`
+

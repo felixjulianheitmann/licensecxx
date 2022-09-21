@@ -1,0 +1,14 @@
+.. _exhale_function_crypto_8hpp_1a2aa87f894c4ceff5e6fae213c81c431f:
+
+Function lcxx::crypto::load_key(std::string const&, key_type)
+=============================================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_crypto_src_crypto.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::crypto::load_key(std::string const&, key_type)
+   :project: Licensecxx

@@ -1,0 +1,14 @@
+.. _exhale_function_crypto_8hpp_1a8ca75d4c1cc7e555875ff74ebb8424da:
+
+Function lcxx::crypto::verify_signature
+=======================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_crypto_src_crypto.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::crypto::verify_signature(std::string_view const, std::vector<std::byte> const&, rsa_key_t const)
+   :project: Licensecxx

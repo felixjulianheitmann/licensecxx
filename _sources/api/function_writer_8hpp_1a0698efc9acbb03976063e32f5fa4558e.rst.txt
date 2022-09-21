@@ -1,0 +1,14 @@
+.. _exhale_function_writer_8hpp_1a0698efc9acbb03976063e32f5fa4558e:
+
+Function lcxx::to_json(license const&, std::filesystem::path const&, crypto::rsa_key_t const)
+=============================================================================================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_lcxx_src_writer.cpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: lcxx::to_json(license const&, std::filesystem::path const&, crypto::rsa_key_t const)
+   :project: Licensecxx

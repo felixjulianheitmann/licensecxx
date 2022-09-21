@@ -1,0 +1,14 @@
+.. _exhale_typedef_license_8hpp_1a570ec096f49523a4d9a79843b8bde6a9:
+
+Typedef lcxx::signature
+=======================
+
+- Defined in :ref:`file__home_runner_work_licensecxx_licensecxx_modules_license_include_lcxx_license.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: lcxx::signature
+   :project: Licensecxx
