@@ -4,6 +4,10 @@ add_library(lcxx_crypto
     ${CMAKE_CURRENT_SOURCE_DIR}/src/hash.cpp
 )
 
+if(APPLE)
+    set(OPENSSL_ROOT_DIR /opt/homebrew/opt/openssl@1.1)
+endif(APPLE)
+
 find_package(OpenSSL COMPONENTS Crypto REQUIRED)
 
 target_compile_features(lcxx_crypto PUBLIC cxx_std_20)

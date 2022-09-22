@@ -1,8 +1,8 @@
 #include <ident_utils/os_utils.hpp>
 
-#error Not yet implemented
+// #error Not yet implemented
 
-namespace lcxx::os::os {
+namespace lcxx::ident_utils::os {
 
     auto get_info() -> os_info { return {}; }
 

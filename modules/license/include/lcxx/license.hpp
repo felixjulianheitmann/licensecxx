@@ -95,7 +95,7 @@ namespace lcxx {
         auto stringify() const -> std::string
         {
             std::vector< std::pair< std::string, std::string > > sorted_content{ content_.begin(), content_.end() };
-            std::ranges::sort( sorted_content );
+            std::sort( sorted_content.begin(), sorted_content.end() );
 
             std::string tmp;
             for ( auto const & [k, v] : sorted_content ) {
