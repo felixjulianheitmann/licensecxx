@@ -14,8 +14,7 @@ namespace lcxx::ident_utils::os {
     {
         os_info oi;
 
-        oi.user_name = c2s_wrapper( []( auto buffer, auto len ) { getlogin_r( buffer, len ); } );
-        oi.user_uid  = getuid();
+        oi.user_uid = getuid();
 
         int                  buffer_len = 64;
         std::vector< gid_t > group_ids( buffer_len, 0 );
