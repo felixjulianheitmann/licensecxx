@@ -8,12 +8,15 @@ if (Boost_FOUND)
         ${PROJECT_SOURCE_DIR}/src/server.cpp
     )
 
-    target_include_directories(${PROJECT_NAME} PUBLIC
-        ${PROJECT_SOURCE_DIR}/include
-        ${Boost_INCLUDE_DIRS}
+    target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_20)
+
+    target_link_libraries(${PROJECT_NAME} PUBLIC
+        lcxx::lcxx
+        Boost::headers
     )
 
-    target_link_libraries(${PROJECT_NAME} PRIVATE
+    target_include_directories(${PROJECT_NAME} PUBLIC
+        ${PROJECT_SOURCE_DIR}/include
     )
 
     add_library(lcxx::server ALIAS ${PROJECT_NAME})
