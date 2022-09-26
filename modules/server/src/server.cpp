@@ -12,11 +12,10 @@ using tcp       = boost::asio::ip::tcp;
 
 namespace lcxx {
 
-    server::server( std::string const & ip, uint16_t port, std::optional< boost::asio::io_context > & ioc ) :
-        ioc_( ioc ? std::make_shared< net::io_context >( *ioc )
-                  : std::make_shared< net::io_context >( boost::asio::io_context{} ) ),
-        acceptor_( *ioc_, { net::ip::make_address( ip ), port } ),
-        socket_( *ioc_ ),
+    server::server( std::string const & ip, uint16_t port ) :
+        ioc_(),
+        acceptor_( ioc_, { net::ip::make_address( ip ), port } ),
+        socket_( ioc_ ),
         ioc_thread_(),
         map_mutex_(),
         get_cb_map_(),
@@ -38,13 +37,15 @@ namespace lcxx {
 
     auto server::read_license( request const & req, crypto::rsa_key_t private_key ) -> license { return {}; }
 
-    auto server::write_license( response & req, crypto::rsa_key_t private_key ) -> license { return {}; }
+    void server::write_license( license const & lic, response & req, crypto::rsa_key_t private_key ) {}
 
     void server::run( run_option ro )
     {
+        handle_loop();
+
         auto run_ioc = [this] {
-            auto work = boost::asio::make_work_guard( *ioc_ );
-            ioc_->run();
+            auto work = boost::asio::make_work_guard( ioc_ );
+            ioc_.run();
         };
 
         if ( ro == run_option::sync )
@@ -53,11 +54,11 @@ namespace lcxx {
             ioc_thread_ = std::thread( run_ioc );
     }
 
-    void server::stop() { ioc_->stop(); }
+    void server::stop() { ioc_.stop(); }
 
     auto server::handle_loop() -> void
     {
-        net::co_spawn( *ioc_, handle_loop_coro(), [this]( std::exception_ptr e ) {
+        net::co_spawn( ioc_, handle_loop_coro(), [this]( std::exception_ptr e ) {
             if ( e )
                 std::rethrow_exception( e );
         } );
@@ -87,7 +88,7 @@ namespace lcxx {
 
             auto exec_cb = [&]( auto map ) {
                 if ( auto target = req.target().to_string(); map.contains( target ) ) {
-                    map.at( target )( req );
+                    map.at( target )( req, resp );
                 }
             };
 
