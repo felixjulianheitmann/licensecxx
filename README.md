@@ -134,14 +134,15 @@ Currently, all features are only provided for Linux based systems unless marked 
 
 - [x] include CPU features
 - [x] include OS/user features
-- [ ] include time-limitation
+- [x] Provide proper online documentation
 - [ ] provide hardware/os identifiers for Windows
 - [ ] provide hardware/os identifiers for Mac
 - [ ] check if it's running in a virtualized environment
 - [ ] Provide a conan binary
 - [ ] Provide a vcpkg binary
 - [ ] Provide CMake fetchcontent option
-- [ ] Provide proper online documentation
+- [ ] Implement Server/Client module
+- [ ] Dockerize Server module
 - [ ] Find a way to test hardware identifiers in CD/CI
 
 
