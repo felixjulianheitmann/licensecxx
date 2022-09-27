@@ -1,5 +1,8 @@
 #include <lcxx/hash.hpp>
 
+#include <array>
+#include <cstddef>
+
 namespace lcxx::hash {
 
     auto md5( std::string const & input ) -> md5_hash_t

@@ -1,5 +1,7 @@
 #include <lcxx/crypto.hpp>
 
+#include <array>
+#include <cstddef>
 #include <fstream>
 #include <vector>
 
