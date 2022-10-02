@@ -5,6 +5,7 @@
 #include <string>
 #include <thread>
 #include <unordered_map>
+#include <variant>
 
 #include <boost/asio.hpp>
 #include <boost/beast.hpp>
@@ -16,10 +17,15 @@ namespace lcxx {
     class server {
 
     public:
-        using request  = boost::beast::http::request< boost::beast::http::dynamic_body >;
-        using response = boost::beast::http::response< boost::beast::http::dynamic_body >;
-        using get_cb   = std::function< void( request const &, response & ) >;
-        using put_cb   = std::function< void( request const &, response & ) >;
+        using file_response   = boost::beast::http::response< boost::beast::http::file_body >;
+        using string_response = boost::beast::http::response< boost::beast::http::string_body >;
+        using response        = std::variant< file_response, string_response >;
+        using request         = boost::beast::http::request< boost::beast::http::dynamic_body >;
+
+        using request_cb = std::function< response( request const & ) >;
+
+        using verb       = boost::beast::http::verb;
+        using error_code = boost::system::error_code;
 
         enum class run_option {
             async,
@@ -28,21 +34,23 @@ namespace lcxx {
 
         server( std::string const & ip, uint16_t port );
 
-        void on_get_endpoint( std::string const & endpoint, get_cb callback );
-        void on_put_endpoint( std::string const & endpoint, put_cb callback );
+        void on_endpoint( std::string const & endpoint, request_cb callback );
 
         auto read_license( request const & req, crypto::rsa_key_t private_key ) -> license;
-        void write_license( license const &, response & resp, crypto::rsa_key_t private_key );
+        void write_license( license const &, file_response & resp, crypto::rsa_key_t private_key );
+        void write_license( license const &, string_response & resp, crypto::rsa_key_t private_key );
 
         void run( run_option ro );
         void stop();
 
     private:
-        using get_cb_map = std::unordered_map< std::string, get_cb >;
-        using put_cb_map = std::unordered_map< std::string, put_cb >;
+        using cb_map = std::unordered_map< std::string, request_cb >;
 
         void handle_loop();
         auto handle_loop_coro() -> boost::asio::awaitable< void >;
+
+        auto is_pattern( std::string_view const target ) -> bool;
+        auto pattern_match( std::string_view const target ) -> std::string;
 
         boost::asio::io_context        ioc_;
         boost::asio::ip::tcp::acceptor acceptor_;
@@ -52,8 +60,7 @@ namespace lcxx {
         std::thread ioc_thread_;
 
         std::mutex map_mutex_;
-        get_cb_map get_cb_map_;
-        put_cb_map put_cb_map_;
+        cb_map     cb_map_;
     };
 
 }  // namespace lcxx

@@ -1,5 +1,7 @@
 #include <lcxx/server.hpp>
 
+#include <ranges>
+
 #include <lcxx/lcxx.hpp>
 
 #include <boost/asio.hpp>
@@ -18,26 +20,20 @@ namespace lcxx {
         socket_( ioc_ ),
         ioc_thread_(),
         map_mutex_(),
-        get_cb_map_(),
-        put_cb_map_()
+        cb_map_()
     {
     }
 
-    void server::on_get_endpoint( std::string const & endpoint, get_cb callback )
+    void server::on_endpoint( std::string const & endpoint, request_cb callback )
     {
         auto l = std::scoped_lock{ map_mutex_ };
-        get_cb_map_.insert_or_assign( endpoint, callback );
-    }
-
-    void server::on_put_endpoint( std::string const & endpoint, put_cb callback )
-    {
-        auto l = std::scoped_lock{ map_mutex_ };
-        put_cb_map_.insert_or_assign( endpoint, callback );
+        cb_map_.insert_or_assign( endpoint, callback );
     }
 
     auto server::read_license( request const & req, crypto::rsa_key_t private_key ) -> license { return {}; }
 
-    void server::write_license( license const & lic, response & req, crypto::rsa_key_t private_key ) {}
+    void server::write_license( license const & lic, file_response & req, crypto::rsa_key_t private_key ) {}
+    void server::write_license( license const & lic, string_response & req, crypto::rsa_key_t private_key ) {}
 
     void server::run( run_option ro )
     {
@@ -69,6 +65,11 @@ namespace lcxx {
         boost::system::error_code ec;
         auto                      error = net::redirect_error( net::use_awaitable, ec );
 
+        auto shutdown = [&]() {
+            socket_.shutdown( tcp::socket::shutdown_send );
+            socket_.close();
+        };
+
         while ( true ) {
             ec = {};
 
@@ -83,35 +84,69 @@ namespace lcxx {
             if ( ec || bytes_transferred == 0 )
                 continue;
 
-            response resp;
-            resp.result( http::status::ok );
+            auto target = req.target().to_string();
 
-            auto exec_cb = [&]( auto map ) {
-                if ( auto target = req.target().to_string(); map.contains( target ) ) {
-                    map.at( target )( req, resp );
+            {
+                // I would like to reduce the code duplication, but I don't know how to write a lambda/function that
+                // uses co_await
+                auto l = std::scoped_lock{ map_mutex_ };
+                if ( cb_map_.contains( target ) ) {
+                    auto resp          = cb_map_.at( target )( req );
+                    auto bytes_written = co_await std::visit(
+                        [&]( auto && resp ) { return http::async_write( socket_, resp, error ); }, resp );
+
+                    if ( ec || bytes_written == 0 ) {
+                        shutdown();
+                        continue;
+                    }
                 }
-            };
+                else if ( auto match = pattern_match( target ); !match.empty() ) {
+                    auto resp          = cb_map_.at( match )( req );
+                    auto bytes_written = co_await std::visit(
+                        [&]( auto && resp ) { return http::async_write( socket_, resp, error ); }, resp );
 
-            switch ( req.method() ) {
-            case http::verb::get:
-                exec_cb( get_cb_map_ );
-                break;
-            case http::verb::put:
-                exec_cb( put_cb_map_ );
-                break;
-
-            default:
-                resp.result( http::status::bad_request );
-                resp.set( http::field::content_type, "text/plain" );
-                beast::ostream( resp.body() ) << "Invalid request method - expected 'get' or 'put', but got "
-                                              << std::string( req.method_string() );
-                break;
+                    if ( ec || bytes_written == 0 ) {
+                        shutdown();
+                        continue;
+                    }
+                }
             }
 
-            auto bytes_written = co_await http::async_write( socket_, resp, error );
-            if ( ec || bytes_written == 0 )
-                continue;
+            try {
+                shutdown();
+            }
+            catch ( ... ) {
+            }
         }
+    }
+
+    auto server::is_pattern( std::string_view const target ) -> bool { return target.ends_with( "/*" ); }
+
+    auto server::pattern_match( std::string_view const target ) -> std::string
+    {
+        namespace views = std::ranges::views;
+        std::vector< std::string > path;
+        for ( auto const sec : views::split( target, std::string_view{ "/" } ) ) {
+            std::string section = std::string{ sec.begin(), sec.end() };
+            if ( !section.empty() )
+                path.push_back( std::string{ "/" } + section );
+        }
+
+        // remove last section for a wildcard match
+        path.pop_back();
+
+        while ( !path.empty() ) {
+            auto sub_target = path | views::join;
+            auto pattern    = std::string{ sub_target.begin(), sub_target.end() } + std::string{ "/*" };
+            if ( cb_map_.contains( pattern ) ) {
+                return pattern;
+            }
+            else {
+                path.pop_back();
+            }
+        };
+
+        return {};
     }
 
 }  // namespace lcxx
