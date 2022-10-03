@@ -30,9 +30,17 @@ using namespace lcxx::crypto;
 auto main() -> int
 {
 
-    server server( "0.0.0.0", 8080 );
+    server server( "0.0.0.0", 8080, "certificate.pem", "key.pem" );
     auto   rsa_key = rsa::load_key( std::filesystem::current_path() / std::filesystem::path( "private_key.rsa" ),
                                     rsa::key_type::private_key );
+
+    server.on_default( [&]( server::request const & req ) {
+        server::string_response resp;
+        resp.result( boost::beast::http::status::bad_request );
+        resp.set( boost::beast::http::field::content_type, "text/html" );
+        resp.body() = "These are not the pages you are looking for.";
+        return resp;
+    } );
 
     // Setup endpoint handler for all requests to '/licenses' and sub-targets
     // Takes the 'key' header value as RSA-encrypted AES key

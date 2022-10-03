@@ -13,6 +13,7 @@ if (Boost_FOUND)
     target_link_libraries(${PROJECT_NAME} PUBLIC
         lcxx::lcxx
         Boost::headers
+        ssl
     )
 
     target_include_directories(${PROJECT_NAME} PUBLIC
@@ -21,6 +22,6 @@ if (Boost_FOUND)
 
     add_library(lcxx::server ALIAS ${PROJECT_NAME})
 
-elseif (Boost_FOUND)
+else (Boost_FOUND)
     message("Boost not found - licensecxx server module will not be built")
 endif (Boost_FOUND)

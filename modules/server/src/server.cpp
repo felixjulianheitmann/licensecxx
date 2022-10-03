@@ -10,24 +10,34 @@
 namespace beast = boost::beast;
 namespace http  = beast::http;
 namespace net   = boost::asio;
+namespace ssl   = boost::asio::ssl;
 using tcp       = boost::asio::ip::tcp;
 
 namespace lcxx {
 
-    server::server( std::string const & ip, uint16_t port ) :
+    server::server( std::string const & ip, uint16_t port, std::string const & certificate_path,
+                    std::string const & key_path ) :
         ioc_(),
         acceptor_( ioc_, { net::ip::make_address( ip ), port } ),
-        socket_( ioc_ ),
+        ctx_( ssl::context::tlsv12 ),
+        stream_( net::ip::tcp::socket( ioc_ ), ctx_ ),
         ioc_thread_(),
         map_mutex_(),
         cb_map_()
     {
+        ctx_.use_certificate_file( certificate_path, ssl::context_base::file_format::pem );
     }
 
     void server::on_endpoint( std::string const & endpoint, request_cb callback )
     {
         auto l = std::scoped_lock{ map_mutex_ };
         cb_map_.insert_or_assign( endpoint, callback );
+    }
+
+    void server::on_default( request_cb callback )
+    {
+        auto l      = std::scoped_lock{ default_cb_mutex_ };
+        default_cb_ = callback;
     }
 
     void server::run( run_option ro )
@@ -61,44 +71,55 @@ namespace lcxx {
         auto                      error = net::redirect_error( net::use_awaitable, ec );
 
         auto shutdown = [&]() {
-            socket_.shutdown( tcp::socket::shutdown_send );
-            socket_.close();
+            boost::beast::get_lowest_layer( stream_ ).socket().shutdown( tcp::socket::shutdown_send );
+            boost::beast::get_lowest_layer( stream_ ).socket().close();
         };
 
         while ( true ) {
             ec = {};
 
-            co_await acceptor_.async_accept( socket_, error );
-            if ( ec )
+            co_await acceptor_.async_accept( beast::get_lowest_layer( stream_ ).socket(), error );
+            if ( ec ) {
+                shutdown();
                 continue;
+            }
+
+            co_await stream_.async_handshake( ssl::stream_base::server, error );
+            if ( ec ) {
+                shutdown();
+                continue;
+            }
 
             beast::flat_buffer buffer{ 1024 * 1024 };
             request            req;
 
-            auto bytes_transferred = co_await http::async_read( socket_, buffer, req, error );
-            if ( ec || bytes_transferred == 0 )
+            auto bytes_transferred = co_await http::async_read( stream_, buffer, req, error );
+            if ( ec || bytes_transferred == 0 ) {
+                shutdown();
                 continue;
+            }
 
             auto target = req.target().to_string();
 
             {
-                // I would like to reduce the code duplication, but I don't know how to write a lambda/function that
-                // uses co_await
+                std::optional< response > resp;
+
                 auto l = std::scoped_lock{ map_mutex_ };
                 if ( cb_map_.contains( target ) ) {
-                    auto resp          = cb_map_.at( target )( req );
-                    auto bytes_written = co_await std::visit(
-                        [&]( auto && resp ) { return http::async_write( socket_, resp, error ); }, resp );
-
-                    if ( ec || bytes_written == 0 ) {
-                        shutdown();
-                        continue;
-                    }
+                    resp = cb_map_.at( target )( req );
                 }
                 else if ( auto match = pattern_match( target ); !match.empty() ) {
-                    auto resp          = cb_map_.at( match )( req );
+                    resp = cb_map_.at( match )( req );
+                }
+                else {
+                    auto l = std::scoped_lock{ default_cb_mutex_ };
+                    if ( default_cb_ )
+                        resp = default_cb_->operator()( req );
+                }
+
+                if ( resp ) {
                     auto bytes_written = co_await std::visit(
-                        [&]( auto && resp ) { return http::async_write( socket_, resp, error ); }, resp );
+                        [&]( auto && resp_ ) { return http::async_write( stream_, resp_, error ); }, *resp );
 
                     if ( ec || bytes_written == 0 ) {
                         shutdown();
