@@ -36,10 +36,6 @@ namespace lcxx {
 
         void on_endpoint( std::string const & endpoint, request_cb callback );
 
-        auto read_license( request const & req, crypto::rsa_key_t private_key ) -> license;
-        void write_license( license const &, file_response & resp, crypto::rsa_key_t private_key );
-        void write_license( license const &, string_response & resp, crypto::rsa_key_t private_key );
-
         void run( run_option ro );
         void stop();
 

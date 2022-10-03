@@ -6,5 +6,6 @@ target_link_libraries(file_based_server
 )
 
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/resources/text_file.txt ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/text_file.txt COPYONLY)
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/resources/licenses/mylicense.json ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/licenses/mylicense.json COPYONLY)
+configure_file(${PROJECT_SOURCE_DIR}/resources/private_key.rsa ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/private_key.rsa COPYONLY)
+configure_file(${PROJECT_SOURCE_DIR}/resources/public_key ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/public_key COPYONLY)
+configure_file(${PROJECT_SOURCE_DIR}/resources/licenses/mylicense.json ${CMAKE_CURRENT_BINARY_DIR}/${CMAKE_BUILD_TYPE}/licenses/mylicense.json COPYONLY)

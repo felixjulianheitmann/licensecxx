@@ -2,35 +2,71 @@
 #include <fstream>
 #include <iostream>
 
+#include <lcxx/aes.hpp>
 #include <lcxx/server.hpp>
 
 using namespace lcxx;
 
-void on_get_license( server::request const & req, server::string_response & resp, std::string const & path );
-void on_post_license( server::request const & req, server::string_response & resp, std::string const & path );
-void on_delete_license( server::request const & req, server::string_response & resp, std::string const & path );
+void on_get_license( server::request const & req, server::string_response & resp, std::string const & path,
+                     std::string const & body );
+void on_post_license( server::request const & req, server::string_response & resp, std::string const & path,
+                      std::string const & body );
+void on_delete_license( server::request const & req, server::string_response & resp, std::string const & path,
+                        std::string const & body );
+
+/*
+ * The demo below shows how to setup a simple network server, that has the following features:
+ *   - perform verification requests (on GET)
+ *   - perform license signing (on POST)
+ *   - delete licenses (on DELETE)
+ * All queries are encrypted via AES256. Only clients that have the key can communicate with this server.
+ * All license files are saved in a local 'licenses' folder.
+ *
+ * To enable SSL/TLS support ... TODO ;)
+ */
+
+using namespace lcxx::crypto;
 
 auto main() -> int
 {
 
     server server( "0.0.0.0", 8080 );
+    auto   rsa_key = rsa::load_key( std::filesystem::current_path() / std::filesystem::path( "private_key.rsa" ),
+                                    rsa::key_type::private_key );
 
-    // Read/Store licenses from/to file system
+    // Setup endpoint handler for all requests to '/licenses' and sub-targets
+    // Takes the 'key' header value as RSA-encrypted AES key
+    // Decrypts the message body using that AES key and proceeds to execute the GET/POST/DELETE handlers
     server.on_endpoint( "/licenses/*", [&]( server::request const & req ) {
         server::string_response resp;
+
+        aes::key_t aes_key;
+        if ( req.base().find( "key" ) == req.base().end() ) {
+            resp.set( boost::beast::http::field::content_type, "text/html" );
+            resp.body() = "Message did not contain valid key in 'key' field in header";
+        }
+        else {
+            aes_key = aes::key_from_bytes( rsa::decrypt( req.base().at( "key" ), rsa_key ) );
+        }
+
+        auto        encrypted_body = boost::beast::buffers_to_string( req.body().data() );
+        std::string body;
+        if ( !encrypted_body.empty() )
+            body = aes::decrypt< std::string, std::string >( encrypted_body, aes_key );
+
         resp.set( boost::beast::http::field::content_type, "application/json" );
         std::string path = { req.target().begin() + 1, req.target().end() };
 
         try {
             switch ( req.method() ) {
             case server::verb::get:
-                on_get_license( req, resp, path );
+                on_get_license( req, resp, path, body );
                 break;
             case server::verb::post:
-                on_post_license( req, resp, path );
+                on_post_license( req, resp, path, body );
                 break;
             case server::verb::delete_:
-                on_delete_license( req, resp, path );
+                on_delete_license( req, resp, path, body );
                 break;
             default:
                 resp.body() = "Given verb not supported";
@@ -56,26 +92,42 @@ auto main() -> int
     return 0;
 }
 
-void on_get_license( server::request const & req, server::string_response & resp, std::string const & path )
+// Returns the requested file under /licenses/... if the decrypted message body matches the target path
+void on_get_license( server::request const & req, server::string_response & resp, std::string const & path,
+                     std::string const & body )
 {
-    if ( !std::filesystem::exists( path ) )
-        throw std::runtime_error( "File not found" );
-    std::ifstream ifs{ path };
-    auto          license = std::string{ std::istreambuf_iterator< char >{ ifs }, std::istreambuf_iterator< char >{} };
-    resp.body()           = license;
+    if ( body == path ) {
+        if ( !std::filesystem::exists( path ) )
+            throw std::runtime_error( "File not found" );
+        std::ifstream ifs{ path };
+        auto license = std::string{ std::istreambuf_iterator< char >{ ifs }, std::istreambuf_iterator< char >{} };
+        resp.body()  = license;
+    }
+    else {
+        throw std::runtime_error( "Decrypted body did not match path" );
+    }
 }
 
-void on_post_license( server::request const & req, server::string_response & resp, std::string const & path )
+// Saves the decrypted license in message body to the desired target path
+void on_post_license( server::request const & req, server::string_response & resp, std::string const & path,
+                      std::string const & body )
 {
     std::ofstream ofs{ path };
     ofs << boost::beast::buffers_to_string( req.body().data() );
     resp.body() = "Successfully saved\n";
 }
 
-void on_delete_license( server::request const & req, server::string_response & resp, std::string const & path )
+// Deletes the requested file under /licenses/... if the decrypted message body matches the target path
+void on_delete_license( server::request const & req, server::string_response & resp, std::string const & path,
+                        std::string const & body )
 {
-    if ( !std::filesystem::exists( path ) )
-        throw std::runtime_error( "File not found" );
-    std::filesystem::remove( path );
-    resp.body() = "Successfully deleted\n";
+    if ( body == path ) {
+        if ( !std::filesystem::exists( path ) )
+            throw std::runtime_error( "File not found" );
+        std::filesystem::remove( path );
+        resp.body() = "Successfully deleted\n";
+    }
+    else {
+        throw std::runtime_error( "Decrypted body did not match path" );
+    }
 }

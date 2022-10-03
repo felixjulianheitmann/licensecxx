@@ -13,6 +13,8 @@
 #include <openssl/aes.h>
 #include <openssl/evp.h>
 
+#include <lcxx/crypto_common.hpp>
+
 namespace lcxx::crypto::aes {
 
     struct key_struct {
@@ -30,10 +32,8 @@ namespace lcxx::crypto::aes {
      * @param key_path file path to the corresponding RSA key file in PEM format
      */
     auto gen_key( salt const salt, std::span< unsigned char const > const key_data, int n_rounds = 5 ) -> key_t;
-    template < std::ranges::contiguous_range R, std::ranges::contiguous_range S >
-    requires( sizeof( std::ranges::range_value_t< std::remove_cvref_t< R > > ) == 1 &&
-              sizeof( std::ranges::range_value_t< std::remove_cvref_t< S > > ) ==
-                  1 ) auto gen_key( R const & salt_bytes, S const & key_data, int n_rounds = 5 ) -> key_t
+    template < detail::contiguous_byte_range R, detail::contiguous_byte_range S >
+    inline auto gen_key( R const & salt_bytes, S const & key_data, int n_rounds = 5 ) -> key_t
     {
         if ( std::ranges::size( salt_bytes ) < 8 )
             throw std::invalid_argument( "AES key generation: Salt must be at least 8 bytes long." );
@@ -48,9 +48,7 @@ namespace lcxx::crypto::aes {
     auto key_to_bytes( key_t const key ) -> std::vector< std::byte >;
     auto key_from_bytes( std::span< std::byte const > const bytes ) -> key_t;
 
-    template < std::ranges::contiguous_range R >
-    requires( sizeof( std::ranges::range_value_t< std::remove_cvref_t< R > > ) ==
-              1 ) auto key_from_bytes( R const & bytes, key_t const key ) -> key_t
+    template < detail::contiguous_byte_range R > inline auto key_from_bytes( R const & bytes, key_t const key ) -> key_t
     {
         return key_from_bytes( std::span< std::byte const >(
             reinterpret_cast< std::byte const * >( std::ranges::data( bytes ) ), std::ranges::size( bytes ) ) );
@@ -65,14 +63,18 @@ namespace lcxx::crypto::aes {
      */
     auto encrypt( std::span< std::byte const > const input, key_t const key ) -> std::vector< std::byte >;
 
-    template < std::ranges::contiguous_range R >
-    requires( sizeof( std::ranges::range_value_t< std::remove_cvref_t< R > > ) ==
-              1 ) auto encrypt( R const & input, key_t const key ) -> std::vector< std::byte >
+    template < detail::contiguous_byte_range R, detail::contiguous_byte_range S = std::vector< std::byte > >
+    inline auto encrypt( R const & input, key_t const key ) -> S
     {
-        return encrypt(
-            std::span< std::byte const >( reinterpret_cast< std::byte const * >( std::ranges::data( input ) ),
-                                          std::ranges::size( input ) ),
-            key );
+        auto encrypted =
+            encrypt( std::span< std::byte const >( reinterpret_cast< std::byte const * >( std::ranges::data( input ) ),
+                                                   std::ranges::size( input ) ),
+                     key );
+        S tmp{};
+        std::ranges::transform( encrypted, std::back_inserter( tmp ), []( auto const v ) {
+            return *reinterpret_cast< std::ranges::range_value_t< S > const * >( &v );
+        } );
+        return tmp;
     }
 
     /**
@@ -86,14 +88,18 @@ namespace lcxx::crypto::aes {
      */
     auto decrypt( std::span< std::byte const > const input, key_t const key ) -> std::vector< std::byte >;
 
-    template < std::ranges::contiguous_range R >
-    requires( sizeof( std::ranges::range_value_t< std::remove_cvref_t< R > > ) ==
-              1 ) auto decrypt( R const & input, key_t const key ) -> std::vector< std::byte >
+    template < detail::contiguous_byte_range R, detail::contiguous_byte_range S = std::vector< std::byte > >
+    inline auto decrypt( R const & input, key_t const key ) -> S
     {
-        return decrypt(
-            std::span< std::byte const >{ reinterpret_cast< std::byte const * >( std::ranges::data( input ) ),
-                                          std::ranges::size( input ) },
-            key );
+        auto decrypted =
+            decrypt( std::span< std::byte const >{ reinterpret_cast< std::byte const * >( std::ranges::data( input ) ),
+                                                   std::ranges::size( input ) },
+                     key );
+        S tmp{};
+        std::ranges::transform( decrypted, std::back_inserter( tmp ), []( auto const v ) {
+            return *reinterpret_cast< std::ranges::range_value_t< S > const * >( &v );
+        } );
+        return tmp;
     }
 
 }  // namespace lcxx::crypto::aes

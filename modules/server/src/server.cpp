@@ -30,11 +30,6 @@ namespace lcxx {
         cb_map_.insert_or_assign( endpoint, callback );
     }
 
-    auto server::read_license( request const & req, crypto::rsa_key_t private_key ) -> license { return {}; }
-
-    void server::write_license( license const & lic, file_response & req, crypto::rsa_key_t private_key ) {}
-    void server::write_license( license const & lic, string_response & req, crypto::rsa_key_t private_key ) {}
-
     void server::run( run_option ro )
     {
         handle_loop();
