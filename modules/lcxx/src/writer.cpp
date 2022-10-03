@@ -7,7 +7,7 @@
 
 namespace lcxx {
 
-    nlohmann::json to_json( license const & license, crypto::rsa_key_t const private_key )
+    nlohmann::json to_json( license const & license, crypto::rsa::key_t const private_key )
     {
         auto const     signature = lcxx::sign( license, private_key );
         nlohmann::json lic_json  = {
@@ -24,7 +24,7 @@ namespace lcxx {
     }
 
     void to_json( license const & license, std::filesystem::path const & output_file,
-                  crypto::rsa_key_t const private_key )
+                  crypto::rsa::key_t const private_key )
     {
         namespace fs = std::filesystem;
         if ( !output_file.has_filename() ) {

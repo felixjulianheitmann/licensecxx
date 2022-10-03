@@ -6,7 +6,7 @@ add_library(lcxx_identifiers
 target_link_libraries( lcxx_identifiers PUBLIC
     lcxx::ident_utils
     lcxx::license
-    lcxx::crypto
+    lcxx::openssl_wrappers
     nlohmann_json::nlohmann_json
 )
 

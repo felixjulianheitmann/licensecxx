@@ -44,6 +44,6 @@ auto main() -> int
     license.push_content( "hardware", lcxx::identifiers::hardware().hash );
     license.push_content( "os", lcxx::identifiers::os().hash );
 
-    auto key = lcxx::crypto::load_key( std::string{ private_key }, lcxx::crypto::key_type::private_key );
+    auto key = lcxx::crypto::rsa::load_key( std::string{ private_key }, lcxx::crypto::rsa::key_type::private_key );
     std::cout << lcxx::to_json( license, key ).dump( 4 ) << std::endl;
 }

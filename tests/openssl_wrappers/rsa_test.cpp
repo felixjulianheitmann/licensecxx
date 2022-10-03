@@ -3,44 +3,67 @@
 #include <string>
 
 #include <fixtures.hpp>
-#include <lcxx/crypto.hpp>
+#include <lcxx/rsa.hpp>
 
 #ifndef TEST_RESOURCE_PATH
 #define TEST_RESOURCE_PATH "."
 #endif
 
-TEST_F( key_fixture, Load_Key_String_Test )
+using namespace lcxx::crypto;
+
+TEST_F( rsa_key_fixture, Load_Key_String_Test )
 {
     using path = std::filesystem::path;
-    EXPECT_TRUE( lcxx::crypto::load_key( path( TEST_RESOURCE_PATH ) / path( "private_key.rsa" ),
-                                         lcxx::crypto::key_type::private_key ) );
-    EXPECT_TRUE( lcxx::crypto::load_key( path( TEST_RESOURCE_PATH ) / path( "public_key" ),
-                                         lcxx::crypto::key_type::public_key ) );
+    EXPECT_TRUE( rsa::load_key( path( TEST_RESOURCE_PATH ) / path( "private_key.rsa" ), rsa::key_type::private_key ) );
+    EXPECT_TRUE( rsa::load_key( path( TEST_RESOURCE_PATH ) / path( "public_key" ), rsa::key_type::public_key ) );
 }
 
-TEST_F( key_fixture, Load_Key_File_Test )
+TEST_F( rsa_key_fixture, Load_Key_File_Test )
 {
     EXPECT_TRUE( private_key );
     EXPECT_TRUE( public_key );
 }
 
-TEST_F( key_fixture, Sign_Round_Trip_Test )
+TEST_F( rsa_key_fixture, Sign_Round_Trip_Test )
 {
 
     std::string const test_string = "my arbitrary test string";
-    auto const        signature   = lcxx::crypto::sign( test_string, private_key );
-    auto const        verified    = lcxx::crypto::verify_signature( test_string, signature, public_key );
+    auto const        signature   = rsa::sign( test_string, private_key );
+    auto const        verified    = rsa::verify_signature( test_string, signature, public_key );
 
     EXPECT_TRUE( verified );
 }
 
-TEST_F( key_fixture, Sign_Round_Trip_Error_Test )
+TEST_F( rsa_key_fixture, Sign_Round_Trip_Error_Test )
 {
     std::string const test_string = "my arbitrary test string";
-    auto const        signature   = lcxx::crypto::sign( test_string, private_key );
-    auto const verified = lcxx::crypto::verify_signature( std::string( "_" ) + test_string, signature, public_key );
+    auto const        signature   = rsa::sign( test_string, private_key );
+    auto const        verified    = rsa::verify_signature( std::string( "_" ) + test_string, signature, public_key );
 
     EXPECT_FALSE( verified );
+}
+
+TEST_F( rsa_key_fixture, Serialization_Private_Key_Test ) { rsa::key_to_bytes( private_key ); }
+TEST_F( rsa_key_fixture, Serialization_Public_Key_Test ) { rsa::key_to_bytes( public_key ); }
+TEST_F( rsa_key_fixture, Serialization_Deserialization_Public_Key_Test )
+{
+    auto input     = "This is my test string";
+    auto bytes     = rsa::key_to_bytes( public_key );
+    auto deser_key = rsa::key_from_bytes( bytes );
+
+    auto signature = rsa::sign( input, private_key );
+    auto verified  = rsa::verify_signature( input, signature, deser_key );
+    EXPECT_TRUE( verified );
+}
+TEST_F( rsa_key_fixture, Serialization_Deserialization_Private_Key_Test )
+{
+    auto input     = "This is my test string";
+    auto bytes     = rsa::key_to_bytes( private_key );
+    auto deser_key = rsa::key_from_bytes( bytes );
+
+    auto signature = rsa::sign( input, deser_key );
+    auto verified  = rsa::verify_signature( input, signature, public_key );
+    EXPECT_TRUE( verified );
 }
 
 std::string private_key_str = R"(

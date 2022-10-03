@@ -1,8 +1,8 @@
 #ifndef LCXX__LCXX_VERIFIER_HPP__
 #define LCXX__LCXX_VERIFIER_HPP__
 
-#include <lcxx/crypto.hpp>
 #include <lcxx/license.hpp>
+#include <lcxx/rsa.hpp>
 
 namespace lcxx {
 
@@ -13,7 +13,7 @@ namespace lcxx {
      * @param private_key the private key used to generate the signature
      * @return std::vector< std::byte > the binary signature in form of a byte vector
      */
-    auto sign( license const & lic, crypto::rsa_key_t const private_key ) -> std::vector< std::byte >;
+    auto sign( license const & lic, crypto::rsa::key_t const private_key ) -> std::vector< std::byte >;
 
     /**
      * @brief check the contents of a license object against a signature by using a public RSA key for decryption
@@ -25,7 +25,7 @@ namespace lcxx {
      * @return false otherwise
      */
     auto verify_license( license const & lic, std::vector< std::byte > const & signature,
-                         crypto::rsa_key_t const public_key ) -> bool;
+                         crypto::rsa::key_t const public_key ) -> bool;
 
 }  // namespace lcxx
 
