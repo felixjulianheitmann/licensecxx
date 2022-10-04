@@ -12,6 +12,7 @@ if (Boost_FOUND)
 
     target_link_libraries(${PROJECT_NAME} PUBLIC
         lcxx::lcxx
+        lcxx_net_common
         Boost::headers
         ssl
     )

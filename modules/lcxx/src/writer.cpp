@@ -9,10 +9,8 @@ namespace lcxx {
 
     nlohmann::json to_json( license const & license, crypto::rsa::key_t const private_key )
     {
-        auto const     signature = lcxx::sign( license, private_key );
-        nlohmann::json lic_json  = {
-             { signature_key, encode::base64( signature ) },
-             { content_key, {} },
+        nlohmann::json lic_json = {
+            { content_key, {} },
         };
 
         auto & content = lic_json[content_key];
@@ -20,10 +18,15 @@ namespace lcxx {
             content[k] = v;
         }
 
+        if ( private_key ) {
+            auto const signature = lcxx::sign( license, private_key );
+            lic_json.push_back( { signature_key, encode::base64( signature ) } );
+        }
+
         return lic_json;
     }
 
-    void to_json( license const & license, std::filesystem::path const & output_file,
+    void to_file( license const & license, std::filesystem::path const & output_file,
                   crypto::rsa::key_t const private_key )
     {
         namespace fs = std::filesystem;
@@ -32,9 +35,12 @@ namespace lcxx {
                                          fs::absolute( output_file ).string() );
         }
 
-        auto lic_json = to_json( license, private_key );
-
         std::ofstream ofs{ fs::absolute( output_file ).string() };
-        ofs << lic_json.dump() << std::endl;
+        ofs << to_string( license, private_key ) << std::endl;
+    }
+
+    auto to_string( license const & license, crypto::rsa::key_t const private_key ) -> std::string
+    {
+        return to_json( license, private_key ).dump();
     }
 }  // namespace lcxx

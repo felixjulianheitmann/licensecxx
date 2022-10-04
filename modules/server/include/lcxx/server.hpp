@@ -12,21 +12,22 @@
 #include <boost/beast/ssl.hpp>
 
 #include <lcxx/lcxx.hpp>
+#include <lcxx/net_common.hpp>
 
 namespace lcxx {
 
     class server {
 
     public:
-        using file_response   = boost::beast::http::response< boost::beast::http::file_body >;
-        using string_response = boost::beast::http::response< boost::beast::http::string_body >;
-        using response        = std::variant< file_response, string_response >;
-        using request         = boost::beast::http::request< boost::beast::http::dynamic_body >;
+        using file_response    = detail::networking::file_response;
+        using string_response  = detail::networking::string_response;
+        using dynamic_response = detail::networking::dynamic_response;
+        using response         = std::variant< file_response, string_response, dynamic_response >;
+        using request          = detail::networking::dynamic_request;
+        using verb             = detail::networking::verb;
+        using error_code       = detail::networking::error_code;
 
         using request_cb = std::function< response( request const & ) >;
-
-        using verb       = boost::beast::http::verb;
-        using error_code = boost::system::error_code;
 
         enum class run_option {
             async,

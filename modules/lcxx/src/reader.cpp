@@ -19,20 +19,25 @@ namespace lcxx {
         for ( auto const & item : content.items() ) {
             l.push_content( item.key(), item.value().get< std::string >() );
         }
-        return { l, lcxx::decode::base64( license_json[signature_key].get< std::string >() ) };
+
+        signature sig;
+        if ( license_json.contains( signature_key ) ) {
+            sig = lcxx::decode::base64( license_json[signature_key].get< std::string >() );
+        }
+        return { l, sig };
     }
 
-    auto from_json( std::string const & license_str ) -> std::pair< license, signature >
+    auto from_string( std::string const & license_str ) -> std::pair< license, signature >
     {
         return from_json( nlohmann::json::parse( license_str.begin(), license_str.end() ) );
     }
 
-    auto from_json( std::span< char > const license_str ) -> std::pair< license, signature >
+    auto from_bytes( std::span< char > const license_str ) -> std::pair< license, signature >
     {
         return from_json( nlohmann::json::parse( license_str.begin(), license_str.end() ) );
     }
 
-    auto from_json( std::filesystem::path const & license_path ) -> std::pair< license, signature >
+    auto from_file( std::filesystem::path const & license_path ) -> std::pair< license, signature >
     {
         return from_json(
             nlohmann::json::parse( std::ifstream( std::filesystem::absolute( license_path ).string() ) ) );

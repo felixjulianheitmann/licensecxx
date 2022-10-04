@@ -10,14 +10,14 @@ using namespace lcxx;
 void on_get_license( server::request const & req, server::string_response & resp, std::string const & path,
                      std::string const & body );
 void on_post_license( server::request const & req, server::string_response & resp, std::string const & path,
-                      std::string const & body );
+                      std::string const & body, crypto::rsa::key_t const sign_key );
 void on_delete_license( server::request const & req, server::string_response & resp, std::string const & path,
                         std::string const & body );
 
 /*
  * The demo below shows how to setup a simple network server, that has the following features:
- *   - perform verification requests (on GET)
- *   - perform license signing (on POST)
+ *   - requests licenses (on GET)
+ *   - perform license signing and saving (on POST)
  *   - delete licenses (on DELETE)
  * All queries are encrypted via AES256. Only clients that have the key can communicate with this server.
  * All license files are saved in a local 'licenses' folder.
@@ -31,8 +31,10 @@ auto main() -> int
 {
 
     server server( "0.0.0.0", 8080, "certificate.pem", "key.pem" );
-    auto   rsa_key = rsa::load_key( std::filesystem::current_path() / std::filesystem::path( "private_key.rsa" ),
-                                    rsa::key_type::private_key );
+    auto   auth_key = rsa::load_key( std::filesystem::current_path() / std::filesystem::path( "private_key.rsa" ),
+                                     rsa::key_type::private_key );
+    auto   sign_key =
+        rsa::load_key( std::filesystem::current_path() / "signature_priv_key.rsa", rsa::key_type::private_key );
 
     server.on_default( [&]( server::request const & req ) {
         server::string_response resp;
@@ -54,7 +56,7 @@ auto main() -> int
             resp.body() = "Message did not contain valid key in 'key' field in header";
         }
         else {
-            aes_key = aes::key_from_bytes( rsa::decrypt( req.base().at( "key" ), rsa_key ) );
+            aes_key = aes::key_from_bytes( rsa::decrypt( req.base().at( "key" ), auth_key ) );
         }
 
         auto        encrypted_body = boost::beast::buffers_to_string( req.body().data() );
@@ -71,7 +73,7 @@ auto main() -> int
                 on_get_license( req, resp, path, body );
                 break;
             case server::verb::post:
-                on_post_license( req, resp, path, body );
+                on_post_license( req, resp, path, body, sign_key );
                 break;
             case server::verb::delete_:
                 on_delete_license( req, resp, path, body );
@@ -118,10 +120,10 @@ void on_get_license( server::request const & req, server::string_response & resp
 
 // Saves the decrypted license in message body to the desired target path
 void on_post_license( server::request const & req, server::string_response & resp, std::string const & path,
-                      std::string const & body )
+                      std::string const & body, rsa::key_t const sign_key )
 {
-    std::ofstream ofs{ path };
-    ofs << boost::beast::buffers_to_string( req.body().data() );
+    auto [lic, _] = lcxx::from_string( boost::beast::buffers_to_string( req.body().data() ) );
+    lcxx::to_file( lic, path, sign_key );
     resp.body() = "Successfully saved\n";
 }
 
