@@ -9,7 +9,7 @@
 
 namespace beast = boost::beast;
 namespace http  = beast::http;
-namespace net   = boost::asio;
+namespace asio  = boost::asio;
 namespace ssl   = boost::asio::ssl;
 using tcp       = boost::asio::ip::tcp;
 
@@ -18,9 +18,9 @@ namespace lcxx {
     server::server( std::string const & ip, uint16_t port, std::string const & certificate_path,
                     std::string const & key_path ) :
         ioc_(),
-        acceptor_( ioc_, { net::ip::make_address( ip ), port } ),
+        acceptor_( ioc_, { asio::ip::make_address( ip ), port } ),
         ctx_( ssl::context::tlsv12 ),
-        stream_( net::ip::tcp::socket( ioc_ ), ctx_ ),
+        stream_( asio::ip::tcp::socket( ioc_ ), ctx_ ),
         ioc_thread_(),
         map_mutex_(),
         cb_map_()
@@ -59,16 +59,16 @@ namespace lcxx {
 
     auto server::handle_loop() -> void
     {
-        net::co_spawn( ioc_, handle_loop_coro(), [this]( std::exception_ptr e ) {
+        asio::co_spawn( ioc_, handle_loop_coro(), [this]( std::exception_ptr e ) {
             if ( e )
                 std::rethrow_exception( e );
         } );
     }
 
-    net::awaitable< void > server::handle_loop_coro()
+    asio::awaitable< void > server::handle_loop_coro()
     {
         boost::system::error_code ec;
-        auto                      error = net::redirect_error( net::use_awaitable, ec );
+        auto                      error = asio::redirect_error( asio::use_awaitable, ec );
 
         auto shutdown = [&]() {
             boost::beast::get_lowest_layer( stream_ ).socket().shutdown( tcp::socket::shutdown_send );
@@ -90,8 +90,8 @@ namespace lcxx {
                 continue;
             }
 
-            beast::flat_buffer buffer{ 1024 * 1024 };
-            request            req;
+            beast::flat_buffer   buffer{ 1024 * 1024 };
+            net::dynamic_request req;
 
             auto bytes_transferred = co_await http::async_read( stream_, buffer, req, error );
             if ( ec || bytes_transferred == 0 ) {
@@ -102,7 +102,7 @@ namespace lcxx {
             auto target = req.target().to_string();
 
             {
-                std::optional< response > resp;
+                std::optional< net::response > resp;
 
                 auto l = std::scoped_lock{ map_mutex_ };
                 if ( cb_map_.contains( target ) ) {

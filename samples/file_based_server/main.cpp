@@ -7,11 +7,11 @@
 
 using namespace lcxx;
 
-void on_get_license( server::request const & req, server::string_response & resp, std::string const & path,
+void on_get_license( net::dynamic_request const & req, net::string_response & resp, std::string const & path,
                      std::string const & body );
-void on_post_license( server::request const & req, server::string_response & resp, std::string const & path,
+void on_post_license( net::dynamic_request const & req, net::string_response & resp, std::string const & path,
                       std::string const & body, crypto::rsa::key_t const sign_key );
-void on_delete_license( server::request const & req, server::string_response & resp, std::string const & path,
+void on_delete_license( net::dynamic_request const & req, net::string_response & resp, std::string const & path,
                         std::string const & body );
 
 /*
@@ -36,10 +36,10 @@ auto main() -> int
     auto   sign_key =
         rsa::load_key( std::filesystem::current_path() / "signature_priv_key.rsa", rsa::key_type::private_key );
 
-    server.on_default( [&]( server::request const & req ) {
-        server::string_response resp;
-        resp.result( boost::beast::http::status::bad_request );
-        resp.set( boost::beast::http::field::content_type, "text/html" );
+    server.on_default( [&]( net::dynamic_request const & req ) {
+        net::string_response resp;
+        resp.result( net::http::status::bad_request );
+        resp.set( net::http::field::content_type, "text/html" );
         resp.body() = "These are not the pages you are looking for.";
         return resp;
     } );
@@ -47,12 +47,12 @@ auto main() -> int
     // Setup endpoint handler for all requests to '/licenses' and sub-targets
     // Takes the 'key' header value as RSA-encrypted AES key
     // Decrypts the message body using that AES key and proceeds to execute the GET/POST/DELETE handlers
-    server.on_endpoint( "/licenses/*", [&]( server::request const & req ) {
-        server::string_response resp;
+    server.on_endpoint( "/licenses/*", [&]( net::dynamic_request const & req ) {
+        net::string_response resp;
 
         aes::key_t aes_key;
         if ( req.base().find( "key" ) == req.base().end() ) {
-            resp.set( boost::beast::http::field::content_type, "text/html" );
+            resp.set( net::http::field::content_type, "text/html" );
             resp.body() = "Message did not contain valid key in 'key' field in header";
         }
         else {
@@ -64,18 +64,18 @@ auto main() -> int
         if ( !encrypted_body.empty() )
             body = aes::decrypt< std::string, std::string >( encrypted_body, aes_key );
 
-        resp.set( boost::beast::http::field::content_type, "application/json" );
+        resp.set( net::http::field::content_type, "application/json" );
         std::string path = { req.target().begin() + 1, req.target().end() };
 
         try {
             switch ( req.method() ) {
-            case server::verb::get:
+            case net::verb::get:
                 on_get_license( req, resp, path, body );
                 break;
-            case server::verb::post:
+            case net::verb::post:
                 on_post_license( req, resp, path, body, sign_key );
                 break;
-            case server::verb::delete_:
+            case net::verb::delete_:
                 on_delete_license( req, resp, path, body );
                 break;
             default:
@@ -84,7 +84,7 @@ auto main() -> int
             }
         }
         catch ( std::exception & e ) {
-            resp.set( boost::beast::http::field::content_type, "text/html" );
+            resp.set( net::http::field::content_type, "text/html" );
             resp.body() = std::string{ "Could not load license, error: " } + e.what();
         }
 
@@ -103,7 +103,7 @@ auto main() -> int
 }
 
 // Returns the requested file under /licenses/... if the decrypted message body matches the target path
-void on_get_license( server::request const & req, server::string_response & resp, std::string const & path,
+void on_get_license( net::dynamic_request const & req, net::string_response & resp, std::string const & path,
                      std::string const & body )
 {
     if ( body == path ) {
@@ -119,7 +119,7 @@ void on_get_license( server::request const & req, server::string_response & resp
 }
 
 // Saves the decrypted license in message body to the desired target path
-void on_post_license( server::request const & req, server::string_response & resp, std::string const & path,
+void on_post_license( net::dynamic_request const & req, net::string_response & resp, std::string const & path,
                       std::string const & body, rsa::key_t const sign_key )
 {
     auto [lic, _] = lcxx::from_string( boost::beast::buffers_to_string( req.body().data() ) );
@@ -128,7 +128,7 @@ void on_post_license( server::request const & req, server::string_response & res
 }
 
 // Deletes the requested file under /licenses/... if the decrypted message body matches the target path
-void on_delete_license( server::request const & req, server::string_response & resp, std::string const & path,
+void on_delete_license( net::dynamic_request const & req, net::string_response & resp, std::string const & path,
                         std::string const & body )
 {
     if ( body == path ) {

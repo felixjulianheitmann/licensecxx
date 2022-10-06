@@ -19,15 +19,7 @@ namespace lcxx {
     class server {
 
     public:
-        using file_response    = detail::networking::file_response;
-        using string_response  = detail::networking::string_response;
-        using dynamic_response = detail::networking::dynamic_response;
-        using response         = std::variant< file_response, string_response, dynamic_response >;
-        using request          = detail::networking::dynamic_request;
-        using verb             = detail::networking::verb;
-        using error_code       = detail::networking::error_code;
-
-        using request_cb = std::function< response( request const & ) >;
+        using request_cb = std::function< net::response( net::dynamic_request const & ) >;
 
         enum class run_option {
             async,
