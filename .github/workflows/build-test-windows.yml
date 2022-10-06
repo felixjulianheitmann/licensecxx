@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "develop" ]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build-windows:
     runs-on: windows-latest
@@ -49,7 +53,9 @@ jobs:
       run: ls -R
 
     - name: crypto-tests
-      run: ./crypto/crypto_test.exe
+      run: |
+      ls -lR build
+      ./crypto/crypto_test.exe
 
     - name: identifiers-tests
       run: ./identifiers/identifiers_test.exe
