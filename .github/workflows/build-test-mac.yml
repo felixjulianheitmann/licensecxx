@@ -17,6 +17,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    steps:
+    - name: Get latest gcc
+      run: |
+        brew update --preinstall
+        brew install gcc
+
     - name: configure (use GCC)
       run: |
         mkdir build
