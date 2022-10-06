@@ -3,12 +3,12 @@
 
 #include <string>
 
-namespace lcxx::identifiers {
+namespace lcxx::experimental::identifiers {
     struct identifier {
         std::string hash;
         std::string source_text;
     };
 
-}  // namespace lcxx::identifiers
+}  // namespace lcxx::experimental::identifiers
 
 #endif  // LCXX__IDENTIFIERS_IDENTIFIER_HPP__

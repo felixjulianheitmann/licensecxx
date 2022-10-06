@@ -7,7 +7,7 @@
 
 #include <lcxx/identifiers/identifier.hpp>
 
-namespace lcxx::identifiers {
+namespace lcxx::experimental::identifiers {
 
     enum class os_ident_strat : std::int32_t {
         all             = 1,
@@ -45,6 +45,6 @@ namespace lcxx::identifiers {
      */
     auto verify( os_ident_strat const strategy, std::string_view const hash ) -> bool;
 
-}  // namespace lcxx::identifiers
+}  // namespace lcxx::experimental::identifiers
 
 #endif  // LCXX__IDENTIFIERS_USER_HPP__

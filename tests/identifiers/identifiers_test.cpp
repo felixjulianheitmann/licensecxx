@@ -3,7 +3,7 @@
 #include <lcxx/identifiers/hardware.hpp>
 #include <lcxx/identifiers/os.hpp>
 
-using namespace lcxx::identifiers;
+using namespace lcxx::experimental::identifiers;
 using hws = hw_ident_strat;
 using oss = os_ident_strat;
 

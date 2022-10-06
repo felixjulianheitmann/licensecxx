@@ -11,7 +11,7 @@ namespace lcxx::ident_utils::os {
                                         user_gids );
 }
 
-namespace lcxx::identifiers {
+namespace lcxx::experimental::identifiers {
 
     os_ident_strat operator|( os_ident_strat const lhs, os_ident_strat const rhs )
     {
@@ -68,4 +68,4 @@ namespace lcxx::identifiers {
     {
         return hash == os( strategy ).hash;
     }
-}  // namespace lcxx::identifiers
+}  // namespace lcxx::experimental::identifiers
