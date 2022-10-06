@@ -19,9 +19,9 @@ jobs:
 
     - name: configure (use GCC)
       run: |
-      mkdir build
-      cd build
-      cmake -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1 -DCMAKE_BUILD_TYPE=Release ..
+        mkdir build
+        cd build
+        cmake -DCMAKE_C_COMPILER=/usr/bin/gcc -DCMAKE_CXX_COMPILER=/usr/bin/g++ -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1 -DCMAKE_BUILD_TYPE=Release ..
     - name: build
       working-directory: build
       run: cmake --build . 
@@ -41,8 +41,8 @@ jobs:
     steps:
     - name: Get latest gcc (libstdc++ required)
       run: |
-      brew update --preinstall
-      brew install gcc
+        brew update --preinstall
+        brew install gcc
 
     - uses: actions/download-artifact@v3
       with:

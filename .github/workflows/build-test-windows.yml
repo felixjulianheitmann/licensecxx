@@ -54,8 +54,8 @@ jobs:
 
     - name: crypto-tests
       run: |
-      ls -lR build
-      ./crypto/crypto_test.exe
+        ls -lR build
+        ./crypto/crypto_test.exe
 
     - name: identifiers-tests
       run: ./identifiers/identifiers_test.exe
