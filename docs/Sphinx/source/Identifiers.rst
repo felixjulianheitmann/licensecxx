@@ -7,6 +7,8 @@ Identifiers
    :maxdepth: 2
    :caption: Contents:
 
+`Note, that the identifiers feature is currently in the experimental stage. I don't have a Windows/Mac machine available, regularly. That's why the os dependent features still take time.`
+
 Licensecxx allows to gather information about the system currently running the software. To use those features, link against the ``lcxx::identifiers`` target in your CMake configuration.
 
 This will provide the following headers:
