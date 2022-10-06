@@ -28,7 +28,7 @@ jobs:
 
     - name: build
       working-directory: build
-      run: cmake --build --config Release . 
+      run: cmake --build . --config Release 
 
     - uses: actions/upload-artifact@master
       with:
