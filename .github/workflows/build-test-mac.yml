@@ -39,7 +39,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - name: Get latest gcc (libstdc++ required)
+    - name: Get latest gcc
       run: |
         brew update --preinstall
         brew install gcc
