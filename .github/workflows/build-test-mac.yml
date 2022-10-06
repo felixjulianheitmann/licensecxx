@@ -17,10 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Get latest gcc
-      run: |
-        brew update --preinstall
-        brew install gcc
+    - uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: latest-stable
 
     - name: configure (use GCC)
       run: |
