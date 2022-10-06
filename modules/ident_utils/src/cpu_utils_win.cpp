@@ -1,9 +1,13 @@
 #include <ident_utils/cpu_utils.hpp>
 
-#error Not yet implemented
+#include <stdexcept>
 
-namespace lcxx::ident_utils::cpu {
+namespace lcxx::experimental::ident_utils::cpu {
 
-    auto get_info() -> cpu_info { return {}; }
+    auto get_info() -> cpu_info
+    {
+        throw std::runtime_error( "This feature is not yet implemented." );
+        return {};
+    }
 
-}  // namespace lcxx::ident_utils::cpu
+}  // namespace lcxx::experimental::ident_utils::cpu

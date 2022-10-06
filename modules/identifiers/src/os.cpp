@@ -6,7 +6,7 @@
 #include <lcxx/identifiers/common.hpp>
 #include <nlohmann/json.hpp>
 
-namespace lcxx::ident_utils::os {
+namespace lcxx::experimental::ident_utils::os {
     NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE( os_info, os_name, os_architecture, os_pc_name, user_name, user_groups, user_uid,
                                         user_gids );
 }
