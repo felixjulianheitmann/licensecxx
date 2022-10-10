@@ -18,11 +18,14 @@ Welcome to Licensecxx's documentation!
 Intro
 -----
 
-.. |Build & Test Status Ubuntu| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-ubuntu.yml/badge.svg
+.. image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-ubuntu.yml/badge.svg
+    :alt: Build & Test Status Ubuntu
 
-.. |Build & Test Status Windows| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-windows.yml/badge.svg
+.. image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-windows.yml/badge.svg
+    :alt: Build & Test Status Windows
 
-.. |Build & Test Status Mac| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-mac.yml/badge.svg
+.. image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-mac.yml/badge.svg
+    :alt: Build & Test Status Mac
 
 *Copy protection library targeting Linux, Windows and Mac* (currently only Linux supported)
 
