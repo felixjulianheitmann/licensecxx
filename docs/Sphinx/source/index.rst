@@ -6,23 +6,23 @@
 Welcome to Licensecxx's documentation!
 ======================================
 
-.. |Build & Test Status Ubuntu| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-ubuntu.yml/badge.svg
-
-.. |Build & Test Status Windows| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-windows.yml/badge.svg
-
-.. |Build & Test Status Mac| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-mac.yml/badge.svg
-
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    Identifiers
    How to use licensecxx<How-to-use-it>
+   Networking<Netowrk-Licensing>
    api/library_root
 
 Intro
 -----
+
+.. |Build & Test Status Ubuntu| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-ubuntu.yml/badge.svg
+
+.. |Build & Test Status Windows| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-windows.yml/badge.svg
+
+.. |Build & Test Status Mac| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-mac.yml/badge.svg
 
 *Copy protection library targeting Linux, Windows and Mac* (currently only Linux supported)
 
