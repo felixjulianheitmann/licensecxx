@@ -59,7 +59,7 @@ This is the idea that spawned licensecxx: Provide a modern C++ library interface
 which is easy to use and has minimal impact on the including user project.
 
 Similarly, to it's spiritual predecessor, it provides the option to collect system information such as CPU-Name, OS-Name, Hostname, etc, hash them,
-and incorporate them into the license. A full list of collectable info can be found at :ref:`identifiers_doc`.
+and incorporate them into the license. A full list of collectable info can be found at :ref:`identifiers_doc`. (Still experimental)
 
 
 
