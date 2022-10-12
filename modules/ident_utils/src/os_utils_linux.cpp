@@ -20,8 +20,8 @@ namespace lcxx::ident_utils::os {
         int                  buffer_len = 64;
         std::vector< gid_t > group_ids( buffer_len, 0 );
         getgrouplist( oi.user_name.c_str(), getgid(), group_ids.data(), &buffer_len );
-        std::ranges::transform( group_ids | std::views::take( buffer_len ), std::back_inserter( oi.user_gids ),
-                                []( auto const id ) -> std::size_t { return id; } );
+        std::transform( group_ids.begin(), group_ids.begin() + buffer_len, std::back_inserter( oi.user_gids ),
+                        []( auto const id ) -> std::size_t { return id; } );
         std::ranges::sort( oi.user_gids );
 
         for ( auto const gid : oi.user_gids ) {

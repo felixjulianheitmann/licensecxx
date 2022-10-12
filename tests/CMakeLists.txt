@@ -15,10 +15,12 @@ FetchContent_MakeAvailable(googletest)
 
 add_subdirectory(identifiers)
 add_subdirectory(lcxx)
+add_subdirectory(network)
 add_subdirectory(openssl_wrappers)
 
 add_custom_target(TESTS DEPENDS
     identifiers_test
     lcxx_test
+    lcxx_network_test
     openssl_wrappers
 )

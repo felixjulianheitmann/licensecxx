@@ -10,7 +10,7 @@ namespace lcxx::client {
     namespace beast = boost::beast;
     namespace http  = beast::http;
 
-    void request( std::string const & host, net::request const & req, response_cb const & on_response )
+    net::dynamic_response request( std::string const & host, net::request const & req )
     {
         net::dynamic_response resp;
         asio::io_context      io;
@@ -55,8 +55,7 @@ namespace lcxx::client {
         auto l = asio::make_work_guard( io );
         io.run();
 
-        if ( on_response )
-            on_response( resp );
+        return resp;
     }
 
 }  // namespace lcxx::client

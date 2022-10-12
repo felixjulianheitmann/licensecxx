@@ -28,14 +28,13 @@ auto main() -> int
     req.set( net::http::field::content_type, "text/html" );
 
     bool verified = false;
-    client::request( "localhost:8080/" + lic_endpoint, req, [&]( net::dynamic_response const & resp ) {
-        if ( resp.result() == net::http::status::ok ) {
-            auto const [license, signature] = from_string( boost::beast::buffers_to_string( resp.body().data() ) );
-            if ( verify_license( license, signature, verify_key ) ) {
-                verified = true;
-            }
+    auto resp     = client::request( "localhost:8080/" + lic_endpoint, req );
+    if ( resp.result() == net::http::status::ok ) {
+        auto const [license, signature] = from_string( boost::beast::buffers_to_string( resp.body().data() ) );
+        if ( verify_license( license, signature, verify_key ) ) {
+            verified = true;
         }
-    } );
+    }
 
     if ( verified ) {
         std::cout << "License verified!" << std::endl;
