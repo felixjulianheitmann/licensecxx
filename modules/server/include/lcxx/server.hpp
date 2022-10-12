@@ -28,6 +28,7 @@ namespace lcxx {
 
         server( std::string const & ip, uint16_t port, std::string const & certificate_path,
                 std::string const & key_path );
+        ~server();
 
         void on_endpoint( std::string const & endpoint, request_cb callback );
         void on_default( request_cb callback );

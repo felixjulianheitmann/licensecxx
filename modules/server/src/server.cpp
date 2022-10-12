@@ -28,6 +28,8 @@ namespace lcxx {
         ctx_.use_certificate_file( certificate_path, ssl::context_base::file_format::pem );
     }
 
+    server::~server() { stop(); }
+
     void server::on_endpoint( std::string const & endpoint, request_cb callback )
     {
         auto l = std::scoped_lock{ map_mutex_ };
@@ -55,7 +57,14 @@ namespace lcxx {
             ioc_thread_ = std::thread( run_ioc );
     }
 
-    void server::stop() { ioc_.stop(); }
+    void server::stop()
+    {
+        ioc_.stop();
+
+        if ( ioc_thread_.joinable() ) {
+            ioc_thread_.join();
+        }
+    }
 
     auto server::handle_loop() -> void
     {
