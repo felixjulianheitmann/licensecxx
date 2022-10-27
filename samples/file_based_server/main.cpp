@@ -65,7 +65,7 @@ auto main() -> int
             body = aes::decrypt< std::string, std::string >( encrypted_body, aes_key );
 
         resp.set( net::http::field::content_type, "application/json" );
-        std::string path = { req.target().begin() + 1, req.target().end() };
+        std::string path = { req.target().begin(), req.target().end() };
 
         try {
             switch ( req.method() ) {

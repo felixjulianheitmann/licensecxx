@@ -1,6 +1,8 @@
 #ifndef LCXX__LCXX_CLIENT_HPP__
 #define LCXX__LCXX_CLIENT_HPP__
 
+#include <optional>
+
 #include <boost/asio.hpp>
 #include <boost/asio/ssl.hpp>
 #include <boost/beast/core/buffers_to_string.hpp>
@@ -13,7 +15,7 @@ namespace lcxx::client {
 
     using response_cb = std::function< void( net::dynamic_response const & ) >;
 
-    net::dynamic_response request( std::string const & endpoint, net::request const & req );
+    std::optional< net::dynamic_response > request( std::string const & endpoint, net::request const & req );
 
 }  // namespace lcxx::client
 

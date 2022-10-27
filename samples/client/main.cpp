@@ -15,7 +15,7 @@ auto main() -> int
 {
     auto const auth_key     = rsa::load_key( fs::current_path() / "public_key", rsa::key_type::public_key );
     auto const verify_key   = rsa::load_key( fs::current_path() / "signature_pub_key", rsa::key_type::private_key );
-    auto const lic_endpoint = std::string( "licenses/mylicense.json" );
+    auto const lic_endpoint = std::string( "/licenses/mylicense.json" );
 
     auto aes_key = aes::gen_key( "8byteSal", "mykeydata" );
     auto encrypted_aes_key =
@@ -26,11 +26,12 @@ auto main() -> int
     req.base().insert( "key", encrypted_aes_key );
     req.body() = encrypted_body;
     req.set( net::http::field::content_type, "text/html" );
+    req.target( lic_endpoint );
 
     bool verified = false;
-    auto resp     = client::request( "localhost:8080/" + lic_endpoint, req );
-    if ( resp.result() == net::http::status::ok ) {
-        auto const [license, signature] = from_string( boost::beast::buffers_to_string( resp.body().data() ) );
+    auto resp     = client::request( "localhost:8080", req );
+    if ( resp && resp->result() == net::http::status::ok ) {
+        auto const [license, signature] = from_string( boost::beast::buffers_to_string( resp->body().data() ) );
         if ( verify_license( license, signature, verify_key ) ) {
             verified = true;
         }

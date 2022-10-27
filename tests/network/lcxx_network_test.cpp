@@ -8,9 +8,9 @@ using namespace lcxx;
 class network_fixture : public ::testing::Test {
 protected:
     server server_;
-    network_fixture() : server_( server( "0.0.0.0", 8080, "certificate.pem", "key.pem" ) )
+    network_fixture() : server_( server( "127.0.0.1", 8080, "certificate.pem", "key.pem" ) )
     {
-        server_.on_endpoint( "test_endpoints/*", []( auto const & req ) {
+        server_.on_endpoint( "/test_endpoints/*", []( auto const & req ) {
             net::string_response resp;
             resp.result( net::http::status::ok );
             if ( req.method() == net::verb::get )
@@ -30,7 +30,7 @@ protected:
             return resp;
         } );
 
-        server_.on_endpoint( "test_endpoints/specialized/endpoint", []( auto const & req ) {
+        server_.on_endpoint( "/test_endpoints/specialized/endpoint", []( auto const & req ) {
             net::string_response resp;
             resp.result( net::http::status::ok );
             if ( req.method() == net::verb::get )
@@ -49,10 +49,14 @@ TEST_F( network_fixture, Roundtrip_Pattern )
 
     net::string_request req;
     req.method( net::verb::get );
-    auto resp = client::request( "https://localhost:8080/test_endpoints/some_test", req );
+    req.target( "/test_endpoints/some_test" );
+    auto const resp = client::request( "https://localhost:8080", req );
 
-    EXPECT_EQ( resp.result(), net::http::status::ok );
-    EXPECT_TRUE( boost::beast::buffers_to_string( resp.body() ) == "Pattern_GET" );
+    EXPECT_TRUE( resp );
+    if ( resp ) {
+        EXPECT_EQ( resp->result(), net::http::status::ok );
+        EXPECT_EQ( boost::beast::buffers_to_string( resp->body().data() ), "Pattern_GET" );
+    }
 }
 
 TEST_F( network_fixture, Roundtrip_Specialized )
@@ -62,10 +66,14 @@ TEST_F( network_fixture, Roundtrip_Specialized )
 
     net::string_request req;
     req.method( net::verb::get );
-    auto resp = client::request( "https://localhost:8080/test_endpoints/specialized/endpoint", req );
+    req.target( "/test_endpoints/specialized/endpoint" );
+    auto const resp = client::request( "https://localhost:8080", req );
 
-    EXPECT_EQ( resp.result(), net::http::status::ok );
-    EXPECT_TRUE( boost::beast::buffers_to_string( resp.body() ) == "Specialized_GET" );
+    EXPECT_TRUE( resp );
+    if ( resp ) {
+        EXPECT_EQ( resp->result(), net::http::status::ok );
+        EXPECT_EQ( boost::beast::buffers_to_string( resp->body().data() ), "Specialized_GET" );
+    }
 }
 
 TEST_F( network_fixture, Roundtrip_Default )
@@ -75,10 +83,14 @@ TEST_F( network_fixture, Roundtrip_Default )
 
     net::string_request req;
     req.method( net::verb::get );
-    auto resp = client::request( "https://localhost:8080/trigger/default", req );
+    req.target( "/trigger/default" );
+    auto const resp = client::request( "https://localhost:8080", req );
 
-    EXPECT_EQ( resp.result(), net::http::status::ok );
-    EXPECT_TRUE( boost::beast::buffers_to_string( resp.body() ) == "Default_GET" );
+    EXPECT_TRUE( resp );
+    if ( resp ) {
+        EXPECT_EQ( resp->result(), net::http::status::ok );
+        EXPECT_EQ( boost::beast::buffers_to_string( resp->body().data() ), "Default_GET" );
+    }
 }
 
 TEST_F( network_fixture, Roundtrip_Default_Post )
@@ -88,10 +100,14 @@ TEST_F( network_fixture, Roundtrip_Default_Post )
 
     net::string_request req;
     req.method( net::verb::post );
-    auto resp = client::request( "https://localhost:8080/trigger/default", req );
+    req.target( "/trigger/default" );
+    auto const resp = client::request( "https://localhost:8080", req );
 
-    EXPECT_EQ( resp.result(), net::http::status::ok );
-    EXPECT_TRUE( boost::beast::buffers_to_string( resp.body() ) == "Default_POST" );
+    EXPECT_TRUE( resp );
+    if ( resp ) {
+        EXPECT_EQ( resp->result(), net::http::status::ok );
+        EXPECT_EQ( boost::beast::buffers_to_string( resp->body().data() ), "Default_POST" );
+    }
 }
 
 TEST_F( network_fixture, Roundtrip_Multiple )
@@ -101,20 +117,32 @@ TEST_F( network_fixture, Roundtrip_Multiple )
 
     net::string_request req;
     req.method( net::verb::post );
-    auto resp = client::request( "https://localhost:8080/trigger/default", req );
+    req.target( "/trigger/default" );
+    auto resp = client::request( "https://localhost:8080", req );
 
-    EXPECT_EQ( resp.result(), net::http::status::ok );
-    EXPECT_TRUE( boost::beast::buffers_to_string( resp.body() ) == "Default_POST" );
-
-    req.method( net::verb::get );
-    resp = client::request( "https://localhost:8080/trigger/default", req );
-
-    EXPECT_EQ( resp.result(), net::http::status::ok );
-    EXPECT_TRUE( boost::beast::buffers_to_string( resp.body() ) == "Default_GET" );
+    EXPECT_TRUE( resp );
+    if ( resp ) {
+        EXPECT_EQ( resp->result(), net::http::status::ok );
+        EXPECT_EQ( boost::beast::buffers_to_string( resp->body().data() ), "Default_POST" );
+    }
 
     req.method( net::verb::get );
-    resp = client::request( "https://localhost:8080/test_endpoints/pattern", req );
+    req.target( "/trigger/default" );
+    resp = client::request( "https://localhost:8080", req );
 
-    EXPECT_EQ( resp.result(), net::http::status::ok );
-    EXPECT_TRUE( boost::beast::buffers_to_string( resp.body() ) == "Pattern_GET" );
+    EXPECT_TRUE( resp );
+    if ( resp ) {
+        EXPECT_EQ( resp->result(), net::http::status::ok );
+        EXPECT_EQ( boost::beast::buffers_to_string( resp->body().data() ), "Default_GET" );
+    }
+
+    req.method( net::verb::get );
+    req.target( "/test_endpoints/pattern" );
+    resp = client::request( "https://localhost:8080", req );
+
+    EXPECT_TRUE( resp );
+    if ( resp ) {
+        EXPECT_EQ( resp->result(), net::http::status::ok );
+        EXPECT_EQ( boost::beast::buffers_to_string( resp->body().data() ), "Pattern_GET" );
+    }
 }

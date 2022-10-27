@@ -41,14 +41,15 @@ namespace lcxx {
 
         void handle_loop();
         auto handle_loop_coro() -> boost::asio::awaitable< void >;
+        auto run_session( boost::beast::ssl_stream< boost::beast::tcp_stream > stream )
+            -> boost::asio::awaitable< void >;
 
         auto is_pattern( std::string_view const target ) -> bool;
         auto pattern_match( std::string_view const target ) -> std::string;
 
-        boost::asio::io_context                              ioc_;
-        boost::asio::ip::tcp::acceptor                       acceptor_;
-        boost::asio::ssl::context                            ctx_;
-        boost::beast::ssl_stream< boost::beast::tcp_stream > stream_;
+        boost::asio::io_context        ioc_;
+        boost::asio::ip::tcp::endpoint local_endpoint_;
+        boost::asio::ssl::context      ctx_;
 
         run_option  ro_;
         std::thread ioc_thread_;

@@ -14,6 +14,7 @@ if (Boost_FOUND)
         lcxx::lcxx
         lcxx_net_common
         Boost::headers
+        Boost::url
         ssl
     )
 

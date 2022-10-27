@@ -7,6 +7,7 @@ Network Licensing
    :maxdepth: 2
    :caption: Contents:
 
+
 In many use cases the approach of providing a custom license file to the customer seems old-fashioned or too static.
 A more modern, flexible approach is to have the application in question verify itself through a network server.
 
@@ -78,3 +79,8 @@ A respective client can include the `lcxx::client` CMake target to enable the HT
     }
 
 A more sophisticated sample which works in combination with the file based server example can be found in `samples/client`.
+
+The required RSA key and SSL certificate can be generated with the following commands:
+.. code-block::
+    openssl genrsa -out key.pem 2048
+    openssl req -x509 -key key.pem -out certificate.pem -sha256

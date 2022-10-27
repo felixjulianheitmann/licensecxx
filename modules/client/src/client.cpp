@@ -2,6 +2,7 @@
 
 #include <boost/asio.hpp>
 #include <boost/beast.hpp>
+#include <boost/url.hpp>
 
 namespace lcxx::client {
 
@@ -10,41 +11,46 @@ namespace lcxx::client {
     namespace beast = boost::beast;
     namespace http  = beast::http;
 
-    net::dynamic_response request( std::string const & host, net::request const & req )
+    std::optional< net::dynamic_response > request( std::string const & endpoint_str, net::request const & req )
     {
-        net::dynamic_response resp;
-        asio::io_context      io;
+        std::optional< net::dynamic_response > resp;
+        asio::io_context                       io;
+
+        auto uri  = boost::url( endpoint_str );
+        auto host = uri.host();
+        auto port = uri.port();
 
         asio::co_spawn(
             io,
             [&]() -> asio::awaitable< void > {
-                net::error_code ec;
-                auto            error = asio::redirect_error( asio::use_awaitable, ec );
+                ssl::context                           ctx_( ssl::context::tlsv12 );
+                beast::ssl_stream< beast::tcp_stream > stream( io, ctx_ );
+                ctx_.set_verify_mode( asio::ssl::verify_peer );
+                auto set_timeout = [&] {
+                    beast::get_lowest_layer( stream ).expires_after( std::chrono::seconds( 30 ) );
+                };
 
-                asio::ip::tcp::resolver resolver( io );
-                auto                    results = co_await resolver.async_resolve( host, error );
-                if ( ec )
+                set_timeout();
+                auto results = co_await asio::ip::tcp::resolver( io ).async_resolve( host, port, asio::use_awaitable );
+
+                co_await beast::get_lowest_layer( stream ).async_connect( results, asio::use_awaitable );
+
+                set_timeout();
+                co_await stream.async_handshake( ssl::stream_base::client, asio::use_awaitable );
+
+                set_timeout();
+                auto bytes_sent = co_await std::visit(
+                    [&]( auto && req_ ) { return http::async_write( stream, req_, asio::use_awaitable ); }, req );
+                if ( bytes_sent == 0 )
                     co_return;
-                for ( auto const & endpoint : results ) {
-                    auto                                   ctx_ = ssl::context( ssl::context::tlsv12 );
-                    beast::ssl_stream< beast::tcp_stream > stream( asio::ip::tcp::socket( io, endpoint ), ctx_ );
-                    co_await stream.async_handshake( ssl::stream_base::client, error );
-                    if ( ec )
-                        co_return;
 
-                    auto bytes_sent = co_await std::visit(
-                        [&]( auto && req_ ) { return http::async_write( stream, req_, error ); }, req );
-                    if ( ec || bytes_sent == 0 )
-                        co_return;
+                auto buffer = beast::flat_buffer{ 1024 * 1024 };
+                resp        = net::dynamic_response{};
+                co_await net::http::async_read( stream, buffer, resp.value(), asio::use_awaitable );
 
-                    auto buffer = beast::flat_buffer{ 1024 * 1024 };
-                    co_await net::http::async_read( stream, buffer, resp, error );
-                    if ( ec )
-                        co_return;
-
-                    co_await stream.async_shutdown( error );
-                    co_return;
-                }
+                set_timeout();
+                boost::system::error_code ec;
+                co_await stream.async_shutdown( asio::redirect_error( asio::use_awaitable, ec ) );
             },
             [&]( std::exception_ptr e ) {
                 io.stop();
@@ -53,6 +59,7 @@ namespace lcxx::client {
             } );
 
         auto l = asio::make_work_guard( io );
+
         io.run();
 
         return resp;
