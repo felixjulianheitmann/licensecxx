@@ -1,4 +1,6 @@
 {
-    "some": "somelicense",
-    "signature": "siiiiiignatureeeee"
+    "content": {
+        "some key": "some value"
+    },
+    "signature": "q3OKm6R1va8144ETOxFWcVRrZmaOcqFR7JmTyuKDob7jIB6484+w9MNvpycyHlpSoOaM6RwWp+rb+RwD7luOQS+2kgG9oco//fRK5TL99FDlEK/4Xda6YYlJsXm/6xYYSAVYKwvyYzZkyWUBRqn+eDUGDWvAf1B0AKJ1M0gXYnKB/ChQ8KloekUzFjOzcdCOYsNLvtCyirE06WuiVQsWxh9Szckjy+UoOdT34MNJWLoR/bFCLw/qN46kOMXwD3ZuFhP11Jzi7DXC9950OlBs2BhXTUZSWHNvjkDmkqIyAD3HuRf2jhQABxhF/gHm2GFq6Fk6AmHAtPaEeQKb4JpmYA=="
 }
