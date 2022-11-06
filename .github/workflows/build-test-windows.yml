@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "develop" ]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build-windows:
     runs-on: windows-latest
@@ -17,11 +21,14 @@ jobs:
       run: choco install openssl
 
     - name: configure
-      run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
+      run: |
+        mkdir build
+        cd build
+        cmake -DCMAKE_BUILD_TYPE=Release ..
 
     - name: build
       working-directory: build
-      run: cmake --build . 
+      run: cmake --build . --config Release 
 
     - uses: actions/upload-artifact@master
       with:
@@ -49,10 +56,7 @@ jobs:
       run: ls -R
 
     - name: crypto-tests
-      run: ./crypto/crypto_test.exe
-
-    - name: identifiers-tests
-      run: ./identifiers/identifiers_test.exe
+      run: ./crypto/Release/crypto_test.exe
 
     - name: lcxx-tests
-      run: ./lcxx/lcxx_test.exe
+      run: ./lcxx/Release/lcxx_test.exe

@@ -8,7 +8,7 @@
 
 #include <ident_utils/common.hpp>
 
-namespace lcxx::ident_utils::os {
+namespace lcxx::experimental::ident_utils::os {
 
     auto get_info() -> os_info
     {
@@ -49,4 +49,4 @@ namespace lcxx::ident_utils::os {
         return oi;
     }
 
-}  // namespace lcxx::ident_utils::os
+}  // namespace lcxx::experimental::ident_utils::os

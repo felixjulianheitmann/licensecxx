@@ -41,8 +41,9 @@ auto main() -> int
 
     // Push optional data into the license file
     license.push_content( "some key", "some value" );
-    license.push_content( "hardware", lcxx::identifiers::hardware().hash );
-    license.push_content( "os", lcxx::identifiers::os().hash );
+
+    license.push_content( "user", "SomeUsername" );
+    license.push_content( "email", "SomeMail@SomeProvider.org" );
 
     auto key = lcxx::crypto::rsa::load_key( std::string{ private_key }, lcxx::crypto::rsa::key_type::private_key );
     std::cout << lcxx::to_json( license, key ).dump( 4 ) << std::endl;

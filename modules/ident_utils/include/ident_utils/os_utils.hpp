@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-namespace lcxx::ident_utils::os {
+namespace lcxx::experimental::ident_utils::os {
 
     struct os_info {
         std::string                os_name;
@@ -23,6 +23,6 @@ namespace lcxx::ident_utils::os {
      */
     auto get_info() -> os_info;
 
-}  // namespace lcxx::ident_utils::os
+}  // namespace lcxx::experimental::ident_utils::os
 
 #endif  // LCXX__IDENT_UTILS_OS_UTILS_HPP__

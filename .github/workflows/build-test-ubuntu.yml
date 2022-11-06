@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "develop" ]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
 
   build-linux:
@@ -40,7 +44,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Get latest GCC
+
+    - name: Get latest GCC (libstdc++ required)
       uses: egor-tensin/setup-gcc@v1
       with:
         version: 11

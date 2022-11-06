@@ -5,12 +5,12 @@
 #include <ident_utils/cpu_utils.hpp>
 #include <ident_utils/os_utils.hpp>
 
-using namespace lcxx::ident_utils;
+using namespace lcxx::experimental::ident_utils;
 
-namespace lcxx::ident_utils::cpu {
+namespace lcxx::experimental::ident_utils::cpu {
     NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE( cpu_info, vendor, model_name, n_cores, n_threads, max_frequency );
 }
-namespace lcxx::ident_utils::os {
+namespace lcxx::experimental::ident_utils::os {
     NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE( os_info, os_name, os_architecture, os_pc_name, user_name, user_groups, user_uid,
                                         user_gids );
 }

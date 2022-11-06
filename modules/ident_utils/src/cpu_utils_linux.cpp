@@ -5,7 +5,7 @@
 
 #include <ident_utils/common.hpp>
 
-namespace lcxx::ident_utils::cpu {
+namespace lcxx::experimental::ident_utils::cpu {
 
     auto get_info() -> cpu_info
     {
@@ -45,4 +45,4 @@ namespace lcxx::ident_utils::cpu {
         return ci;
     }
 
-}  // namespace lcxx::ident_utils::cpu
+}  // namespace lcxx::experimental::ident_utils::cpu

@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "develop" ]
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   build-mac:
     runs-on: macos-latest
@@ -13,11 +17,18 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: configure
-      run: mkdir build && cd build && cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1 -DCMAKE_BUILD_TYPE=Release ..
+    - name: configure (use GCC)
+      run: |
+        mkdir build
+        cd build
+        cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1 -DCMAKE_BUILD_TYPE=Release ..
+
     - name: build
       working-directory: build
       run: cmake --build . 
+
+    - name: list artifacts
+      run: ls -R
 
     - uses: actions/upload-artifact@master
       with:
@@ -33,11 +44,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Get latest GCC
-      uses: egor-tensin/setup-gcc@v1
-      with:
-        version: 11
-        platform: x64
 
     - uses: actions/download-artifact@v3
       with:

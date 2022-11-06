@@ -1,9 +1,13 @@
 #include <ident_utils/os_utils.hpp>
 
-#error Not yet implemented
+#include <stdexcept>
 
-namespace lcxx::os::os {
+namespace lcxx::experimental::ident_utils::os {
 
-    auto get_info() -> os_info { return {}; }
+    auto get_info() -> os_info
+    {
+        throw std::runtime_error( "This feature is not yet implemented." );
+        return {};
+    }
 
-}  // namespace lcxx::os::os
+}  // namespace lcxx::experimental::ident_utils::os
