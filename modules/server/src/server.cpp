@@ -6,6 +6,7 @@
 
 #include <boost/asio.hpp>
 #include <boost/beast.hpp>
+#include <iostream>
 
 namespace beast = boost::beast;
 namespace http  = beast::http;
@@ -16,13 +17,14 @@ using tcp       = boost::asio::ip::tcp;
 namespace lcxx {
 
     server::server( std::string const & ip, uint16_t port, std::string const & certificate_path,
-                    std::string const & key_path ) :
+                    std::string const & key_path, std::size_t receive_buffer_size ) :
         ioc_(),
         local_endpoint_( { asio::ip::make_address( ip ), port } ),
         ctx_( ssl::context::tlsv12 ),
         ioc_thread_(),
         map_mutex_(),
-        cb_map_()
+        cb_map_(),
+        recv_buf_size_( receive_buffer_size )
     {
 
         ctx_.use_certificate_file( certificate_path, ssl::context_base::pem );
@@ -33,8 +35,13 @@ namespace lcxx {
 
     void server::on_endpoint( std::string const & endpoint, request_cb callback )
     {
-        auto l = std::scoped_lock{ map_mutex_ };
-        cb_map_.insert_or_assign( endpoint, callback );
+        if ( endpoint == "/*" ) {
+            on_default( callback );
+        }
+        else {
+            auto l = std::scoped_lock{ map_mutex_ };
+            cb_map_.insert_or_assign( endpoint, callback );
+        }
     }
 
     void server::on_default( request_cb callback )
@@ -45,7 +52,10 @@ namespace lcxx {
 
     void server::run( run_option ro )
     {
-        handle_loop();
+        asio::co_spawn( ioc_, handle_loop_coro(), [this]( std::exception_ptr e ) {
+            if ( e )
+                std::rethrow_exception( e );
+        } );
 
         auto run_ioc = [this] {
             auto work = boost::asio::make_work_guard( ioc_ );
@@ -65,14 +75,6 @@ namespace lcxx {
         if ( ioc_thread_.joinable() ) {
             ioc_thread_.join();
         }
-    }
-
-    auto server::handle_loop() -> void
-    {
-        asio::co_spawn( ioc_, handle_loop_coro(), [this]( std::exception_ptr e ) {
-            if ( e )
-                std::rethrow_exception( e );
-        } );
     }
 
     auto server::handle_loop_coro() -> asio::awaitable< void >
@@ -120,7 +122,7 @@ namespace lcxx {
             co_return;
         }
 
-        beast::flat_buffer   buffer{ 1024 * 1024 };
+        beast::flat_buffer   buffer{ recv_buf_size_ };
         net::dynamic_request req;
 
         set_timeout();
@@ -134,7 +136,6 @@ namespace lcxx {
 
         std::optional< net::response > resp;
         {
-
             auto l = std::scoped_lock{ map_mutex_ };
             if ( cb_map_.contains( target ) ) {
                 resp = cb_map_.at( target )( req );
