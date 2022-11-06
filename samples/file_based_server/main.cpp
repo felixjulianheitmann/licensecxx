@@ -56,7 +56,8 @@ auto main() -> int
             resp.body() = "Message did not contain valid key in 'key' field in header";
         }
         else {
-            aes_key = aes::key_from_bytes( rsa::decrypt( req.base().at( "key" ), auth_key ) );
+            aes_key =
+                aes::key_from_bytes( rsa::decrypt( req.base().at( "key" ), auth_key, rsa::key_type::private_key ) );
         }
 
         auto        encrypted_body = boost::beast::buffers_to_string( req.body().data() );
