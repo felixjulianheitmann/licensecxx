@@ -23,7 +23,7 @@ jobs:
       run: choco install openssl
 
     - name: install boost
-      run: choco install boost
+      run: choco install boost-msvc-14.3
 
     - name: configure
       run: |
