@@ -12,5 +12,4 @@ target_include_directories(lcxx_test PRIVATE
     ${PROJECT_SOURCE_DIR}/common
 )
 
-include(GoogleTest)
 gtest_discover_tests(lcxx_test)

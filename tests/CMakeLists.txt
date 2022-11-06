@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.14)
 
 project(lcxx_tests)
+include(CTest)
+include(GoogleTest)
 
 include(FetchContent)
 FetchContent_Declare(

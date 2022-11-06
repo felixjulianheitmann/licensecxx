@@ -19,5 +19,4 @@ target_compile_definitions(openssl_wrappers_test PRIVATE
     TEST_RESOURCE_PATH="${CMAKE_CURRENT_SOURCE_DIR}/../resources"
 )
 
-include(GoogleTest)
 gtest_discover_tests(openssl_wrappers_test)
