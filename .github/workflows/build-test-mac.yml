@@ -19,11 +19,11 @@ jobs:
       with:
         submodules: recursive
 
-    uses: MarkusJx/install-boost@v2.4.0
-    id: install-boost
-    with:
-        boost_version: 1.78.0
-        platform_version: 11
+    - uses: MarkusJx/install-boost@v2.4.0
+      id: install-boost
+      with:
+          boost_version: 1.78.0
+          platform_version: 11
 
     - name: configure
       run: |
