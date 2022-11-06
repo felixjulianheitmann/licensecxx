@@ -84,12 +84,12 @@ namespace lcxx::crypto::rsa {
 
     template < std::ranges::contiguous_range R >
     requires( sizeof( std::ranges::range_value_t< std::remove_cvref_t< R > > ) ==
-              1 ) auto decrypt( R const & input, key_t key ) -> std::vector< std::byte >
+              1 ) auto decrypt( R const & input, key_t key, key_type const type ) -> std::vector< std::byte >
     {
         return decrypt(
             std::span< std::byte const >( reinterpret_cast< std::byte const * >( std::ranges::data( input ) ),
                                           std::ranges::size( input ) ),
-            key );
+            key, type );
     }
 
 }  // namespace lcxx::crypto::rsa
