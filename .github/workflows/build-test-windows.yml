@@ -16,9 +16,17 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
 
     - name: install OpenSSL
       run: choco install openssl
+
+    uses: MarkusJx/install-boost@v2.4.0
+    id: install-boost
+    with:
+        boost_version: 1.78.0
+        platform_version: 2022
 
     - name: configure
       run: |

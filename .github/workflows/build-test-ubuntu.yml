@@ -17,6 +17,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
+
+    uses: MarkusJx/install-boost@v2.4.0
+    id: install-boost
+    with:
+        boost_version: 1.78.0
+        platform_version: 20.04
+
     - name: Get latest GCC
       uses: egor-tensin/setup-gcc@v1
       with:
@@ -24,10 +33,10 @@ jobs:
         platform: x64
 
     - name: configure
-      run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
+      run: cmake -DCMAKE_BUILD_TYPE=Release -S . -B build ..
+
     - name: build
-      working-directory: build
-      run: cmake --build .
+      run: cmake --build build
 
     - uses: actions/upload-artifact@master
       with:

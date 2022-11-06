@@ -16,16 +16,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
 
-    - name: configure (use GCC)
+    uses: MarkusJx/install-boost@v2.4.0
+    id: install-boost
+    with:
+        boost_version: 1.78.0
+        platform_version: 11
+
+    - name: configure
       run: |
-        mkdir build
-        cd build
-        cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1 -DCMAKE_BUILD_TYPE=Release ..
+        cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1 -DCMAKE_BUILD_TYPE=Release -S . -B build ..
 
     - name: build
-      working-directory: build
-      run: cmake --build . 
+      run: cmake --build build
 
     - name: list artifacts
       run: ls -R
@@ -54,10 +59,6 @@ jobs:
 
     - name: crypto-tests
       run: chmod +x crypto/crypto_test && ./crypto/crypto_test
-
-    # Include when I have it implemented
-    # - name: identifiers-tests
-    #   run: chmod +x identifiers/identifiers_test && ./identifiers/identifiers_test
 
     - name: lcxx-tests
       run: chmod +x lcxx/lcxx_test && ./lcxx/lcxx_test
