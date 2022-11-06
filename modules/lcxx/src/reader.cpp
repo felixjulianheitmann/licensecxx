@@ -12,7 +12,7 @@ namespace lcxx {
 
         if ( !license_json.contains( signature_key ) || !license_json.contains( content_key ) ) {
             throw std::invalid_argument( std::string{ "The input json does not contain they keys " } + signature_key +
-                                         " and " + content_key );
+                                         " and/or " + content_key );
         }
 
         auto const & content = license_json[content_key];
