@@ -22,21 +22,15 @@ jobs:
     - name: install OpenSSL
       run: choco install openssl
 
-    - uses: MarkusJx/install-boost@v2.4.0
-      id: install-boost
-      with:
-          boost_version: 1.78.0
-          platform_version: 2022
+    - name: install boost
+      run: choco install boost
 
     - name: configure
       run: |
-        mkdir build
-        cd build
-        cmake -DCMAKE_BUILD_TYPE=Release ..
+        cmake -DCMAKE_BUILD_TYPE=Release -S . -B build ..
 
     - name: build
-      working-directory: build
-      run: cmake --build . --config Release 
+      run: cmake -B build --build . --config Release 
 
     - uses: actions/upload-artifact@master
       with:
