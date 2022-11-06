@@ -1,0 +1,4 @@
+# Ignore all the RSA keys in the resource folders for samples and tests
+paths-ignore:
+  - tests/resources/*
+  - samples/resources/*
