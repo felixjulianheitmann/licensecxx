@@ -54,3 +54,16 @@ TEST_F( aes_key_fixture, Encrypt_AES_Key_With_RSA_Privaet_Enc_Test )
     EXPECT_NE( encrypted, decrypted );
     EXPECT_EQ( aes_key_bytes, decrypted );
 }
+
+TEST_F( aes_key_fixture, Encrypt_AES_Key_With_RSA_Privaet_Enc_Test_pub_enc )
+{
+    auto rsa_pub_key   = rsa::load_key( std::string{ lcxx::tests::keys::public_key_str }, rsa::key_type::public_key );
+    auto rsa_priv_key  = rsa::load_key( std::string{ lcxx::tests::keys::private_key_str }, rsa::key_type::private_key );
+    auto aes_key_bytes = aes::key_to_bytes( key );
+
+    auto const encrypted = rsa::encrypt( aes_key_bytes, rsa_pub_key, rsa::key_type::public_key );
+    auto const decrypted = rsa::decrypt( encrypted, rsa_priv_key, rsa::key_type::private_key );
+
+    EXPECT_NE( encrypted, decrypted );
+    EXPECT_EQ( aes_key_bytes, decrypted );
+}
