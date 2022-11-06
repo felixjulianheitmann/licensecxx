@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include <lcxx/aes.hpp>
+#include <lcxx/encoding.hpp>
 #include <lcxx/server.hpp>
 
 using namespace lcxx;
@@ -22,13 +23,20 @@ void on_delete_license( net::dynamic_request const & req, net::string_response &
  * All queries are encrypted via AES256. Only clients that have the key can communicate with this server.
  * All license files are saved in a local 'licenses' folder.
  *
- * To enable SSL/TLS support ... TODO ;)
  */
 
 using namespace lcxx::crypto;
 
 auto main() -> int
 {
+
+    auto bad_request = [&]( auto const & msg ) {
+        net::string_response resp;
+        resp.result( net::http::status::bad_request );
+        resp.set( net::http::field::content_type, "text/html" );
+        resp.body() = msg;
+        return resp;
+    };
 
     server server( "0.0.0.0", 8080, "certificate.pem", "key.pem" );
     auto   auth_key = rsa::load_key( std::filesystem::current_path() / std::filesystem::path( "private_key.rsa" ),
@@ -37,11 +45,7 @@ auto main() -> int
         rsa::load_key( std::filesystem::current_path() / "signature_priv_key.rsa", rsa::key_type::private_key );
 
     server.on_default( [&]( net::dynamic_request const & req ) {
-        net::string_response resp;
-        resp.result( net::http::status::bad_request );
-        resp.set( net::http::field::content_type, "text/html" );
-        resp.body() = "These are not the pages you are looking for.";
-        return resp;
+        return bad_request( "These are not the pages you are looking for." );
     } );
 
     // Setup endpoint handler for all requests to '/licenses' and sub-targets
@@ -52,18 +56,24 @@ auto main() -> int
 
         aes::key_t aes_key;
         if ( req.base().find( "key" ) == req.base().end() ) {
-            resp.set( net::http::field::content_type, "text/html" );
-            resp.body() = "Message did not contain valid key in 'key' field in header";
+            return bad_request( "Message did not contain valid key in 'key' field in header" );
         }
         else {
-            aes_key =
-                aes::key_from_bytes( rsa::decrypt( req.base().at( "key" ), auth_key, rsa::key_type::private_key ) );
+            try {
+                auto encrypted_aes_key = decode::base64( std::string( req.base().at( "key" ) ) );
+                aes_key =
+                    aes::key_from_bytes( rsa::decrypt( encrypted_aes_key, auth_key, rsa::key_type::private_key ) );
+            }
+            catch ( std::exception & e ) {
+                return bad_request( std::string( "Could not encrypt given AES key: " ) + e.what() );
+            }
         }
 
-        auto        encrypted_body = boost::beast::buffers_to_string( req.body().data() );
+        auto        encoded_body   = boost::beast::buffers_to_string( req.body().data() );
+        auto        encrypted_body = decode::base64( encoded_body );
         std::string body;
         if ( !encrypted_body.empty() )
-            body = aes::decrypt< std::string, std::string >( encrypted_body, aes_key );
+            body = aes::decrypt< decltype( encrypted_body ), std::string >( encrypted_body, aes_key );
 
         resp.set( net::http::field::content_type, "application/json" );
         std::string path = { req.target().begin(), req.target().end() };
@@ -80,13 +90,12 @@ auto main() -> int
                 on_delete_license( req, resp, path, body );
                 break;
             default:
-                resp.body() = "Given verb not supported";
+                return bad_request( "Given verb not supported" );
                 break;
             }
         }
         catch ( std::exception & e ) {
-            resp.set( net::http::field::content_type, "text/html" );
-            resp.body() = std::string{ "Could not load license, error: " } + e.what();
+            return bad_request( std::string{ "Could not load license, error: " } + e.what() );
         }
 
         return resp;
@@ -104,13 +113,14 @@ auto main() -> int
 }
 
 // Returns the requested file under /licenses/... if the decrypted message body matches the target path
-void on_get_license( net::dynamic_request const & req, net::string_response & resp, std::string const & path,
+void on_get_license( net::dynamic_request const & req, net::string_response & resp, std::string const & target_path,
                      std::string const & body )
 {
-    if ( body == path ) {
-        if ( !std::filesystem::exists( path ) )
+    if ( body == target_path ) {
+        auto file_path = std::string{ target_path.begin() + 1, target_path.end() };
+        if ( !std::filesystem::exists( file_path ) )
             throw std::runtime_error( "File not found" );
-        std::ifstream ifs{ path };
+        std::ifstream ifs{ file_path };
         auto license = std::string{ std::istreambuf_iterator< char >{ ifs }, std::istreambuf_iterator< char >{} };
         resp.body()  = license;
     }
@@ -120,22 +130,23 @@ void on_get_license( net::dynamic_request const & req, net::string_response & re
 }
 
 // Saves the decrypted license in message body to the desired target path
-void on_post_license( net::dynamic_request const & req, net::string_response & resp, std::string const & path,
+void on_post_license( net::dynamic_request const & req, net::string_response & resp, std::string const & target_path,
                       std::string const & body, rsa::key_t const sign_key )
 {
     auto [lic, _] = lcxx::from_string( boost::beast::buffers_to_string( req.body().data() ) );
-    lcxx::to_file( lic, path, sign_key );
+    lcxx::to_file( lic, std::string_view{ target_path.begin() + 1, target_path.end() }, sign_key );
     resp.body() = "Successfully saved\n";
 }
 
 // Deletes the requested file under /licenses/... if the decrypted message body matches the target path
-void on_delete_license( net::dynamic_request const & req, net::string_response & resp, std::string const & path,
+void on_delete_license( net::dynamic_request const & req, net::string_response & resp, std::string const & target_path,
                         std::string const & body )
 {
-    if ( body == path ) {
-        if ( !std::filesystem::exists( path ) )
+    if ( body == target_path ) {
+        auto file_path = std::string{ target_path.begin() + 1, target_path.end() };
+        if ( !std::filesystem::exists( file_path ) )
             throw std::runtime_error( "File not found" );
-        std::filesystem::remove( path );
+        std::filesystem::remove( file_path );
         resp.body() = "Successfully deleted\n";
     }
     else {

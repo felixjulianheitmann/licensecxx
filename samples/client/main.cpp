@@ -23,27 +23,34 @@ auto main() -> int
     auto encrypted_body = encode::base64( aes::encrypt( lic_endpoint, aes_key ) );
 
     net::string_request req;
-    req.base().insert( "key", encrypted_aes_key );
-    req.body() = encrypted_body;
+    req.method( net::http::verb::get );
     req.set( net::http::field::content_type, "text/html" );
     req.target( lic_endpoint );
-    req.method( net::http::verb::get );
+    req.body() = encrypted_body;
+    req.base().insert( "key", encrypted_aes_key );
+    req.prepare_payload();
 
     bool verified = false;
-    auto resp     = client::request( "https://localhost:8080", req );
-    if ( resp && resp->result() == net::http::status::ok ) {
-        auto const [license, signature] = from_string( boost::beast::buffers_to_string( resp->body().data() ) );
-        if ( verify_license( license, signature, verify_key ) ) {
-            verified = true;
+    try {
+        auto resp = client::request( "https://localhost:8080", req );
+
+        if ( resp && resp->result() == net::http::status::ok ) {
+            auto const [license, signature] = from_string( boost::beast::buffers_to_string( resp->body().data() ) );
+            if ( verify_license( license, signature, verify_key ) ) {
+                verified = true;
+            }
+        }
+
+        if ( verified ) {
+            std::cout << "License verified!" << std::endl;
+            return 0;
+        }
+        else {
+            std::cout << "License verification failed!" << std::endl;
+            return 1;
         }
     }
-
-    if ( verified ) {
-        std::cout << "License verified!" << std::endl;
-        return 0;
-    }
-    else {
-        std::cout << "License verification failed!" << std::endl;
-        return 1;
+    catch ( std::exception & e ) {
+        std::cout << "Error occurred: " << e.what() << std::endl;
     }
 }
