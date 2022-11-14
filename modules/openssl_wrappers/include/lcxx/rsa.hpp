@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 
+#include <lcxx/crypto_common.hpp>
 #include <openssl/rsa.h>
 
 namespace lcxx::crypto::rsa {
@@ -36,7 +37,7 @@ namespace lcxx::crypto::rsa {
 
     auto key_to_bytes( key_t const key ) -> std::vector< std::byte >;
     auto key_from_bytes( std::span< std::byte const > const bytes ) -> key_t;
-    template < std::ranges::contiguous_range R >
+    template < detail::contiguous_byte_range R >
     requires( sizeof( std::ranges::range_value_t< std::remove_cvref_t< R > > ) ==
               1 ) auto key_from_bytes( R const & bytes, key_t const key ) -> key_t
     {
@@ -69,7 +70,7 @@ namespace lcxx::crypto::rsa {
     auto encrypt( std::span< std::byte const > const input, key_t key, key_type const type )
         -> std::vector< std::byte >;
 
-    template < std::ranges::contiguous_range R >
+    template < detail::contiguous_byte_range R >
     requires( sizeof( std::ranges::range_value_t< std::remove_cvref_t< R > > ) ==
               1 ) auto encrypt( R const & input, key_t key, key_type const type ) -> std::vector< std::byte >
     {
@@ -82,7 +83,7 @@ namespace lcxx::crypto::rsa {
     auto decrypt( std::span< std::byte const > const input, key_t key, key_type const type )
         -> std::vector< std::byte >;
 
-    template < std::ranges::contiguous_range R >
+    template < detail::contiguous_byte_range R >
     requires( sizeof( std::ranges::range_value_t< std::remove_cvref_t< R > > ) ==
               1 ) auto decrypt( R const & input, key_t key, key_type const type ) -> std::vector< std::byte >
     {
