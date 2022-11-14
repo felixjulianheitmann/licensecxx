@@ -15,6 +15,7 @@ if (Boost_FOUND)
         lcxx_net_common
         Boost::headers
         ssl
+        Threads::Threads
     )
 
     target_include_directories(${PROJECT_NAME} PUBLIC
