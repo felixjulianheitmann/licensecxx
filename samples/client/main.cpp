@@ -32,7 +32,7 @@ auto main() -> int
 
     bool verified = false;
     try {
-        auto resp = client::request( "https://localhost:8080", req );
+        auto resp = client::request( req, "localhost", "443" );
 
         if ( resp && resp->result() == net::http::status::ok ) {
             auto const [license, signature] = from_string( boost::beast::buffers_to_string( resp->body().data() ) );

@@ -12,8 +12,6 @@ project (lcxx
 include(${PROJECT_SOURCE_DIR}/cmake/key_targets.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/get_nlohmann_json.cmake)
 
-add_subdirectory(${CMAKE_SOURCE_DIR}/deps/url)
-
 add_subdirectory(${PROJECT_SOURCE_DIR}/modules)
 add_subdirectory(${PROJECT_SOURCE_DIR}/tests)
 add_subdirectory(${PROJECT_SOURCE_DIR}/samples)

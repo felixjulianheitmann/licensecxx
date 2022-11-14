@@ -50,7 +50,7 @@ TEST_F( network_fixture, Roundtrip_Pattern )
     net::string_request req;
     req.method( net::verb::get );
     req.target( "/test_endpoints/some_test" );
-    auto const resp = client::request( "https://localhost:8080", req );
+    auto const resp = client::request( req, "localhost", "8080" );
 
     EXPECT_TRUE( resp );
     if ( resp ) {
@@ -67,7 +67,7 @@ TEST_F( network_fixture, Roundtrip_Specialized )
     net::string_request req;
     req.method( net::verb::get );
     req.target( "/test_endpoints/specialized/endpoint" );
-    auto const resp = client::request( "https://localhost:8080", req );
+    auto const resp = client::request( req, "localhost", "8080" );
 
     EXPECT_TRUE( resp );
     if ( resp ) {
@@ -84,7 +84,7 @@ TEST_F( network_fixture, Roundtrip_Default )
     net::string_request req;
     req.method( net::verb::get );
     req.target( "/trigger/default" );
-    auto const resp = client::request( "https://localhost:8080", req );
+    auto const resp = client::request( req, "localhost", "8080" );
 
     EXPECT_TRUE( resp );
     if ( resp ) {
@@ -101,7 +101,7 @@ TEST_F( network_fixture, Roundtrip_Default_Post )
     net::string_request req;
     req.method( net::verb::post );
     req.target( "/trigger/default" );
-    auto const resp = client::request( "https://localhost:8080", req );
+    auto const resp = client::request( req, "localhost", "8080" );
 
     EXPECT_TRUE( resp );
     if ( resp ) {
@@ -118,7 +118,7 @@ TEST_F( network_fixture, Roundtrip_Multiple )
     net::string_request req;
     req.method( net::verb::post );
     req.target( "/trigger/default" );
-    auto resp = client::request( "https://localhost:8080", req );
+    auto resp = client::request( req, "localhost", "8080" );
 
     EXPECT_TRUE( resp );
     if ( resp ) {
@@ -128,7 +128,7 @@ TEST_F( network_fixture, Roundtrip_Multiple )
 
     req.method( net::verb::get );
     req.target( "/trigger/default" );
-    resp = client::request( "https://localhost:8080", req );
+    resp = client::request( req, "localhost", "8080" );
 
     EXPECT_TRUE( resp );
     if ( resp ) {
@@ -138,7 +138,7 @@ TEST_F( network_fixture, Roundtrip_Multiple )
 
     req.method( net::verb::get );
     req.target( "/test_endpoints/pattern" );
-    resp = client::request( "https://localhost:8080", req );
+    resp = client::request( req, "localhost", "8080" );
 
     EXPECT_TRUE( resp );
     if ( resp ) {

@@ -2,7 +2,6 @@
 
 #include <boost/asio.hpp>
 #include <boost/beast.hpp>
-#include <boost/url.hpp>
 
 namespace lcxx::client {
 
@@ -11,14 +10,11 @@ namespace lcxx::client {
     namespace beast = boost::beast;
     namespace http  = beast::http;
 
-    std::optional< net::dynamic_response > request( std::string const & endpoint_str, net::request const & req )
+    std::optional< net::dynamic_response > request( net::request const & req, std::string const & host,
+                                                    std::string_view const port )
     {
         std::optional< net::dynamic_response > resp;
         asio::io_context                       io;
-
-        auto uri  = boost::url( endpoint_str );
-        auto host = uri.host();
-        auto port = uri.port();
 
         asio::co_spawn(
             io,
