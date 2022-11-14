@@ -21,7 +21,10 @@ jobs:
         submodules: recursive
 
     - name: install boost
-      run: sudo apt-get install -y libboost-all-dev
+      run: |
+      sudo add-apt-repository ppa:mhier/libboost-latest
+      sudo apt-get update
+      sudo apt-get install -y libboost-all-dev
 
     - name: Get latest GCC
       uses: egor-tensin/setup-gcc@v1
