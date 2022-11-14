@@ -166,27 +166,20 @@ namespace lcxx {
 
     auto server::pattern_match( std::string_view const target ) -> std::string
     {
+        auto remove_one = []( std::string const & path ) -> std::string {
+            if ( auto pos = path.find_last_of( "/" ); pos != std::string::npos ) {
+                return path.substr( 0, pos );
+            }
+            return {};
+        };
 
-        namespace views = std::ranges::views;
-        std::vector< std::string > path;
-        for ( auto const sec : views::split( target, std::string_view{ "/" } ) ) {
-            std::string section = std::string{ sec.begin(), sec.end() };
-            if ( !section.empty() )
-                path.push_back( std::string{ "/" } + section );
-        }
-
-        // remove last section for a wildcard match
-        path.pop_back();
+        std::string path( target.begin(), target.end() );
 
         while ( !path.empty() ) {
-            auto sub_target = path | views::join;
-            auto pattern    = std::string{ sub_target.begin(), sub_target.end() } + std::string{ "/*" };
-            if ( cb_map_.contains( pattern ) ) {
-                return pattern;
+            if ( cb_map_.contains( path + "/*" ) ) {
+                return path + "/*";
             }
-            else {
-                path.pop_back();
-            }
+            path = remove_one( path );
         };
 
         return {};
