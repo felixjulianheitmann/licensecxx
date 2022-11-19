@@ -1,6 +1,6 @@
 project(lcxx_client_lib)
 
-find_package(Boost 1.78.0 COMPONENTS headers)
+find_package(Boost 1.78.0)
 
 if (Boost_FOUND)
 
