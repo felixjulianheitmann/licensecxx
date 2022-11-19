@@ -27,7 +27,7 @@ jobs:
 
     - name: configure
       run: |
-        cmake -DCMAKE_BUILD_TYPE=Release -S . -B build ..
+        cmake -DCMAKE_BUILD_TYPE=Release -DBOOST_ROOT="C:/local/" -DBoost_INCLUDE_DIRS="C:/local/boost_1_80_0" -S . -B build ..
 
     - name: build
       run: cmake -B build --build . --config Release 
