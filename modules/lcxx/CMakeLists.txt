@@ -23,6 +23,6 @@ add_library( lcxx::lcxx ALIAS licensecxx )
 
 target_link_libraries( licensecxx PUBLIC
     nlohmann_json::nlohmann_json
-    lcxx::crypto
+    lcxx::openssl_wrappers
     lcxx::license
 )

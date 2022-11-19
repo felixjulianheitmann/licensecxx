@@ -16,19 +16,21 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      with:
+        submodules: recursive
 
     - name: install OpenSSL
       run: choco install openssl
 
+    - name: install boost
+      run: choco install boost-msvc-14.3
+
     - name: configure
       run: |
-        mkdir build
-        cd build
-        cmake -DCMAKE_BUILD_TYPE=Release ..
+        cmake -DCMAKE_BUILD_TYPE=Release -DBOOST_ROOT="C:/local/" -DBoost_INCLUDE_DIRS="C:/local/boost_1_80_0" -S . -B build ..
 
     - name: build
-      working-directory: build
-      run: cmake --build . --config Release 
+      run: cmake -B build --build . --config Release 
 
     - uses: actions/upload-artifact@master
       with:

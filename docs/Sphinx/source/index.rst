@@ -6,23 +6,26 @@
 Welcome to Licensecxx's documentation!
 ======================================
 
-.. |Build & Test Status Ubuntu| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-ubuntu.yml/badge.svg
-
-.. |Build & Test Status Windows| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-windows.yml/badge.svg
-
-.. |Build & Test Status Mac| image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-mac.yml/badge.svg
-
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    Identifiers
    How to use licensecxx<How-to-use-it>
+   Networking<Netowrk-Licensing>
    api/library_root
 
 Intro
 -----
+
+.. image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-ubuntu.yml/badge.svg
+    :alt: Build & Test Status Ubuntu
+
+.. image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-windows.yml/badge.svg
+    :alt: Build & Test Status Windows
+
+.. image:: https://github.com/felixjulianheitmann/licensecxx/actions/workflows/build-test-mac.yml/badge.svg
+    :alt: Build & Test Status Mac
 
 *Copy protection library targeting Linux, Windows and Mac* (currently only Linux supported)
 
@@ -56,7 +59,7 @@ This is the idea that spawned licensecxx: Provide a modern C++ library interface
 which is easy to use and has minimal impact on the including user project.
 
 Similarly, to it's spiritual predecessor, it provides the option to collect system information such as CPU-Name, OS-Name, Hostname, etc, hash them,
-and incorporate them into the license. A full list of collectable info can be found at :ref:`identifiers_doc`.
+and incorporate them into the license. A full list of collectable info can be found at :ref:`identifiers_doc`. (Still experimental)
 
 
 

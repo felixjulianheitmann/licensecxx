@@ -8,5 +8,4 @@ target_link_libraries(identifiers_test
     lcxx::identifiers
 )
 
-include(GoogleTest)
 gtest_discover_tests(identifiers_test)

@@ -29,7 +29,7 @@ jQIDAQAB
 auto main() -> int
 {
 
-    auto key                  = lcxx::crypto::load_key( std::string{ public_key }, lcxx::crypto::key_type::public_key );
+    auto key = lcxx::crypto::rsa::load_key( std::string{ public_key }, lcxx::crypto::rsa::key_type::public_key );
     auto [license, signature] = lcxx::from_json( std::string{ lic_str } );
 
     if ( !lcxx::verify_license( license, signature, key ) ) {
