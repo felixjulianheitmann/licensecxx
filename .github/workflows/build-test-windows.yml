@@ -17,6 +17,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
+    - name: install OpenSSL
+      run: choco install openssl
+
     - name: configure
       run: |
         cmake -S . -B build -DCMAKE_BUILD_TYPE=Release ..
