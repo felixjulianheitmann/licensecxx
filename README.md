@@ -96,7 +96,7 @@ int main()
         return -1;
     }
 
-    if ( lcxx::identifiers::verify( license.get( "hardware" ) ) ) {
+    if ( lcxx::identifiers::verify( hw_ident_strat::all, license.get( "hardware" ) ) ) {
         std::cout << "The hardware does not match the one licensed!" << std::endl;
         return -2;
     }
@@ -135,14 +135,12 @@ Currently, all features are only provided for Linux based systems unless marked 
 - [x] include CPU features
 - [x] include OS/user features
 - [x] Provide proper online documentation
+- [ ] Make CD/CI run through on Windows / Mac / Ubuntu
 - [ ] provide hardware/os identifiers for Windows
 - [ ] provide hardware/os identifiers for Mac
-- [ ] check if it's running in a virtualized environment
 - [ ] Provide a conan binary
 - [ ] Provide a vcpkg binary
 - [ ] Provide CMake fetchcontent option
-- [ ] Implement Server/Client module
-- [ ] Dockerize Server module
 - [ ] Find a way to test hardware identifiers in CD/CI
 
 
