@@ -10,7 +10,7 @@
 
 namespace lcxx::crypto {
 
-    using rsa_key_t = std::shared_ptr< RSA >;
+    using rsa_key_t = std::shared_ptr< EVP_PKEY >;
 
     enum class key_type {
         public_key,

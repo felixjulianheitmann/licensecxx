@@ -14,7 +14,26 @@
 
 namespace lcxx::crypto {
 
-    constexpr auto encryption_algorithm = NID_sha512WithRSAEncryption;
+    namespace {
+
+        void context_deleter( EVP_MD_CTX * ctx )
+        {
+            if ( ctx )
+                EVP_MD_CTX_destroy( ctx );
+        }
+
+        using context = std::unique_ptr< EVP_MD_CTX, decltype( &context_deleter ) >;
+
+        auto create_context() -> context
+        {
+            context ctx( EVP_MD_CTX_create(), context_deleter );
+            if ( !ctx ) {
+                throw std::runtime_error( "Could not create OpenSSL context" );
+            }
+
+            return ctx;
+        }
+    }  // namespace
 
     void bio_deleter( BIO * bio )
     {
@@ -22,10 +41,10 @@ namespace lcxx::crypto {
             BIO_free( bio );
     }
 
-    void rsa_deleter( RSA * rsa )
+    void key_deleter( EVP_PKEY * key )
     {
-        if ( rsa )
-            RSA_free( rsa );
+        if ( key )
+            EVP_PKEY_free( key );
     };
 
     auto load_key( std::filesystem::path const & key_path, key_type const type ) -> rsa_key_t
@@ -45,13 +64,13 @@ namespace lcxx::crypto {
         std::unique_ptr< BIO, decltype( &bio_deleter ) > bio(
             BIO_new_mem_buf( static_cast< const void * >( key.c_str() ), key.size() ), bio_deleter );
 
-        rsa_key_t rsa_key = { nullptr, rsa_deleter };
+        rsa_key_t rsa_key = { nullptr, key_deleter };
 
         if ( type == key_type::private_key ) {
-            rsa_key = { PEM_read_bio_RSAPrivateKey( bio.get(), nullptr, nullptr, nullptr ), rsa_deleter };
+            rsa_key = { PEM_read_bio_PrivateKey( bio.get(), nullptr, nullptr, nullptr ), key_deleter };
         }
         else {
-            rsa_key = { PEM_read_bio_RSA_PUBKEY( bio.get(), nullptr, nullptr, nullptr ), rsa_deleter };
+            rsa_key = { PEM_read_bio_PUBKEY( bio.get(), nullptr, nullptr, nullptr ), key_deleter };
         }
 
         if ( !rsa_key )
@@ -61,15 +80,25 @@ namespace lcxx::crypto {
 
     auto sign( std::string const & input_string, rsa_key_t const private_key ) -> std::vector< std::byte >
     {
+        static_assert( sizeof( unsigned char ) == sizeof( std::byte ) );
+        auto ctx = create_context();
 
-        auto hashed = hash::sha512( input_string );
+        if ( 1 != EVP_DigestSignInit( ctx.get(), NULL, EVP_sha512(), NULL, private_key.get() ) ) {
+            throw std::runtime_error( "Could not initialize openSSL digest" );
+        }
 
-        std::vector< std::byte > signature( RSA_size( private_key.get() ) );
-        unsigned int             n_signed_bytes = 0;
-        if ( !RSA_sign( encryption_algorithm, reinterpret_cast< unsigned char const * >( hashed.data() ), hashed.size(),
-                        reinterpret_cast< unsigned char * >( signature.data() ), &n_signed_bytes,
-                        private_key.get() ) ) {
-            throw std::runtime_error( "Could not sign input data." );
+        if ( 1 != EVP_DigestSignUpdate( ctx.get(), input_string.data(), input_string.size() ) ) {
+            throw std::runtime_error( "Could not updat the openSSL digest" );
+        }
+
+        size_t len;
+        if ( 1 != EVP_DigestSignFinal( ctx.get(), NULL, &len ) ) {
+            throw std::runtime_error( "Could not calculate signature length" );
+        }
+
+        std::vector< std::byte > signature( len );
+        if ( 1 != EVP_DigestSignFinal( ctx.get(), reinterpret_cast< unsigned char * >( signature.data() ), &len ) ) {
+            throw std::runtime_error( "Could not calculate signature" );
         }
 
         return signature;
@@ -78,11 +107,19 @@ namespace lcxx::crypto {
     auto verify_signature( std::string_view const reference, std::vector< std::byte > const & signature,
                            rsa_key_t const public_key ) -> bool
     {
-        auto hashed = hash::sha512( std::string{ reference } );
 
-        return RSA_verify( encryption_algorithm, reinterpret_cast< unsigned char const * >( hashed.data() ),
-                           hashed.size(), reinterpret_cast< unsigned char const * >( signature.data() ),
-                           signature.size(), public_key.get() );
+        auto ctx = create_context();
+        if ( 1 != EVP_DigestVerifyInit( ctx.get(), NULL, EVP_sha512(), NULL, public_key.get() ) ) {
+            throw std::runtime_error( "could not initialize openSSL digest" );
+        }
+
+        if ( 1 != EVP_DigestVerifyUpdate( ctx.get(), reinterpret_cast< void const * >( reference.data() ),
+                                          reference.size() ) ) {
+            throw std::runtime_error( "could not read in openSSL reference data" );
+        }
+
+        return ( 1 == EVP_DigestVerifyFinal( ctx.get(), reinterpret_cast< unsigned char const * >( signature.data() ),
+                                             signature.size() ) );
     }
 
 }  // namespace lcxx::crypto
