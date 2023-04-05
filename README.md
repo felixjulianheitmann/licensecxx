@@ -37,6 +37,8 @@ This repository is still under development. If you have experience errors or bug
 
 ### Prerequisites
 
+The library requires C++20 support.
+
 Licensecxx relies on [nlohmann/json](https://github.com/nlohmann/json) and [OpenSSL](https://www.openssl.org/).
 nlohmann/json is fetched through CMake-Fetchcontent during configure time and made available the library. Whether this is the preferrable way is still up to debate.
 
