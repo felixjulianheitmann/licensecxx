@@ -61,7 +61,7 @@ namespace lcxx::experimental::identifiers {
         }
 
         auto msg = id_json.dump();
-        return { encode::base64( hash::md5( msg ) ), msg };
+        return { encode::base64( hash::md5( msg ) ), msg, static_cast< ident_strat_t >( strategy ) };
     }
 
     auto verify( os_ident_strat const strategy, std::string_view const hash ) -> bool

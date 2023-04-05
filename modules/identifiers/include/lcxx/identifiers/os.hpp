@@ -9,7 +9,7 @@
 
 namespace lcxx::experimental::identifiers {
 
-    enum class os_ident_strat : std::int32_t {
+    enum class os_ident_strat : ident_strat_t {
         all             = 1,
         os_name         = 1 << 1,
         os_architecture = 1 << 2,

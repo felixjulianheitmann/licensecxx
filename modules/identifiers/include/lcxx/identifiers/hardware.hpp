@@ -9,7 +9,7 @@
 
 namespace lcxx::experimental::identifiers {
 
-    enum class hw_ident_strat : std::int32_t {
+    enum class hw_ident_strat : ident_strat_t {
         all = 1,
         cpu = 1 << 1,
         // gpu               = 1 << 2,
