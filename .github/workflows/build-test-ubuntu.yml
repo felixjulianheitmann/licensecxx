@@ -24,7 +24,8 @@ jobs:
         platform: x64
 
     - name: configure
-      run: mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release ..
+      run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release ..
+
     - name: build
       working-directory: build
       run: cmake --build .
