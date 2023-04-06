@@ -11,11 +11,11 @@ set_target_properties(lcxx_crypto PROPERTIES CMAKE_CXX_STANDARD_REQUIRED ON)
 
 target_link_libraries( lcxx_crypto PUBLIC
     OpenSSL::Crypto
-    ${VERSION_DIR}
 )
 
 target_include_directories(lcxx_crypto PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${VERSION_DIR}
 )
 
 add_library(lcxx::crypto ALIAS lcxx_crypto)
