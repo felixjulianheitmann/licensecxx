@@ -5,6 +5,9 @@ SET(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
 
 option(LCXX_GENERATE_KEYS "Whether RSA key files should be generated during build time." OFF)
 
+include(cmake/get_version.cmake)
+pull_version()
+
 project (lcxx
 			VERSION 0.1.0
 			LANGUAGES CXX)
