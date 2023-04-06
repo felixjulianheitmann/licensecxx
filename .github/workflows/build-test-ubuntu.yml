@@ -3,6 +3,8 @@ name: LCXX build & test - Ubuntu
 on:
   push:
     branches: [ "develop" ]
+    tags:
+      - v*.*.*
   pull_request:
     branches: [ "develop" ]
 
