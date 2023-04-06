@@ -19,15 +19,13 @@
 
 *Copy protection library targeting Linux, Windows and Mac* (currently only Linux supported)
 
-This project is inspired by the [**licensecc**](https://github.com/open-license-manager/licensecc) project.
+This project is inspired by the [**licensecc**](https://github.com/open-license-manager/licensecc) project and similar to [hyperboloide/lk](https://github.com/hyperboloide/lk).
 
 Protect your software by generating and checking against license files. Create a set of key value pairs as content for your file and sign them with a RSA private key. The licensed software can then read this license file and verify the signature with the respective public key.
 
 Additionally to providing key value pairs, you can include hash values of machine or user dependant data. Features such as name of the operating system, the machine hostname, the maximum CPU frequency can be hashed and included in the license. This enables machine/user specific license distribution.
 
 Licensecxx provides a modern C++ interface with the main focus on ease of use and minimal impact on the software that it's protecting.
-
-Due to the early development stage, licensecxx currently only supports linux hosts. Most of the software should be os-agnostic, but hardware/os identifiers rely on the operatings system they run on. One of the primary goals will be to enable cross-platform support, as soon as I can get my hands on a Windows/Mac to test things on.
 
 A list of the available features and the roadmap can be seen at [License Features](#license-features).
 
