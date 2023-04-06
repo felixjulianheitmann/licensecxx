@@ -2,6 +2,7 @@ add_library(lcxx_license INTERFACE)
 
 target_include_directories(lcxx_license INTERFACE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${VERSION_DIR}
 )
 
 target_compile_features(lcxx_license INTERFACE cxx_std_20)

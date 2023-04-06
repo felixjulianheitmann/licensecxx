@@ -9,8 +9,11 @@ include(cmake/get_version.cmake)
 pull_version()
 
 project (lcxx
-			VERSION 0.1.0
+			VERSION ${GIT_VER_BASE}
 			LANGUAGES CXX)
+
+set(VERSION_DIR ${CMAKE_BINARY_DIR}/version)
+configure_file("scripts/version.hpp.in" "${CMAKE_BINARY_DIR}/version/lcxx/version.hpp")
 
 include(${PROJECT_SOURCE_DIR}/cmake/key_targets.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/get_nlohmann_json.cmake)
