@@ -2,11 +2,9 @@ name: LCXX build & test - Windows
 
 on:
   push:
-    branches: [ "develop" ]
-    tags:
-      - v*.*.*
+    branches: [ "develop", "main" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "develop", "main" ]
 
 defaults:
   run:
@@ -26,9 +24,7 @@ jobs:
 
     - name: configure
       run: |
-        mkdir build
-        cd build
-        cmake -DCMAKE_BUILD_TYPE=Release ..
+        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release ..
 
     - name: build
       working-directory: build
@@ -49,8 +45,8 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: install OpenSSL
-      run: choco install openssl
+    # - name: install OpenSSL
+    #   run: choco install openssl
 
     - uses: actions/download-artifact@v3
       with:

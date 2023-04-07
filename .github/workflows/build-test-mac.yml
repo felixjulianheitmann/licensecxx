@@ -6,7 +6,7 @@ on:
     tags:
       - v*.*.*
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "develop", "main" ]
 
 defaults:
   run:
@@ -21,11 +21,9 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: configure (use GCC)
+    - name: configure
       run: |
-        mkdir build
-        cd build
-        cmake -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1 -DCMAKE_BUILD_TYPE=Release ..
+        cmake -S . -B build -DOPENSSL_ROOT_DIR=/usr/local/opt/openssl@1.1 -DCMAKE_BUILD_TYPE=Release ..
 
     - name: build
       working-directory: build

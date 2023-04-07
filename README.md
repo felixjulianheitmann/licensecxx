@@ -19,15 +19,13 @@
 
 *Copy protection library targeting Linux, Windows and Mac* (currently only Linux supported)
 
-This project is inspired by the [**licensecc**](https://github.com/open-license-manager/licensecc) project.
+This project is inspired by the [**licensecc**](https://github.com/open-license-manager/licensecc) project and similar to [hyperboloide/lk](https://github.com/hyperboloide/lk).
 
 Protect your software by generating and checking against license files. Create a set of key value pairs as content for your file and sign them with a RSA private key. The licensed software can then read this license file and verify the signature with the respective public key.
 
 Additionally to providing key value pairs, you can include hash values of machine or user dependant data. Features such as name of the operating system, the machine hostname, the maximum CPU frequency can be hashed and included in the license. This enables machine/user specific license distribution.
 
 Licensecxx provides a modern C++ interface with the main focus on ease of use and minimal impact on the software that it's protecting.
-
-Due to the early development stage, licensecxx currently only supports linux hosts. Most of the software should be os-agnostic, but hardware/os identifiers rely on the operatings system they run on. One of the primary goals will be to enable cross-platform support, as soon as I can get my hands on a Windows/Mac to test things on.
 
 A list of the available features and the roadmap can be seen at [License Features](#license-features).
 
@@ -42,7 +40,7 @@ The library requires C++20 support.
 Licensecxx relies on [nlohmann/json](https://github.com/nlohmann/json) and [OpenSSL](https://www.openssl.org/).
 nlohmann/json is fetched through CMake-Fetchcontent during configure time and made available the library. Whether this is the preferrable way is still up to debate.
 
-OpenSSL needs to be made available by the parent project/user. Licensecxx only calls `FindPackage(OpenSSL)`. If that cannot find the OpenSSL 1.1 library, the licensecxx cannot be built.
+OpenSSL needs to be made available by the parent project/user. Licensecxx only calls `FindPackage(OpenSSL)`. If that cannot find the OpenSSL >3.0 library, the licensecxx cannot be built.
 
 ### Building
 
@@ -75,7 +73,7 @@ int main()
     license.push_content( "os", lcxx::identifiers::os().hash );
 
     auto key = lcxx::crypto::load_key( some_pem_private_key_rsa_string, lcxx::crypto::key_type::private_key );
-    // alternatively, load key from file by providing the file PEM file path
+    // alternatively, load key from file by providing the PEM file path
     // auto key = lcxx::crypto::load_key( some_pem_private_key_rsa_path, lcxx::crypto::key_type::private_key );
     lcxx::to_json(license, "my-project-license.lic", key);
 }
@@ -85,7 +83,7 @@ It prints a signed license json file to the file `my-project-license.lic`. This 
 
 ### Verify a license
 
-A generated license file or string can be loaded and verified provided a public key. Additional hardware identifiers can be checked against the currently running hardware.
+A generated license file or string can be loaded and verified provided a public key. Additional hardware identifiers can be checked against the currently running hardware. Note, that the identifiers are still experimental as they are not supported by all platforms, yet.
 
 ```c++
 int main()
@@ -119,12 +117,12 @@ openssl genrsa -out /path/to/private_key.rsa 1024
 openssl rsa -in /path/to/private_key.rsa -outform PEM -pubout -out /path/to/public_key
 ```
 
-These command generate a private-public key pair. Enabling the CMake option `LCXX_GENERATE_KEYS` will an additional CMake interface library called `lcxx::key`.
-Linking it will have CMake generate a key-pair from that through a simple python script two header files:
+These commands generate a private-public key pair. Enabling the CMake option `LCXX_GENERATE_KEYS` will add an additional CMake interface library called `lcxx::key`.
+Linking it will have CMake invoke a [simple Python script](scripts/generate_headers.py) that generates a key-pair in two header files:
 - `public_key.hpp`
 - `private_key.hpp`
 
-For that location of the generated private/public keys can be specified with the variables `LCXX_PRIVATE_KEY`/`LCXX_PUBLIC_KEY`. The key size defaults to 1024 but can be configured through `LCXX_KEY_SIZE`.
+For that, location of the generated private/public keys can be specified with the variables `LCXX_PRIVATE_KEY`/`LCXX_PUBLIC_KEY`. The key size defaults to 1024 but can be configured through `LCXX_KEY_SIZE`.
 
 Finally, `LCXX_KEY_HEADER_DIR` defines the path where the generated header files should be located. It will automatically be part of the `lcxx::key` include directories.
 
@@ -132,12 +130,14 @@ Enabling `LCXX_GENERATE_KEYS` will require Python as a dependency for the header
 
 ## License Features (and roadmap)
 
-Currently, all features are only provided for Linux based systems unless marked otherwise.
+Building and testing on machines other than Linux is not as easy. That's why all features are most stable on Linux. Whenever a bug occurs, I will try to catch it with another unit test.
+
+The roadmap for what I still have in mind with this library is as follows:
 
 - [x] include CPU features
 - [x] include OS/user features
 - [x] Provide proper online documentation
-- [ ] Make CD/CI run through on Windows / Mac / Ubuntu
+- [x] Make CD/CI run through on Windows / Mac / Ubuntu
 - [ ] provide hardware/os identifiers for Windows
 - [ ] provide hardware/os identifiers for Mac
 - [ ] Provide a conan binary
