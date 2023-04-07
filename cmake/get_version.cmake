@@ -5,12 +5,17 @@ function(pull_version)
 execute_process(
     COMMAND git describe --tags
     WORKING_DIRECTORY "${CMAKE_PROJECT_DIR}"
-    OUTPUT_VARIABLE GIT_TAG
-    RESULTS_VARIABLE GIT_TAG_ERR
+    OUTPUT_VARIABLE GIT_DESCRIBE
+    RESULTS_VARIABLE GIT_DESCRIBE_ERR
     OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-string(REGEX MATCH "v.*\..*\..*" SEMVER_FOUND ${GIT_TAG})
+# Examples:
+# - v1.0.3-1-g88da7dd
+# - v2.0.0
+# - v123.123.321-alpha.543+14-g88da7dd
+string(REGEX MATCH "v.*\..*\..*" SEMVER_FOUND ${GIT_DESCRIBE})
+set(GIT_DESCRIBE "v1.1.0")
 
 if("${SEMVER_FOUND}" STREQUAL "")
     set(GIT_VER_SEM "v0.0.0-dev")
@@ -21,10 +26,7 @@ if("${SEMVER_FOUND}" STREQUAL "")
     set(GIT_VER_TAIL "dev")
 endif()
 
-string(REGEX MATCHALL "(\\v|\\.)[0-9+]|[0-9+]\\-" VER_NUMBERS ${GIT_TAG})
-foreach(I ${VER_NUMBERS})
-    message(${I})
-endforeach()
+string(REGEX MATCHALL "(\\v|\\.)[0-9+]|\\-.*" VER_NUMBERS ${GIT_DESCRIBE})
 
 list(LENGTH VER_NUMBERS VER_NUMBERS_LEN)
 list(GET VER_NUMBERS 0 GIT_VER_MAJOR)
@@ -36,15 +38,22 @@ string(REGEX REPLACE "\\.([0-9+])" "\\1" GIT_VER_BUILD ${GIT_VER_BUILD})
 
 if(VER_NUMBERS_LEN GREATER_EQUAL 4)
     list(GET VER_NUMBERS 3 GIT_VER_TAIL)
-    string(REGEX REPLACE "\\-([0-9+])" "\\1" GIT_VER_TAIL ${GIT_VER_TAIL})
+    # Remove hash at the end
+    string(REGEX REPLACE "\\-[A-z0-9]*$" "" GIT_VER_TAIL ${GIT_VER_TAIL})
+    if(${GIT_VER_TAIL} NOT STREQUAL "")
+        # Remove the - at the beginning
+        string(REGEX REPLACE "^\\-(.*)" "\\1" GIT_VER_TAIL ${GIT_VER_TAIL})
+        # Replace -BUILD_NO with +BUILD_NO
+        string(REGEX REPLACE "(\\-)([0-9]*)$" "+\\2" GIT_VER_TAIL ${GIT_VER_TAIL})
+    endif()
 else()
     set(GIT_VER_TAIL "")
 endif()
 
 string(JOIN "." GIT_VER_BASE ${GIT_VER_MAJOR} ${GIT_VER_MINOR} ${GIT_VER_BUILD})
-string(JOIN "+" GIT_VER_STR ${GIT_VER_BASE} ${GIT_VER_TAIL})
+string(JOIN "-" GIT_VER_STR ${GIT_VER_BASE} ${GIT_VER_TAIL})
 string(JOIN "" GIT_VER_SEM "v" ${GIT_VER_STR})
-message("Git describe: ${GIT_TAG}")
+message("Git describe: ${GIT_DESCRIBE}")
 message("GIT_VER_SEM: ${GIT_VER_SEM}")
 message("GIT_VER_STR: ${GIT_VER_STR}")
 message("GIT_VER_MAJOR: ${GIT_VER_MAJOR}")
