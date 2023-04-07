@@ -12,6 +12,7 @@ target_link_libraries( lcxx_identifiers PUBLIC
 
 target_include_directories( lcxx_identifiers PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${VERSION_DIR}
 )
 
 target_compile_features(lcxx_identifiers PUBLIC cxx_std_20)

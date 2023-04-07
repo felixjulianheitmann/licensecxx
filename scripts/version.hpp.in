@@ -1,0 +1,15 @@
+#pragma once
+
+#include <string_view>
+
+namespace lcxx::version {
+
+    constexpr std::string_view semantic = "${GIT_VER_SEM}";
+    constexpr std::string_view str      = "${GIT_VER_STR}";
+    constexpr std::string_view base     = "${GIT_VER_BASE}";
+    constexpr int              major    = ${GIT_VER_MAJOR};
+    constexpr int              minor    = ${GIT_VER_MINOR};
+    constexpr int              build    = ${GIT_VER_BUILD};
+    constexpr std::string_view tail     = "${GIT_VER_TAIL}";
+
+}  // namespace lcxx

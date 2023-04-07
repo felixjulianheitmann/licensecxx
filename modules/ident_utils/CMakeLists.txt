@@ -2,6 +2,7 @@ add_library(lcxx_ident_utils)
 
 target_include_directories(lcxx_ident_utils PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${VERSION_DIR}
 )
 
 target_compile_features(lcxx_ident_utils PUBLIC cxx_std_20)
