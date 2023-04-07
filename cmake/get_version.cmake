@@ -15,7 +15,6 @@ execute_process(
 # - v2.0.0
 # - v123.123.321-alpha.543+14-g88da7dd
 string(REGEX MATCH "v.*\..*\..*" SEMVER_FOUND ${GIT_DESCRIBE})
-set(GIT_DESCRIBE "v1.1.0")
 
 if("${SEMVER_FOUND}" STREQUAL "")
     set(GIT_VER_SEM "v0.0.0-dev")
@@ -40,7 +39,7 @@ if(VER_NUMBERS_LEN GREATER_EQUAL 4)
     list(GET VER_NUMBERS 3 GIT_VER_TAIL)
     # Remove hash at the end
     string(REGEX REPLACE "\\-[A-z0-9]*$" "" GIT_VER_TAIL ${GIT_VER_TAIL})
-    if(${GIT_VER_TAIL} NOT STREQUAL "")
+    if(NOT "${GIT_VER_TAIL}" STREQUAL "")
         # Remove the - at the beginning
         string(REGEX REPLACE "^\\-(.*)" "\\1" GIT_VER_TAIL ${GIT_VER_TAIL})
         # Replace -BUILD_NO with +BUILD_NO
