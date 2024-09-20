@@ -27,8 +27,13 @@ namespace lcxx::experimental::identifiers {
 
         if ( strat_active( strategy, os_ident_strat::all ) ) {
             auto msg = nlohmann::json{ os_info }.dump();
+
+            auto [hash, err] = hash::sha512( msg );
+            if ( err != hash::error::ok )
+                return { error::hash_error, {}, msg };
             return {
-                encode::base64( hash::md5( msg ) ),
+                error::hash_error,
+                encode::base64( hash ),
                 msg,
             };
         }
@@ -61,7 +66,10 @@ namespace lcxx::experimental::identifiers {
         }
 
         auto msg = id_json.dump();
-        return { encode::base64( hash::md5( msg ) ), msg, static_cast< ident_strat_t >( strategy ) };
+        auto [hash, err] = hash::sha512( msg );
+        if ( err != hash::error::ok )
+            return { error::hash_error, {}, msg };
+        return { error::ok, encode::base64( hash ), msg, static_cast< ident_strat_t >( strategy ) };
     }
 
     auto verify( os_ident_strat const strategy, std::string_view const hash ) -> bool

@@ -25,6 +25,8 @@ This project is supposed to be used as a library addition to your software. Lice
 
 The ``lcxx::identifiers`` library is optional to produce/verify identifying hash codes of the target machine.
 
+Note that `LCXX_NLOHMANN_JSON_CMAKE_FETCH` can be explicitly turned off to prevent LCXX from downloading Nlohmann::Json using CMake Fetchcontent.
+
 Generate a license
 ------------------
 
