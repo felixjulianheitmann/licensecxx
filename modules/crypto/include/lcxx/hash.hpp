@@ -4,28 +4,19 @@
 #include <span>
 #include <string>
 
-#include <openssl/md5.h>
-#include <openssl/sha.h>
+#include <openssl/evp.h>
 
 namespace lcxx::hash {
 
-    using md5_hash_t    = std::array< std::byte, MD5_DIGEST_LENGTH >;
-    using sha512_hash_t = std::array< std::byte, SHA512_DIGEST_LENGTH >;
+    enum class error {
+        ok,
+        ctx_allocation_failure,
+        digest_init_failure,
+        digest_update_failure,
+        digest_finalization_failure,
+    };
 
-    /**
-     * @brief calculates an MD5 hashsum over an input string
-     *
-     * @param input the string that will be digested
-     * @return md5_hash_t the MD5 hash in byte-array form
-     */
-    auto md5( std::string const & input ) -> md5_hash_t;
-    auto md5( std::span< const std::byte > const input ) -> md5_hash_t;
-    template < typename T >
-    requires( sizeof( T ) == 1 ) auto md5( std::span< T > const input ) -> md5_hash_t
-    {
-        return md5(
-            std::span< const std::byte >{ reinterpret_cast< std::byte const * >( input.data() ), input.size() } );
-    }
+    using sha512_hash_t = std::array< std::byte, 64 >;
 
     /**
      * @brief calculates a SHA512 hashsum over an input string
@@ -33,10 +24,11 @@ namespace lcxx::hash {
      * @param input the string that will be digested
      * @return sha512_hash_t the SHA512 hash in byte-array form
      */
-    auto sha512( std::string const & input ) -> sha512_hash_t;
-    auto sha512( std::span< const std::byte > const input ) -> sha512_hash_t;
+    auto sha512( std::string const & input ) -> std::pair< sha512_hash_t, error >;
+    auto sha512( std::span< const std::byte > const input ) -> std::pair< sha512_hash_t, error >;
     template < typename T >
-    requires( sizeof( T ) == 1 ) auto sha512( std::span< T > const input ) -> sha512_hash_t
+        requires( sizeof( T ) == 1 )
+    auto sha512( std::span< T > const input ) -> std::pair< sha512_hash_t, error >
     {
         return sha512(
             std::span< const std::byte >{ reinterpret_cast< std::byte const * >( input.data() ), input.size() } );

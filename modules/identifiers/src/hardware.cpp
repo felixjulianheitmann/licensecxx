@@ -26,7 +26,10 @@ namespace lcxx::experimental::identifiers {
 
         if ( strat_active( strategy, hw_ident_strat::all ) ) {
             auto msg = nlohmann::json{ cpu_info }.dump();
-            return { encode::base64( hash::md5( msg ) ), msg };
+            auto [hash, err] = hash::sha512( msg );
+            if ( err != hash::error::ok )
+                return { error::hash_error, {}, msg };
+            return { error::ok, encode::base64( hash ), msg };
         }
 
         if ( strat_active( strategy, hw_ident_strat::cpu ) ) {
@@ -46,7 +49,10 @@ namespace lcxx::experimental::identifiers {
         }
 
         auto msg = info_json.dump();
-        return { encode::base64( hash::md5( msg ) ), msg };
+        auto [hash, err] = hash::sha512( msg );
+        if ( err != hash::error::ok )
+            return { error::hash_error, {}, msg };
+        return { error::ok, encode::base64( hash ), msg };
         // if(strat_active(strategy, hw_ident_strat::gpu) {}
         // if(strat_active(strategy, hw_ident_strat::network) {}
     }
