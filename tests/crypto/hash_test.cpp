@@ -6,9 +6,13 @@
 
 #include <lcxx/hash.hpp>
 
-template < std::ranges::range R > auto str_to_vec( std::string_view const str ) -> R
+template < std::ranges::range R >
+auto str_to_vec( std::string_view const str ) -> R
+    requires( sizeof( std::ranges::range_value_t< R > ) == 1 )
 {
-    auto bytes = str | std::views::transform( []( auto && c ) { return std::ranges::range_value_t< R >{ c }; } );
+    auto bytes = str | std::views::transform( []( auto && c ) {
+                     return *reinterpret_cast< std::ranges::range_value_t< R > const * >( &c );
+                 } );
     return { bytes.begin(), bytes.end() };
 }
 

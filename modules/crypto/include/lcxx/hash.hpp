@@ -1,6 +1,7 @@
 #ifndef LCXX__CRYPTO_HASH_HPP__
 #define LCXX__CRYPTO_HASH_HPP__
 
+#include <array>
 #include <span>
 #include <string>
 

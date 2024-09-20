@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
@@ -36,7 +36,7 @@ jobs:
       working-directory: build
       run: cmake --build .
 
-    - uses: actions/upload-artifact@master
+    - uses: actions/upload-artifact@v4
       with:
         name: lcxx-tests-ubuntu
         path: |
@@ -50,7 +50,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Get latest GCC (libstdc++ required)
       uses: egor-tensin/setup-gcc@v1
@@ -58,7 +58,7 @@ jobs:
         version: 11
         platform: x64
 
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4
       with:
         name: lcxx-tests-ubuntu
 
