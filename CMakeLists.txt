@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.20...4)
 
 SET(CMAKE_DISABLE_SOURCE_CHANGES OFF) #keys are generated in the source tree by default
 SET(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
