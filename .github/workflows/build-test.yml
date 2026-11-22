@@ -1,0 +1,38 @@
+name: LCXX build & test
+
+on:
+  push:
+    branches: [ "main" ]
+    tags:
+      - v*.*.*
+  pull_request:
+    branches: [ "main" ]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build-windows:
+    strategy:
+      matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        fetch-depth: 0
+        fetch-tags: true
+
+    - name: Set up GCC
+      if: matrix.os != 'windows-latest'
+      uses: egor-tensin/setup-gcc@v2
+
+    - name: Install Conan
+      uses: conan-io/setup-conan@v1
+
+    - name: Build & Test
+      run: |
+        conan build . -s build_type=Release -c tools.cmake.cmaketoolchain:generator=Ninja -o "&:with_tests=True" -o "&:with_samples=True" -o "&:shared=False" -b=missing

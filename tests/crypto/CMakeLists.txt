@@ -14,7 +14,7 @@ target_include_directories(crypto_test PRIVATE
     ${PROJECT_SOURCE_DIR}/common
 )
 
-target_compile_definitions(crypto_test PRIVATE 
+target_compile_definitions(crypto_test PRIVATE
     TEST_RESOURCE_PATH="${CMAKE_CURRENT_SOURCE_DIR}/../resources"
 )
 
