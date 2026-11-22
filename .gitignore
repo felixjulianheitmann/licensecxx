@@ -10,3 +10,5 @@ docs/Sphinx/source/api
 
 # VS Code config
 .vscode
+
+CMakeUserPresets.json
