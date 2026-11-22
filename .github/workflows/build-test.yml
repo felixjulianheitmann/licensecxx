@@ -26,6 +26,9 @@ jobs:
         fetch-depth: 0
         fetch-tags: true
 
+    - name: Set up GCC
+      if: matrix.os != 'windows-latest'
+      uses: egor-tensin/setup-gcc@v2
 
     - name: Install Conan
       uses: conan-io/setup-conan@v1
